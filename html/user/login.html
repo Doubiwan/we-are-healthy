@@ -1,0 +1,260 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>登陆</title>
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/login_doctor.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="../../css/login_patient.css" /> -->
+</head>
+
+<body>
+    <div class="container1">
+        <div class="logo">
+            <img src="../../image/loading_more.gif">
+        </div>
+        <div id="tab" class="aui-bar aui-bar-btn aui-bar-btn-full">
+            <div id="loginDoc" class="aui-bar-btn-item aui-active">医生登陆</div>
+            <div id="loginPat" class="aui-bar-btn-item">病人登陆</div>
+        </div>
+        <div class="login_item doctor">
+            <span>医生登陆</span>
+            <form id="form_doctor">
+                <div class="aui-content aui-margin-b-15">
+                    <ul class="aui-list aui-form-list">
+                        <li class="aui-list-item">
+                            <div class="aui-list-item-inner">
+                                <div class="aui-list-item-label-icon">
+                                    <i class="aui-iconfont aui-icon-mobile"></i>
+                                </div>
+                                <div class="aui-list-item-input">
+                                    <input type="text" placeholder="username" name="username">
+                                </div>
+                            </div>
+                        </li>
+                        <li class="aui-list-item">
+                            <div class="aui-list-item-inner">
+                                <div class="aui-list-item-label-icon">
+                                    <i class="aui-iconfont aui-icon-lock"></i>
+                                </div>
+                                <div class="aui-list-item-input">
+                                    <input type="password" placeholder="password" name="password">
+                                </div>
+                                <div class="aui-list-item-label-icon">
+                                    <i class="aui-iconfont aui-icon-display"></i>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="aui-list-item">
+                            <div class="aui-list-item-inner">
+                                <div class="aui-list-item-label-icon">
+                                    <i class="aui-iconfont aui-icon-info"></i>
+                                </div>
+                                <div class="aui-list-item-input">
+                                    <input class="authCode" id="authCode" keyup="validate()" name="authCode" type="text" placeholder="4-16位英文字母或数字" />
+                                    <div class="codeImage"><img id="doc_codeImage" onclick="changeCode()" title="图片看不清？点击重新得到验证码" type="image" /></div>
+                                </div>
+                            </div>
+                        </li>
+                        <div class="forgot_password">
+                            <a href="register.html">忘记密码？</a>
+                        </div>
+                        <div class="phone_validate">
+                            <a href="register.html">手机验证登陆</a>
+                        </div>
+                        <li class="aui-list-item submit_btn">
+                            <div class="aui-list-item-inner aui-list-item-center aui-list-item-btn">
+                                <div id="login_doctor" class="aui-btn aui-btn-info aui-margin-r-5">登陆</div>
+                                <div class="aui-btn aui-btn-danger aui-margin-l-5">注册</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </form>
+        </div>
+        <div class="login_item patient aui-hide">
+            <span>病人登陆</span>
+            <form id="form_patient">
+                <div class="aui-content aui-margin-b-15">
+                    <ul class="aui-list aui-form-list">
+                        <li class="aui-list-item">
+                            <div class="aui-list-item-inner">
+                                <div class="aui-list-item-label-icon">
+                                    <i class="aui-iconfont aui-icon-mobile"></i>
+                                </div>
+                                <div class="aui-list-item-input">
+                                    <input type="text" placeholder="username" name="username">
+                                </div>
+                            </div>
+                        </li>
+                        <li class="aui-list-item">
+                            <div class="aui-list-item-inner">
+                                <div class="aui-list-item-label-icon">
+                                    <i class="aui-iconfont aui-icon-lock"></i>
+                                </div>
+                                <div class="aui-list-item-input">
+                                    <input type="password" placeholder="password" name="password">
+                                </div>
+                                <div class="aui-list-item-label-icon">
+                                    <i class="aui-iconfont aui-icon-display"></i>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="aui-list-item">
+                            <div class="aui-list-item-inner">
+                                <div class="aui-list-item-label-icon">
+                                    <i class="aui-iconfont aui-icon-info"></i>
+                                </div>
+                                <div class="aui-list-item-input">
+                                    <input class="authCode" id="authCode" keyup="validate()" name="authCode" type="text" placeholder="4-16位英文字母或数字" />
+                                    <div class="codeImage"><img id="pat_codeImage" onclick="changeUserCode()" title="图片看不清？点击重新得到验证码" type="image" /></div>
+                                </div>
+                            </div>
+                        </li>
+                        <div class="forgot_password">
+                            <a href="register.html">忘记密码？</a>
+                        </div>
+                        <div class="phone_validate">
+                            <a href="register.html">手机验证登陆</a>
+                        </div>
+                        <li class="aui-list-item submit_btn">
+                            <div class="aui-list-item-inner aui-list-item-center aui-list-item-btn">
+                                <div id="login_patient" class="aui-btn aui-btn-info aui-margin-r-5">登陆</div>
+                                <div class="aui-btn aui-btn-danger aui-margin-l-5">注册</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../script/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/aui-tab.js"></script>
+<script type="text/javascript">
+
+    //点击切换
+    var tab = new auiTab({
+        element: document.getElementById("tab"),
+        index: 1,
+        repeatClick: false
+    }, function(ret) {
+        console.log(ret.index);
+        if(ret.index==2){
+          changeUserCode();
+        }else if (ret.index==1) {
+          changeCode();
+        }
+        $('.container1 .login_item').addClass('aui-hide');
+        // console.log($('.container1 doctor').hasClass('aui-hide'));
+        $('.container1 .login_item').eq(ret.index - 1).removeClass('aui-hide');
+        // console.log($('.container1 doctor').hasClass('aui-hide'));
+    });
+
+
+    // 医生登陆获取验证码和sessionId
+    var baseURL = "http://114.215.156.99:8381/backend/";
+    var authcode = false;
+
+    function changeCode() {
+        //获取sessionId并将其存放在sessionstorage之中
+        $.ajax({
+            type: 'post',
+            url: baseURL + "adminController/getSessionId", //
+            dataType: 'json',
+            success: function(data) {
+                sessionStorage.setItem('sessionId', data.body.sessionId);
+                $('#doc_codeImage').attr('src', baseURL + 'adminController/authCode?abc=' + Math.random()); //链接后添加Math.random，确保每次产生新的验证码，避免缓存问题。
+            }
+        });
+    }
+
+    //病人登陆获取验证码和sessionId
+    function changeUserCode() {
+        //获取sessionId并将其存放在sessionstorage之中
+        $.ajax({
+            type: 'post',
+            url: baseURL + "userController/getSessionId",
+            dataType: 'json',
+            success: function(data) {
+                sessionStorage.setItem('sessionId', data.body.sessionId);
+                $('#pat_codeImage').attr('src', baseURL + 'userController/authCode?abc=' + Math.random()); //链接后添加Math.random，确保每次产生新的验证码，避免缓存问题。
+            }
+        });
+    }
+
+    $(document).ready(function() {
+        if ($('#loginDoc').hasClass('aui-active')) {
+          changeCode();
+          // 发送医生登录请求
+        }else if ($('#loginPat').hasClass('aui-active')) {
+          changeUserCode();
+          // 发送病人登录请求
+        }
+        $('#login_doctor').click(function() {
+          $.ajax({
+            type: 'post',
+            url: baseURL + "adminController/login",
+            data: $("#form_doctor").serialize() + "&sessionId=" + sessionStorage.getItem('sessionId'),
+            dataType: "json",
+            success: function(data) {
+              console.info(data);
+              if (data.code === 0) {
+                alert("connection success -> " + JSON.stringify(data));
+                api.openWin({
+                  name: 'patient_list' ,
+                  url: '../Patient_info/patient_list_frame.html',
+                  // pageParam: {
+                  //     name: ""
+                  // },
+                  slidBackEnabled:false
+                });
+              } else {
+                alert("connection failed  -> " + JSON.stringify(data));
+              }
+            }
+          });
+        });
+        $('#login_patient').click(function() {
+              $.ajax({
+                  type: 'post',
+                  url: baseURL + "userController/login",
+                  data: $("#form_patient").serialize() + "&sessionId=" + sessionStorage.getItem('sessionId'),
+                  dataType: "json",
+                  success: function(data) {
+                      console.info(data);
+                      if (data.code === 0) {
+                        $.ajax({
+                          url: baseURL + 'userController/getUser',
+                          type: 'POST',
+                          data:{
+                            sessionId: sessionStorage.getItem('sessionId')
+                          },
+                          dataType: 'json',
+                          success: function(data){
+                            sessionStorage.setItem('userId',data.body.id);
+                          }
+                        });
+                        api.openWin({
+                          name: 'frame0' ,
+                          url: '../frame0.html',
+                          pageParam: {
+                              name: ""
+                          },
+                          slidBackEnabled:false
+                        });
+                          alert("connection success -> " + JSON.stringify(data));
+                      } else {
+                          alert("connection failed  -> " + JSON.stringify(data));
+                      }
+                  }
+              });
+          });
+    });
+</script>
+
+</html>

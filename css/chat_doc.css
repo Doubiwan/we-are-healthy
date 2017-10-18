@@ -1,0 +1,199 @@
+*{box-sizing: border-box;}
+.title{
+  /*position: fixed;
+  top: 0;*/
+  width: 100%;
+  z-index: 1000;
+}
+#readMoreHistory,#readMoreRecommend{
+  font-size: 10px;
+color: #4cbcef;
+text-align: center;
+padding: 10px;
+}
+.history{
+position: relative;
+flex: 1;
+display: flex;
+flex-direction: column;
+}
+.recommend_btn_real{
+  position: fixed;
+  bottom: 0;
+  text-align: center;
+  padding: 5%;
+  padding-top: 0;
+  width: 100%;
+  height: 86px;
+  background-color: #F5F5F5;
+}
+.animated .aui-list .aui-list-item{
+  margin: auto;
+  border-bottom: 1px solid #dddddd;
+}
+.send_message_real{
+  padding: 5%;
+  width: 100%;
+  height: 86px;
+  position: fixed;
+  bottom: 0;
+  padding-top: 0;
+  background-color: #F5F5F5;
+}
+.aui-chat_recommend{
+  /*padding: 0.5rem;*/
+}
+.send_message_real .input_message{
+  display: inline-block;
+  border: 1rem;
+  background-color: transparent;
+  width: 79%;
+}
+#refresh_section{
+  flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 114px;
+    bottom: 86px;
+    overflow: auto;
+    width: 100%
+}
+.send_message_real .send_btn{
+  display: inline-block;
+}
+.container{
+  height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+}
+.container .aui-chat{
+  flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    padding: 0;
+}
+#content_list{
+  flex: 1;
+}
+.send_message_real .aui-icon-refresh{
+  padding-left: 9%;
+}
+.aui-chat .time,.aui-chat_recommend .time {
+  text-align: center;
+  font-size: 8px;
+  color: #cacaca;
+  padding: 18px 11px;
+}
+.aui-chat_recommend{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  /*position: fixed;*/
+top: 93px;
+bottom: 86px;
+overflow: auto;
+}
+#content_list_recommend{
+  flex: 1;
+  /*background-color: #fff;*/
+}
+#editForm_recommend{
+  height: 40vh;
+  overflow: auto;
+}
+/*#editForm_recommend::-webkit-scrollbar-track
+{
+  border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #F5F5F5;
+}*/
+
+#editForm_recommend::-webkit-scrollbar
+{
+	width: 10px;
+	/*background-color: #F5F5F5;*/
+}
+
+#editForm_recommend::-webkit-scrollbar-thumb
+{
+	background-color: #0ae;
+	border-radius: 10px;
+	background-image: -webkit-gradient(linear, 0 0, 0 100%,
+	                   color-stop(.5, rgba(255, 255, 255, .2)),
+					   color-stop(.5, transparent), to(transparent));
+}
+#editForm{
+  height: 40vh;
+  overflow: auto;
+}
+.aui-chat .text,.aui-chat_recommend .text {
+    display: inline-block;
+    position: relative;
+    padding: 0 10px;
+    max-width: calc(100% - 40px);
+    min-height: 30px;
+    line-height: 2.5;
+    font-size: 16px;
+    text-align: left;
+    word-break: break-all;
+    background-color: #fafafa;
+    border-radius: 4px;
+}
+.aui-chat .doc .avatar,.aui-chat_recommend .doc .avatar {
+    float: right;
+    margin: 0 0 0 10px;
+    border-radius: 3px;
+}
+#editForm .editInfos .second_list{
+  border-bottom:none;
+}
+.send_style{
+  text-align: center;
+}
+.recommend_btn{
+  width: 414px;
+  height: 111px;
+}
+.aui-btn-primary{
+  margin: 5% 5%;
+  width: 35%;
+}
+.aui-btn-success{
+  margin: 5% 5%;
+  width: 35%;
+}
+.editInfos .aui-list-item .aui-list-item-inner .insert_input{
+  width: 70%;
+  height: auto;
+  display: inline-block;
+}
+.status{
+  border: none;
+  background-color: red;
+  color: white;
+}
+.done{
+  background-color: blue;
+  border: none;
+  color: #fff;
+}
+.aui-btn .aui-iconfont, .aui-btn-block .aui-iconfont {
+  margin-right: 0.9rem;
+}
+#show_list{
+  color: #ffffff;
+  background-color: #00bcd4;
+}
+#send_list{
+  color: #ffffff;
+  background-color: #009688;
+}
+#tab{
+  z-index:100;
+}
+.aui-bar-light{
+  z-index: 100;
+}

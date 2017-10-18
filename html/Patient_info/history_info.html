@@ -1,0 +1,1992 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>历史数据</title>
+    <link rel="stylesheet" type="text/css" href="../../css/charts.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+</head>
+
+<body>
+    <div id="container">
+        <ul class="aui-list aui-list-in">
+            <li class="aui-list-header">
+             <!-- <div>患者血糖历史数据图</div> -->
+              <div class="row">
+                <div class="col-xs-4">
+                  <div class="input-group">
+                    <input class="form-control date-picker" id="datetime-input" type="text" data-date-format="yyyy-mm-dd" />
+                      <span class="input-group-addon">
+                        <i class="icon-calendar bigger-110"></i>
+                      </span>
+                  </div>
+                </div>
+                <div class="col-sm-1">
+                  <button class="btn btn-success btn-sm" onclick="getDayData()">近24小时</button>
+                </div>
+                <div class="col-sm-1">
+                  <button class="btn btn-success btn-sm" onclick="getWeekData()">近7天</button>
+                </div>
+                <div class="col-sm-1">
+                  <button class="btn btn-success btn-sm" onclick="getMonthData()">近30天</button>
+                </div>
+              </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div id="GLU_chart" class="GLU_style"></div>
+                </div>
+            </li>
+        </ul>
+        <ul class="aui-list aui-list-in">
+            <li class="aui-list-header">
+                <!-- 患者血压历史数据图 -->
+                <div class="row">
+                  <div class="col-xs-4">
+                    <div class="input-group">
+                      <input class="form-control date-picker" id="datetime-input" type="text" data-date-format="yyyy-mm-dd" />
+                        <span class="input-group-addon">
+                          <i class="icon-calendar bigger-110"></i>
+                        </span>
+                    </div>
+                  </div>
+                  <div class="col-sm-1">
+                    <button class="btn btn-success btn-sm" onclick="getDayData()">近24小时</button>
+                  </div>
+                  <div class="col-sm-1">
+                    <button class="btn btn-success btn-sm" onclick="getWeekData()">近7天</button>
+                  </div>
+                  <div class="col-sm-1">
+                    <button class="btn btn-success btn-sm" onclick="getMonthData()">近30天</button>
+                  </div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div id="blood_pressure_chart" class="GLU_style"></div>
+                </div>
+            </li>
+        </ul>
+        <ul class="aui-list aui-list-in">
+            <li class="aui-list-header">
+                <!-- 患者血氧历史数据图 -->
+                <div class="row">
+                  <div class="col-xs-4">
+                    <div class="input-group">
+                      <input class="form-control date-picker" id="datetime-input" type="text" data-date-format="yyyy-mm-dd" />
+                        <span class="input-group-addon">
+                          <i class="icon-calendar bigger-110"></i>
+                        </span>
+                    </div>
+                  </div>
+                  <div class="col-sm-1">
+                    <button class="btn btn-success btn-sm" onclick="getDayData()">近24小时</button>
+                  </div>
+                  <div class="col-sm-1">
+                    <button class="btn btn-success btn-sm" onclick="getWeekData()">近7天</button>
+                  </div>
+                  <div class="col-sm-1">
+                    <button class="btn btn-success btn-sm" onclick="getMonthData()">近30天</button>
+                  </div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div id="oxygen_chart" class="GLU_style"></div>
+                </div>
+            </li>
+        </ul>
+        <ul class="aui-list aui-list-in">
+            <li class="aui-list-header">
+                <!-- 患者胆固醇历史数据图 -->
+                <div class="row">
+                  <div class="col-xs-4">
+                    <div class="input-group">
+                      <input class="form-control date-picker" id="datetime-input" type="text" data-date-format="yyyy-mm-dd" />
+                        <span class="input-group-addon">
+                          <i class="icon-calendar bigger-110"></i>
+                        </span>
+                    </div>
+                  </div>
+                  <div class="col-sm-1">
+                    <button class="btn btn-success btn-sm" onclick="getDayData()">近24小时</button>
+                  </div>
+                  <div class="col-sm-1">
+                    <button class="btn btn-success btn-sm" onclick="getWeekData()">近7天</button>
+                  </div>
+                  <div class="col-sm-1">
+                    <button class="btn btn-success btn-sm" onclick="getMonthData()">近30天</button>
+                  </div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div id="chole_chart" class="GLU_style"></div>
+                </div>
+            </li>
+        </ul>
+        <ul class="aui-list aui-list-in">
+            <li class="aui-list-header">
+                <!-- 患者糖化血红蛋白历史数据图 -->
+                <div class="row">
+                  <div class="col-xs-4">
+                    <div class="input-group">
+                      <input class="form-control date-picker" id="datetime-input" type="text" data-date-format="yyyy-mm-dd" />
+                        <span class="input-group-addon">
+                          <i class="icon-calendar bigger-110"></i>
+                        </span>
+                    </div>
+                  </div>
+                  <div class="col-sm-1">
+                    <button class="btn btn-success btn-sm" onclick="getDayData()">近24小时</button>
+                  </div>
+                  <div class="col-sm-1">
+                    <button class="btn btn-success btn-sm" onclick="getWeekData()">近7天</button>
+                  </div>
+                  <div class="col-sm-1">
+                    <button class="btn btn-success btn-sm" onclick="getMonthData()">近30天</button>
+                  </div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div id="hbalc_chart" class="GLU_style"></div>
+                </div>
+            </li>
+        </ul>
+        <ul class="aui-list aui-list-in">
+            <li class="aui-list-header">
+                <!-- 单导联心电 -->
+                <div class="row">
+                  <div class="col-xs-4">
+                    <div class="input-group">
+                      <input class="form-control date-picker" id="datetime-input" type="text" data-date-format="yyyy-mm-dd" />
+                        <span class="input-group-addon">
+                          <i class="icon-calendar bigger-110"></i>
+                        </span>
+                    </div>
+                  </div>
+                  <div class="col-sm-1">
+                    <button class="btn btn-success btn-sm" onclick="getDayData()">近24小时</button>
+                  </div>
+                  <div class="col-sm-1">
+                    <button class="btn btn-success btn-sm" onclick="getWeekData()">近7天</button>
+                  </div>
+                  <div class="col-sm-1">
+                    <button class="btn btn-success btn-sm" onclick="getMonthData()">近30天</button>
+                  </div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div id="ecg_chart" class="ECG_style"></div>
+                </div>
+            </li>
+        </ul>
+        <ul class="aui-list aui-list-in">
+            <li class="aui-list-header">
+                <!-- BMI -->
+                <div class="row">
+                  <div class="col-sm-1">
+                    <button class="btn btn-success btn-sm" onclick="getMonthData()">近期BMI</button>
+                  </div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div id="bmi_chart" class="GLU_style"></div>
+                </div>
+            </li>
+        </ul>
+        <ul class="aui-list aui-list-in">
+            <li class="aui-list-header">
+                <!-- 高血压风险 -->
+                <div class="row">
+                  <div class="col-xs-4">
+                    <div class="input-group">
+                      <input class="form-control date-picker" id="datetime-input" type="text" data-date-format="yyyy-mm-dd" />
+                        <span class="input-group-addon">
+                          <i class="icon-calendar bigger-110"></i>
+                        </span>
+                    </div>
+                  </div>
+                  <div class="col-sm-1">
+                    <button class="btn btn-success btn-sm" onclick="getDayData()">近24小时</button>
+                  </div>
+                  <div class="col-sm-1">
+                    <button class="btn btn-success btn-sm" onclick="getWeekData()">近7天</button>
+                  </div>
+                  <div class="col-sm-1">
+                    <button class="btn btn-success btn-sm" onclick="getMonthData()">近30天</button>
+                  </div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div id="risk_chart" class="GLU_style"></div>
+                </div>
+            </li>
+            <li class="danger">
+              0:无风险&nbsp;&nbsp;&nbsp;1:低风险&nbsp;&nbsp;&nbsp;1.5：低-中风险&nbsp;&nbsp;&nbsp;2：中风险 </br>2.5：中-高风险&nbsp;&nbsp;3：高风险&nbsp;&nbsp;3.5：高-极高风险&nbsp;&nbsp;4：极高风险
+            </li>
+        </ul>
+        <ul class="aui-list aui-list-in">
+            <li class="aui-list-header">
+                <!-- 糖尿病风险 -->
+                <div class="row">
+                  <div class="col-xs-4">
+                    <div class="input-group">
+                      <input class="form-control date-picker" id="datetime-input" type="text" data-date-format="yyyy-mm-dd" />
+                        <span class="input-group-addon">
+                          <i class="icon-calendar bigger-110"></i>
+                        </span>
+                    </div>
+                  </div>
+                  <div class="col-sm-1">
+                    <button class="btn btn-success btn-sm" onclick="getDayData()">近24小时</button>
+                  </div>
+                  <div class="col-sm-1">
+                    <button class="btn btn-success btn-sm" onclick="getWeekData()">近7天</button>
+                  </div>
+                  <div class="col-sm-1">
+                    <button class="btn btn-success btn-sm" onclick="getMonthData()">近30天</button>
+                  </div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div id="another_risk_chart" class="GLU_style"></div>
+                </div>
+            </li>
+            <li class="danger">
+              0:无风险&nbsp;&nbsp;&nbsp;1:低风险&nbsp;&nbsp;&nbsp;1.5：低-中风险&nbsp;&nbsp;&nbsp;2：中风险 </br>2.5：中-高风险&nbsp;&nbsp;3：高风险&nbsp;&nbsp;3.5：高-极高风险&nbsp;&nbsp;4：极高风险
+            </li>
+        </ul>
+    </div>
+</body>
+<script type="text/javascript" src="../../script/echarts.js"></script>
+<script type="text/javascript" src="../../script/jquery-2.1.4.min.js"></script>
+<script src="../../script/bootstrap.min.js"></script>
+<script src="../../script/bootstrap-datepicker.js"></script>
+<script type="text/javascript">
+    jQuery(function($) {
+        $('.date-picker').datepicker({
+            language: "zh-CN",
+            autoclose: true, //选中之后自动隐藏日期选择框
+            clearBtn: true, //清除按钮
+            todayBtn: true, //今日按钮
+            format: "yyyy-mm-dd" //日期格式
+        });
+    });
+</script>
+<script type="text/javascript">
+    "use strict";
+    // var infoid = sessionStorage.getItem("infoid");
+    var glu = []; //血糖
+    var sbp = []; //收缩压
+    var dbp = []; //舒张压
+    var oxygen = []; //血氧
+    var chole = []; //胆固醇
+    var hbalc = []; //糖化血红蛋白
+    var ecg = []; //心电
+    var BMI = ''; //BMI
+    var risk=[];//风险评估
+    var anotherRisk=[];//另一个风险评估
+    var gluChart = echarts.init(document.getElementById('GLU_chart'));
+    var pressureChart = echarts.init(document.getElementById('blood_pressure_chart'));
+    var oxygenChart = echarts.init(document.getElementById('oxygen_chart'));
+    var choleChart = echarts.init(document.getElementById('chole_chart'));
+    var hbalcChart = echarts.init(document.getElementById('hbalc_chart'));
+    var ecgChart = echarts.init(document.getElementById('ecg_chart'));
+    var bmiChart = echarts.init(document.getElementById('bmi_chart'));
+    var riskChart= echarts.init(document.getElementById('risk_chart'));
+    var anotherRiskChart= echarts.init(document.getElementById('another_risk_chart'));
+    var baseurl = 'http://114.215.156.99:8381/backend/';
+    $(document).ready(function() {
+        getBMI();
+        getRisk();
+        getAnotherRisk();
+        var currentdate;
+        getNowFormatDate();
+        getSevenData();
+        // 根据infoid查询身高体重——计算bmi
+        function getBMI() {
+            $.ajax({
+                url: baseurl + 'infoController/selectByPrimaryKey',
+                type: 'post',
+                datatype: 'json',
+                data: {
+                    id: 1
+                },
+                success: function(data) {
+                    var height = data.body.height / 100;
+                    var weight = data.body.weight;
+                    BMI = weight / (Math.pow(height, 2));
+                    BMI = BMI.toFixed(2);
+                    // console.log(BMI);
+                }
+            })
+        }
+        // 获取风险评估记录
+           function getRisk(){
+               let userid=sessionStorage.getItem('infoid');
+               $.ajax({
+                   url: baseurl+'riskController/selectAllByPage',
+                   type:'post',
+                   data:{
+                       page:1,
+                       rows:10,
+                       order:'id',
+                       sort:'asc',
+                       userid:1,
+                       type:1
+                   },
+                   success:function(data){
+                       for(let item of data.rows){
+                           let datetime = item.datetime.split(" ")[0];
+                           let riskresult=item.riskresult;
+                           let riskdata;
+                           switch (riskresult){
+                               case '无风险':
+                                   riskdata=0;
+                                   break;
+                               case '低风险':
+                                   riskdata=1;
+                                   break;
+                               case '低~中风险':
+                                   ridkdata=1.5;
+                                   break;
+                               case '中风险':
+                                   riskdata=2;
+                                   break;
+                               case '中~高风险':
+                                   riskdata=2.5;
+                                   break;
+                               case '高风险':
+                                   riskdata=3;
+                                   break;
+                               case '高~极高风险':
+                                   riskdata=3.5;
+                                   break;
+                               case '极高风险':
+                                   riskdata=4;
+                           }
+                           let riskItem=[datetime,riskdata];
+                           risk.push(riskItem);
+                       }
+
+                       let dateList = risk.map(function(item) {
+                           return item[0];
+                       });
+                       let riskValueList=risk.map(function(item) {
+                           return item[1];
+                       });
+                       /*risk start*/
+                       var riskOption = {
+                           title: [{
+                               left: 'left',
+                               text: '高血压风险'
+                           }],
+                           color: ['#3398DB'],
+                           tooltip : {
+                               trigger: 'axis',
+                               axisPointer : {
+                                   type : 'shadow'
+                               }
+                           },
+                           grid: {
+                               left: '3%',
+                               right: '4%',
+                               bottom: '3%',
+                               containLabel: true
+                           },
+                           xAxis : [
+                               {
+                                   type : 'category',
+                                   data : dateList,
+                                   axisTick: {
+                                       alignWithLabel: true
+                                   }
+                               }
+                           ],
+                           yAxis : [
+                               {
+                                   type : 'value'
+                               }
+                           ],
+                           series : [
+                               {
+                                   name:'风险等级',
+                                   type:'bar',
+                                   barWidth: '60%',
+                                   data:riskValueList
+                               }
+                           ]
+                       };
+                       riskChart.setOption(riskOption);
+                       /*risk end*/
+                   }
+               })
+           }
+          // 获取另一个风险评估记录
+           function getAnotherRisk(){
+               let userid=sessionStorage.getItem('infoid');
+               $.ajax({
+                   url: baseurl+'riskController/selectAllByPage',
+                   type:'post',
+                   data:{
+                       page:1,
+                       rows:10,
+                       order:'id',
+                       sort:'asc',
+                       userid:1,
+                       type:2
+                   },
+                   success:function(data){
+                       for(let item of data.rows){
+                           let datetime = item.datetime.split(" ")[0];
+                           let riskresult=item.riskresult;
+                           let riskdata;
+                           switch (riskresult){
+                               case '无风险':
+                                   riskdata=0;
+                                   break;
+                               case '低风险':
+                                   riskdata=1;
+                                   break;
+                               case '低~中风险':
+                                   ridkdata=1.5;
+                                   break;
+                               case '中风险':
+                                   riskdata=2;
+                                   break;
+                               case '中~高风险':
+                                   riskdata=2.5;
+                                   break;
+                               case '高风险':
+                                   riskdata=3;
+                                   break;
+                               case '高~极高风险':
+                                   riskdata=3.5;
+                                   break;
+                               case '极高风险':
+                                   riskdata=4;
+                           }
+                           let riskItem=[datetime,riskdata];
+                           anotherRisk.push(riskItem);
+                       }
+
+                       let dateList = anotherRisk.map(function(item) {
+                           return item[0];
+                       });
+                       let riskValueList=anotherRisk.map(function(item) {
+                           return item[1];
+                       });
+                       /*risk start*/
+                       var anotherRiskOption = {
+                           title: [{
+                               left: 'left',
+                               text: '糖尿病风险'
+                           }],
+                           color: ['#3398DB'],
+                           tooltip : {
+                               trigger: 'axis',
+                               axisPointer : {
+                                   type : 'shadow'
+                               }
+                           },
+                           grid: {
+                               left: '3%',
+                               right: '4%',
+                               bottom: '3%',
+                               containLabel: true
+                           },
+                           xAxis : [
+                               {
+                                   type : 'category',
+                                   data : dateList,
+                                   axisTick: {
+                                       alignWithLabel: true
+                                   }
+                               }
+                           ],
+                           yAxis : [
+                               {
+                                   type : 'value'
+                               }
+                           ],
+                           series : [
+                               {
+                                   name:'风险等级',
+                                   type:'bar',
+                                   barWidth: '60%',
+                                   data:riskValueList
+                               }
+                           ]
+                       };
+                       anotherRiskChart.setOption(anotherRiskOption);
+                       /*risk end*/
+                   }
+               })
+           }
+        // 获取当前时间
+        function getNowFormatDate() {
+            var date = new Date();
+            var seperator1 = "-";
+            var seperator2 = ":";
+            var month = date.getMonth() + 1;
+            var strDate = date.getDate();
+            if (month >= 1 && month <= 9) {
+                month = "0" + month;
+            }
+            if (strDate >= 0 && strDate <= 9) {
+                strDate = "0" + strDate;
+            }
+            currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate +
+                " " + date.getHours() + seperator2 + date.getMinutes() +
+                seperator2 + date.getSeconds();
+        }
+        // 获取7天数据
+        function getSevenData() {
+            var datetime = currentdate.split(" ")[0];
+            $('.date-picker').val(datetime);
+            // var infoid = sessionStorage.getItem('infoid');
+            $.ajax({
+                url: baseurl + 'healthController/selectByWeek',
+                type: 'post',
+                datatype: 'json',
+                data: {
+                    infoid: 1,
+                    datetime: datetime
+                },
+                success: function(data) {
+                    for (let item of data.body) {
+                        let datetime = item.datetime.split(" ")[0];
+
+                        let gluItem = [datetime, item.glu];
+                        glu.push(gluItem);
+
+                        let sbpItem = [datetime, item.sbp];
+                        sbp.push(sbpItem);
+
+                        let dbpItem = [datetime, item.dbp];
+                        dbp.push(dbpItem);
+
+                        let oxygenItem = [datetime, item.boodoxygen];
+                        oxygen.push(oxygenItem);
+
+                        let choleItem = [datetime, item.cholesterol];
+                        chole.push(choleItem);
+
+                        let hbalcItem = [datetime, item.hbalc];
+                        hbalc.push(hbalcItem);
+
+                        let ecgItem = [datetime, item.ecg];
+                        ecg.push(ecgItem);
+
+                    }
+                    var dateList = glu.map(function(item) {
+                        return item[0];
+                    });
+                    var gluValueList = glu.map(function(item) {
+                        return item[1];
+                    });
+                    var sbpValueList = sbp.map(function(item) {
+                        return item[1];
+                    });
+                    var dbpValueList = dbp.map(function(item) {
+                        return item[1];
+                    });
+                    var oxygenValueList = oxygen.map(function(item) {
+                        return item[1];
+                    });
+                    var choleValueList = chole.map(function(item) {
+                        return item[1];
+                    });
+                    var hbalcValueList = hbalc.map(function(item) {
+                        return item[1];
+                    });
+                    var ecgValueList = ecg.map(function(item) {
+                        return item[1];
+                    });
+                    /*glu start*/
+                    var gluOption = {
+                        // Make gradient line here
+                        // visualMap: [{
+                        //     show: false,
+                        //     type: 'continuous',
+                        //     seriesIndex: 0,
+                        //     min: 0,
+                        //     max: 400
+                        // }],
+                        title: [{
+                            left: 'left',
+                            text: '患者血糖历史数据图'
+                        }],
+                        tooltip: {
+                            trigger: 'axis'
+                        },
+                        xAxis: [{
+                            data: dateList
+                        }],
+                        yAxis: [{
+                            splitLine: {
+                                show: false
+                            }
+                        }],
+                        grid: [{
+                            bottom: '10%'
+                        }],
+                        series: [{
+                            type: 'line',
+                            showSymbol: false,
+                            data: gluValueList
+                        }]
+                    };
+                    gluChart.setOption(gluOption);
+                    /*glu end*/
+                    /*pressure start*/
+                    var colors = ['#5793f3', '#d14a61', '#675bba'];
+                    var pressureOption = {
+                        color: colors,
+                        title: [{
+                            left: 'left',
+                            text: '患者血压历史数据图'
+                        }],
+                        tooltip: {
+                            trigger: 'none',
+                            axisPointer: {
+                                type: 'cross'
+                            }
+                        },
+                        legend: {
+                            data: ['dbp', 'sbp']
+                        },
+                        grid: {
+                            top: 70,
+                            bottom: 50
+                        },
+                        xAxis: [{
+                            type: 'category',
+                            axisTick: {
+                                alignWithLabel: true
+                            },
+                            axisLine: {
+                                onZero: false,
+                                lineStyle: {
+                                    color: colors[1]
+                                }
+                            },
+                            axisPointer: {
+                                label: {
+                                    formatter: function(params) {
+                                        return 'sbp  ' + params.value +
+                                            (params.seriesData.length ? '：' + params.seriesData[0].data : '');
+                                    }
+                                }
+                            },
+                            data: dateList
+                        }, {
+                            type: 'category',
+                            axisTick: {
+                                alignWithLabel: true
+                            },
+                            axisLine: {
+                                onZero: false,
+                                lineStyle: {
+                                    color: colors[0]
+                                }
+                            },
+                            axisPointer: {
+                                label: {
+                                    formatter: function(params) {
+                                        return 'dbp  ' + params.value +
+                                            (params.seriesData.length ? '：' + params.seriesData[0].data : '');
+                                    }
+                                }
+                            },
+                            data: dateList
+                        }],
+                        yAxis: [{
+                            type: 'value'
+                        }],
+                        series: [{
+                            name: 'sbp',
+                            type: 'line',
+                            xAxisIndex: 1,
+                            smooth: true,
+                            data: sbpValueList
+                        }, {
+                            name: 'dbp',
+                            type: 'line',
+                            smooth: true,
+                            data: dbpValueList
+                        }]
+                    };
+                    pressureChart.setOption(pressureOption);
+                    /*pressure end*/
+                    /*oxygen start*/
+                    var oxygenOption = {
+                        // Make gradient line here
+                        // visualMap: [{
+                        //     show: false,
+                        //     type: 'continuous',
+                        //     seriesIndex: 0,
+                        //     min: 0,
+                        //     max: 400
+                        // }],
+                        title: [{
+                            left: 'left',
+                            text: '患者血氧历史数据图'
+                        }],
+                        tooltip: {
+                            trigger: 'axis'
+                        },
+                        xAxis: [{
+                            data: dateList
+                        }],
+                        yAxis: [{
+                            splitLine: {
+                                show: false
+                            }
+                        }],
+                        grid: [{
+                            bottom: '10%'
+                        }],
+                        series: [{
+                            type: 'line',
+                            showSymbol: false,
+                            data: oxygenValueList
+                        }]
+                    };
+                    oxygenChart.setOption(oxygenOption);
+                    /*oxygen end*/
+                    /*chole start*/
+                    var choleOption = {
+                        // Make gradient line here
+                        // visualMap: [{
+                        //     show: false,
+                        //     type: 'continuous',
+                        //     seriesIndex: 0,
+                        //     min: 0,
+                        //     max: 400
+                        // }],
+                        title: [{
+                            left: 'left',
+                            text: '患者胆固醇历史数据图'
+                        }],
+                        tooltip: {
+                            trigger: 'axis'
+                        },
+                        xAxis: [{
+                            data: dateList
+                        }],
+                        yAxis: [{
+                            splitLine: {
+                                show: false
+                            }
+                        }],
+                        grid: [{
+                            bottom: '10%'
+                        }],
+                        series: [{
+                            type: 'line',
+                            showSymbol: false,
+                            data: choleValueList
+                        }]
+                    };
+                    choleChart.setOption(choleOption);
+                    /*chole end*/
+                    /*hbalc start*/
+                    var hbalcOption = {
+                        // Make gradient line here
+                        // visualMap: [{
+                        //     show: false,
+                        //     type: 'continuous',
+                        //     seriesIndex: 0,
+                        //     min: 0,
+                        //     max: 400
+                        // }],
+                        title: [{
+                            left: 'left',
+                            text: '患者糖化血红蛋白历史数据图'
+                        }],
+                        tooltip: {
+                            trigger: 'axis'
+                        },
+                        xAxis: [{
+                            data: dateList
+                        }],
+                        yAxis: [{
+                            splitLine: {
+                                show: false
+                            }
+                        }],
+                        grid: [{
+                            bottom: '10%'
+                        }],
+                        series: [{
+                            type: 'line',
+                            showSymbol: false,
+                            data: hbalcValueList
+                        }]
+                    };
+                    hbalcChart.setOption(hbalcOption);
+                    /*hbalc end*/
+                    /*ecg start*/
+                    var ecgOption = {
+                        // Make gradient line here
+                        // visualMap: [{
+                        //     show: false,
+                        //     type: 'continuous',
+                        //     seriesIndex: 0,
+                        //     min: 0,
+                        //     max: 400
+                        // }],
+                        title: [{
+                            left: 'left',
+                            text: '单导联心电'
+                        }],
+                        tooltip: {
+                            trigger: 'axis'
+                        },
+                        xAxis: [{
+                            data: dateList
+                        }],
+                        yAxis: [{
+                            splitLine: {
+                                show: false
+                            }
+                        }],
+                        grid: [{
+                            bottom: '10%'
+                        }],
+                        series: [{
+                            type: 'line',
+                            showSymbol: false,
+                            data: ecgValueList
+                        }]
+                    };
+                    ecgChart.setOption(ecgOption);
+                    /*ecg end*/
+                    /*bmi start*/
+                    var bmiOption = {
+                        title: [{
+                            left: 'left',
+                            text: 'BMI'
+                        }],
+                        tooltip: {
+                            formatter: "{a} <br/>{b} : {c}"
+                        },
+                        toolbox: {
+                            feature: {
+                                restore: {},
+                                saveAsImage: {}
+                            }
+                        },
+                        series: [{
+                            name: 'BMI数值',
+                            type: 'gauge',
+                            detail: {
+                                formatter: '{value}'
+                            },
+                            data: [{
+                                value: BMI,
+                                name: 'BMI'
+                            }]
+                        }]
+                    };
+                    bmiChart.setOption(bmiOption);
+                    /*bmi end*/
+                }
+            })
+        }
+
+    });
+    // 获取24小时数据
+    function getDayData() {
+        var datetime = $("#datetime-input").val();
+        $.ajax({
+            url: baseurl + 'healthController/selectByDay',
+            type: 'post',
+            datatype: 'json',
+            data: {
+                infoid: 1,
+                datetime: datetime
+            },
+            success: function(data) {
+                glu = []; //7天血糖
+                sbp = []; //7天收缩压
+                dbp = []; //7天舒张压
+                oxygen = []; //7天血氧
+                chole = []; //7天胆固醇
+                hbalc = []; //7天糖化血红蛋白
+                ecg = []; //7天心电
+                for (let item of data.body) {
+                    let datetime = item.datetime.split(" ")[0];
+
+                    let gluItem = [datetime, item.glu];
+                    glu.push(gluItem);
+
+                    let sbpItem = [datetime, item.sbp];
+                    sbp.push(sbpItem);
+
+                    let dbpItem = [datetime, item.dbp];
+                    dbp.push(dbpItem);
+
+                    let oxygenItem = [datetime, item.boodoxygen];
+                    oxygen.push(oxygenItem);
+
+                    let choleItem = [datetime, item.cholesterol];
+                    chole.push(choleItem);
+
+                    let hbalcItem = [datetime, item.hbalc];
+                    hbalc.push(hbalcItem);
+
+                    let ecgItem = [datetime, item.ecg];
+                    ecg.push(ecgItem);
+
+                }
+                var dateList = glu.map(function(item) {
+                    return item[0];
+                });
+                var gluValueList = glu.map(function(item) {
+                    return item[1];
+                });
+                var sbpValueList = sbp.map(function(item) {
+                    return item[1];
+                });
+                var dbpValueList = dbp.map(function(item) {
+                    return item[1];
+                });
+                var oxygenValueList = oxygen.map(function(item) {
+                    return item[1];
+                });
+                var choleValueList = chole.map(function(item) {
+                    return item[1];
+                });
+                var hbalcValueList = hbalc.map(function(item) {
+                    return item[1];
+                });
+                var ecgValueList = ecg.map(function(item) {
+                    return item[1];
+                });
+                /*glu start*/
+                var gluOption = {
+                    // Make gradient line here
+                    // visualMap: [{
+                    //     show: false,
+                    //     type: 'continuous',
+                    //     seriesIndex: 0,
+                    //     min: 0,
+                    //     max: 400
+                    // }],
+                    title: [{
+                        left: 'left',
+                        text: '血糖数据'
+                    }],
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    xAxis: [{
+                        data: dateList
+                    }],
+                    yAxis: [{
+                        splitLine: {
+                            show: false
+                        }
+                    }],
+                    grid: [{
+                        bottom: '10%'
+                    }],
+                    series: [{
+                        type: 'line',
+                        showSymbol: false,
+                        data: gluValueList
+                    }]
+                };
+                gluChart.setOption(gluOption);
+                /*glu end*/
+                /*pressure start*/
+                var colors = ['#5793f3', '#d14a61', '#675bba'];
+                var pressureOption = {
+                    color: colors,
+                    title: [{
+                        left: 'left',
+                        text: '血压数据'
+                    }],
+                    tooltip: {
+                        trigger: 'none',
+                        axisPointer: {
+                            type: 'cross'
+                        }
+                    },
+                    legend: {
+                        data: ['dbp', 'sbp']
+                    },
+                    grid: {
+                        top: 70,
+                        bottom: 50
+                    },
+                    xAxis: [{
+                        type: 'category',
+                        axisTick: {
+                            alignWithLabel: true
+                        },
+                        axisLine: {
+                            onZero: false,
+                            lineStyle: {
+                                color: colors[1]
+                            }
+                        },
+                        axisPointer: {
+                            label: {
+                                formatter: function(params) {
+                                    return 'sbp  ' + params.value +
+                                        (params.seriesData.length ? '：' + params.seriesData[0].data : '');
+                                }
+                            }
+                        },
+                        data: dateList
+                    }, {
+                        type: 'category',
+                        axisTick: {
+                            alignWithLabel: true
+                        },
+                        axisLine: {
+                            onZero: false,
+                            lineStyle: {
+                                color: colors[0]
+                            }
+                        },
+                        axisPointer: {
+                            label: {
+                                formatter: function(params) {
+                                    return 'dbp  ' + params.value +
+                                        (params.seriesData.length ? '：' + params.seriesData[0].data : '');
+                                }
+                            }
+                        },
+                        data: dateList
+                    }],
+                    yAxis: [{
+                        type: 'value'
+                    }],
+                    series: [{
+                        name: 'sbp',
+                        type: 'line',
+                        xAxisIndex: 1,
+                        smooth: true,
+                        data: sbpValueList
+                    }, {
+                        name: 'dbp',
+                        type: 'line',
+                        smooth: true,
+                        data: dbpValueList
+                    }]
+                };
+                pressureChart.setOption(pressureOption);
+                /*pressure end*/
+                /*oxygen start*/
+                var oxygenOption = {
+                    // Make gradient line here
+                    // visualMap: [{
+                    //     show: false,
+                    //     type: 'continuous',
+                    //     seriesIndex: 0,
+                    //     min: 0,
+                    //     max: 400
+                    // }],
+                    title: [{
+                        left: 'left',
+                        text: '血氧数据'
+                    }],
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    xAxis: [{
+                        data: dateList
+                    }],
+                    yAxis: [{
+                        splitLine: {
+                            show: false
+                        }
+                    }],
+                    grid: [{
+                        bottom: '10%'
+                    }],
+                    series: [{
+                        type: 'line',
+                        showSymbol: false,
+                        data: oxygenValueList
+                    }]
+                };
+                oxygenChart.setOption(oxygenOption);
+                /*oxygen end*/
+                /*chole start*/
+                var choleOption = {
+                    // Make gradient line here
+                    // visualMap: [{
+                    //     show: false,
+                    //     type: 'continuous',
+                    //     seriesIndex: 0,
+                    //     min: 0,
+                    //     max: 400
+                    // }],
+                    title: [{
+                        left: 'left',
+                        text: '胆固醇数据'
+                    }],
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    xAxis: [{
+                        data: dateList
+                    }],
+                    yAxis: [{
+                        splitLine: {
+                            show: false
+                        }
+                    }],
+                    grid: [{
+                        bottom: '10%'
+                    }],
+                    series: [{
+                        type: 'line',
+                        showSymbol: false,
+                        data: choleValueList
+                    }]
+                };
+                choleChart.setOption(choleOption);
+                /*chole end*/
+                /*hbalc start*/
+                var hbalcOption = {
+                    // Make gradient line here
+                    // visualMap: [{
+                    //     show: false,
+                    //     type: 'continuous',
+                    //     seriesIndex: 0,
+                    //     min: 0,
+                    //     max: 400
+                    // }],
+                    title: [{
+                        left: 'left',
+                        text: '糖化血红蛋白数据'
+                    }],
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    xAxis: [{
+                        data: dateList
+                    }],
+                    yAxis: [{
+                        splitLine: {
+                            show: false
+                        }
+                    }],
+                    grid: [{
+                        bottom: '10%'
+                    }],
+                    series: [{
+                        type: 'line',
+                        showSymbol: false,
+                        data: hbalcValueList
+                    }]
+                };
+                hbalcChart.setOption(hbalcOption);
+                /*hbalc end*/
+                /*ecg start*/
+                var ecgOption = {
+                    // Make gradient line here
+                    // visualMap: [{
+                    //     show: false,
+                    //     type: 'continuous',
+                    //     seriesIndex: 0,
+                    //     min: 0,
+                    //     max: 400
+                    // }],
+                    title: [{
+                        left: 'left',
+                        text: '单导联心电'
+                    }],
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    xAxis: [{
+                        data: dateList
+                    }],
+                    yAxis: [{
+                        splitLine: {
+                            show: false
+                        }
+                    }],
+                    grid: [{
+                        bottom: '10%'
+                    }],
+                    series: [{
+                        type: 'line',
+                        showSymbol: false,
+                        data: ecgValueList
+                    }]
+                };
+                ecgChart.setOption(ecgOption);
+                /*ecg end*/
+                /*bmi start*/
+                var bmiOption = {
+                    title: [{
+                        left: 'left',
+                        text: 'BMI'
+                    }],
+                    tooltip: {
+                        formatter: "{a} <br/>{b} : {c}"
+                    },
+                    toolbox: {
+                        feature: {
+                            restore: {},
+                            saveAsImage: {}
+                        }
+                    },
+                    series: [{
+                        name: 'BMI数值',
+                        type: 'gauge',
+                        detail: {
+                            formatter: '{value}'
+                        },
+                        data: [{
+                            value: BMI,
+                            name: 'BMI'
+                        }]
+                    }]
+                };
+                bmiChart.setOption(bmiOption);
+                /*bmi end*/
+            }
+        })
+    }
+    // 获取7天数据
+    function getWeekData() {
+        var datetime = $("#datetime-input").val();
+        // var infoid = sessionStorage.getItem('infoid');
+        $.ajax({
+            url: baseurl + 'healthController/selectByWeek',
+            type: 'post',
+            datatype: 'json',
+            data: {
+                infoid: 1,
+                datetime: datetime
+            },
+            success: function(data) {
+                glu = []; //7天血糖
+                sbp = []; //7天收缩压
+                dbp = []; //7天舒张压
+                oxygen = []; //7天血氧
+                chole = []; //7天胆固醇
+                hbalc = []; //7天糖化血红蛋白
+                ecg = []; //7天心电
+                for (let item of data.body) {
+                    let datetime = item.datetime.split(" ")[0];
+
+                    let gluItem = [datetime, item.glu];
+                    glu.push(gluItem);
+
+                    let sbpItem = [datetime, item.sbp];
+                    sbp.push(sbpItem);
+
+                    let dbpItem = [datetime, item.dbp];
+                    dbp.push(dbpItem);
+
+                    let oxygenItem = [datetime, item.boodoxygen];
+                    oxygen.push(oxygenItem);
+
+                    let choleItem = [datetime, item.cholesterol];
+                    chole.push(choleItem);
+
+                    let hbalcItem = [datetime, item.hbalc];
+                    hbalc.push(hbalcItem);
+
+                    let ecgItem = [datetime, item.ecg];
+                    ecg.push(ecgItem);
+
+                }
+                var dateList = glu.map(function(item) {
+                    return item[0];
+                });
+                var gluValueList = glu.map(function(item) {
+                    return item[1];
+                });
+                var sbpValueList = sbp.map(function(item) {
+                    return item[1];
+                });
+                var dbpValueList = dbp.map(function(item) {
+                    return item[1];
+                });
+                var oxygenValueList = oxygen.map(function(item) {
+                    return item[1];
+                });
+                var choleValueList = chole.map(function(item) {
+                    return item[1];
+                });
+                var hbalcValueList = hbalc.map(function(item) {
+                    return item[1];
+                });
+                var ecgValueList = ecg.map(function(item) {
+                    return item[1];
+                });
+                /*glu start*/
+                var gluOption = {
+                    // Make gradient line here
+                    // visualMap: [{
+                    //     show: false,
+                    //     type: 'continuous',
+                    //     seriesIndex: 0,
+                    //     min: 0,
+                    //     max: 400
+                    // }],
+                    title: [{
+                        left: 'left',
+                        text: '血糖数据'
+                    }],
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    xAxis: [{
+                        data: dateList
+                    }],
+                    yAxis: [{
+                        splitLine: {
+                            show: false
+                        }
+                    }],
+                    grid: [{
+                        bottom: '10%'
+                    }],
+                    series: [{
+                        type: 'line',
+                        showSymbol: false,
+                        data: gluValueList
+                    }]
+                };
+                gluChart.setOption(gluOption);
+                /*glu end*/
+                /*pressure start*/
+                var colors = ['#5793f3', '#d14a61', '#675bba'];
+                var pressureOption = {
+                    color: colors,
+                    title: [{
+                        left: 'left',
+                        text: '血压数据'
+                    }],
+                    tooltip: {
+                        trigger: 'none',
+                        axisPointer: {
+                            type: 'cross'
+                        }
+                    },
+                    legend: {
+                        data: ['dbp', 'sbp']
+                    },
+                    grid: {
+                        top: 70,
+                        bottom: 50
+                    },
+                    xAxis: [{
+                        type: 'category',
+                        axisTick: {
+                            alignWithLabel: true
+                        },
+                        axisLine: {
+                            onZero: false,
+                            lineStyle: {
+                                color: colors[1]
+                            }
+                        },
+                        axisPointer: {
+                            label: {
+                                formatter: function(params) {
+                                    return 'sbp  ' + params.value +
+                                        (params.seriesData.length ? '：' + params.seriesData[0].data : '');
+                                }
+                            }
+                        },
+                        data: dateList
+                    }, {
+                        type: 'category',
+                        axisTick: {
+                            alignWithLabel: true
+                        },
+                        axisLine: {
+                            onZero: false,
+                            lineStyle: {
+                                color: colors[0]
+                            }
+                        },
+                        axisPointer: {
+                            label: {
+                                formatter: function(params) {
+                                    return 'dbp  ' + params.value +
+                                        (params.seriesData.length ? '：' + params.seriesData[0].data : '');
+                                }
+                            }
+                        },
+                        data: dateList
+                    }],
+                    yAxis: [{
+                        type: 'value'
+                    }],
+                    series: [{
+                        name: 'sbp',
+                        type: 'line',
+                        xAxisIndex: 1,
+                        smooth: true,
+                        data: sbpValueList
+                    }, {
+                        name: 'dbp',
+                        type: 'line',
+                        smooth: true,
+                        data: dbpValueList
+                    }]
+                };
+                pressureChart.setOption(pressureOption);
+                /*pressure end*/
+                /*oxygen start*/
+                var oxygenOption = {
+                    // Make gradient line here
+                    // visualMap: [{
+                    //     show: false,
+                    //     type: 'continuous',
+                    //     seriesIndex: 0,
+                    //     min: 0,
+                    //     max: 400
+                    // }],
+                    title: [{
+                        left: 'left',
+                        text: '血氧数据'
+                    }],
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    xAxis: [{
+                        data: dateList
+                    }],
+                    yAxis: [{
+                        splitLine: {
+                            show: false
+                        }
+                    }],
+                    grid: [{
+                        bottom: '10%'
+                    }],
+                    series: [{
+                        type: 'line',
+                        showSymbol: false,
+                        data: oxygenValueList
+                    }]
+                };
+                oxygenChart.setOption(oxygenOption);
+                /*oxygen end*/
+                /*chole start*/
+                var choleOption = {
+                    // Make gradient line here
+                    // visualMap: [{
+                    //     show: false,
+                    //     type: 'continuous',
+                    //     seriesIndex: 0,
+                    //     min: 0,
+                    //     max: 400
+                    // }],
+                    title: [{
+                        left: 'left',
+                        text: '胆固醇数据'
+                    }],
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    xAxis: [{
+                        data: dateList
+                    }],
+                    yAxis: [{
+                        splitLine: {
+                            show: false
+                        }
+                    }],
+                    grid: [{
+                        bottom: '10%'
+                    }],
+                    series: [{
+                        type: 'line',
+                        showSymbol: false,
+                        data: choleValueList
+                    }]
+                };
+                choleChart.setOption(choleOption);
+                /*chole end*/
+                /*hbalc start*/
+                var hbalcOption = {
+                    // Make gradient line here
+                    // visualMap: [{
+                    //     show: false,
+                    //     type: 'continuous',
+                    //     seriesIndex: 0,
+                    //     min: 0,
+                    //     max: 400
+                    // }],
+                    title: [{
+                        left: 'left',
+                        text: '糖化血红蛋白数据'
+                    }],
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    xAxis: [{
+                        data: dateList
+                    }],
+                    yAxis: [{
+                        splitLine: {
+                            show: false
+                        }
+                    }],
+                    grid: [{
+                        bottom: '10%'
+                    }],
+                    series: [{
+                        type: 'line',
+                        showSymbol: false,
+                        data: hbalcValueList
+                    }]
+                };
+                hbalcChart.setOption(hbalcOption);
+                /*hbalc end*/
+                /*ecg start*/
+                var ecgOption = {
+                    // Make gradient line here
+                    // visualMap: [{
+                    //     show: false,
+                    //     type: 'continuous',
+                    //     seriesIndex: 0,
+                    //     min: 0,
+                    //     max: 400
+                    // }],
+                    title: [{
+                        left: 'left',
+                        text: '单导联心电'
+                    }],
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    xAxis: [{
+                        data: dateList
+                    }],
+                    yAxis: [{
+                        splitLine: {
+                            show: false
+                        }
+                    }],
+                    grid: [{
+                        bottom: '10%'
+                    }],
+                    series: [{
+                        type: 'line',
+                        showSymbol: false,
+                        data: ecgValueList
+                    }]
+                };
+                ecgChart.setOption(ecgOption);
+                /*ecg end*/
+                /*bmi start*/
+                var bmiOption = {
+                    title: [{
+                        left: 'left',
+                        text: 'BMI'
+                    }],
+                    tooltip: {
+                        formatter: "{a} <br/>{b} : {c}"
+                    },
+                    toolbox: {
+                        feature: {
+                            restore: {},
+                            saveAsImage: {}
+                        }
+                    },
+                    series: [{
+                        name: 'BMI数值',
+                        type: 'gauge',
+                        detail: {
+                            formatter: '{value}'
+                        },
+                        data: [{
+                            value: BMI,
+                            name: 'BMI'
+                        }]
+                    }]
+                };
+                bmiChart.setOption(bmiOption);
+                /*bmi end*/
+            }
+        })
+    }
+    // 获取30天数据
+    function getMonthData() {
+        var datetime = $("#datetime-input").val();
+        $.ajax({
+            url: baseurl + 'healthController/selectByMonth',
+            type: 'post',
+            datatype: 'json',
+            data: {
+                infoid: 1,
+                datetime: datetime
+            },
+            success: function(data) {
+                glu = []; //7天血糖
+                sbp = []; //7天收缩压
+                dbp = []; //7天舒张压
+                oxygen = []; //7天血氧
+                chole = []; //7天胆固醇
+                hbalc = []; //7天糖化血红蛋白
+                ecg = []; //7天心电
+                for (let item of data.body) {
+                    let datetime = item.datetime.split(" ")[0];
+
+                    let gluItem = [datetime, item.glu];
+                    glu.push(gluItem);
+
+                    let sbpItem = [datetime, item.sbp];
+                    sbp.push(sbpItem);
+
+                    let dbpItem = [datetime, item.dbp];
+                    dbp.push(dbpItem);
+
+                    let oxygenItem = [datetime, item.boodoxygen];
+                    oxygen.push(oxygenItem);
+
+                    let choleItem = [datetime, item.cholesterol];
+                    chole.push(choleItem);
+
+                    let hbalcItem = [datetime, item.hbalc];
+                    hbalc.push(hbalcItem);
+
+                    let ecgItem = [datetime, item.ecg];
+                    ecg.push(ecgItem);
+
+                }
+                var dateList = glu.map(function(item) {
+                    return item[0];
+                });
+                var gluValueList = glu.map(function(item) {
+                    return item[1];
+                });
+                var sbpValueList = sbp.map(function(item) {
+                    return item[1];
+                });
+                var dbpValueList = dbp.map(function(item) {
+                    return item[1];
+                });
+                var oxygenValueList = oxygen.map(function(item) {
+                    return item[1];
+                });
+                var choleValueList = chole.map(function(item) {
+                    return item[1];
+                });
+                var hbalcValueList = hbalc.map(function(item) {
+                    return item[1];
+                });
+                var ecgValueList = ecg.map(function(item) {
+                    return item[1];
+                });
+                /*glu start*/
+                var gluOption = {
+                    // Make gradient line here
+                    // visualMap: [{
+                    //     show: false,
+                    //     type: 'continuous',
+                    //     seriesIndex: 0,
+                    //     min: 0,
+                    //     max: 400
+                    // }],
+                    title: [{
+                        left: 'left',
+                        text: '血糖数据'
+                    }],
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    xAxis: [{
+                        data: dateList
+                    }],
+                    yAxis: [{
+                        splitLine: {
+                            show: false
+                        }
+                    }],
+                    grid: [{
+                        bottom: '10%'
+                    }],
+                    series: [{
+                        type: 'line',
+                        showSymbol: false,
+                        data: gluValueList
+                    }]
+                };
+                gluChart.setOption(gluOption);
+                /*glu end*/
+                /*pressure start*/
+                var colors = ['#5793f3', '#d14a61', '#675bba'];
+                var pressureOption = {
+                    color: colors,
+                    title: [{
+                        left: 'left',
+                        text: '血压数据'
+                    }],
+                    tooltip: {
+                        trigger: 'none',
+                        axisPointer: {
+                            type: 'cross'
+                        }
+                    },
+                    legend: {
+                        data: ['dbp', 'sbp']
+                    },
+                    grid: {
+                        top: 70,
+                        bottom: 50
+                    },
+                    xAxis: [{
+                        type: 'category',
+                        axisTick: {
+                            alignWithLabel: true
+                        },
+                        axisLine: {
+                            onZero: false,
+                            lineStyle: {
+                                color: colors[1]
+                            }
+                        },
+                        axisPointer: {
+                            label: {
+                                formatter: function(params) {
+                                    return 'sbp  ' + params.value +
+                                        (params.seriesData.length ? '：' + params.seriesData[0].data : '');
+                                }
+                            }
+                        },
+                        data: dateList
+                    }, {
+                        type: 'category',
+                        axisTick: {
+                            alignWithLabel: true
+                        },
+                        axisLine: {
+                            onZero: false,
+                            lineStyle: {
+                                color: colors[0]
+                            }
+                        },
+                        axisPointer: {
+                            label: {
+                                formatter: function(params) {
+                                    return 'dbp  ' + params.value +
+                                        (params.seriesData.length ? '：' + params.seriesData[0].data : '');
+                                }
+                            }
+                        },
+                        data: dateList
+                    }],
+                    yAxis: [{
+                        type: 'value'
+                    }],
+                    series: [{
+                        name: 'sbp',
+                        type: 'line',
+                        xAxisIndex: 1,
+                        smooth: true,
+                        data: sbpValueList
+                    }, {
+                        name: 'dbp',
+                        type: 'line',
+                        smooth: true,
+                        data: dbpValueList
+                    }]
+                };
+                pressureChart.setOption(pressureOption);
+                /*pressure end*/
+                /*oxygen start*/
+                var oxygenOption = {
+                    // Make gradient line here
+                    // visualMap: [{
+                    //     show: false,
+                    //     type: 'continuous',
+                    //     seriesIndex: 0,
+                    //     min: 0,
+                    //     max: 400
+                    // }],
+                    title: [{
+                        left: 'left',
+                        text: '血氧数据'
+                    }],
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    xAxis: [{
+                        data: dateList
+                    }],
+                    yAxis: [{
+                        splitLine: {
+                            show: false
+                        }
+                    }],
+                    grid: [{
+                        bottom: '10%'
+                    }],
+                    series: [{
+                        type: 'line',
+                        showSymbol: false,
+                        data: oxygenValueList
+                    }]
+                };
+                oxygenChart.setOption(oxygenOption);
+                /*oxygen end*/
+                /*chole start*/
+                var choleOption = {
+                    // Make gradient line here
+                    // visualMap: [{
+                    //     show: false,
+                    //     type: 'continuous',
+                    //     seriesIndex: 0,
+                    //     min: 0,
+                    //     max: 400
+                    // }],
+                    title: [{
+                        left: 'left',
+                        text: '胆固醇数据'
+                    }],
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    xAxis: [{
+                        data: dateList
+                    }],
+                    yAxis: [{
+                        splitLine: {
+                            show: false
+                        }
+                    }],
+                    grid: [{
+                        bottom: '10%'
+                    }],
+                    series: [{
+                        type: 'line',
+                        showSymbol: false,
+                        data: choleValueList
+                    }]
+                };
+                choleChart.setOption(choleOption);
+                /*chole end*/
+                /*hbalc start*/
+                var hbalcOption = {
+                    // Make gradient line here
+                    // visualMap: [{
+                    //     show: false,
+                    //     type: 'continuous',
+                    //     seriesIndex: 0,
+                    //     min: 0,
+                    //     max: 400
+                    // }],
+                    title: [{
+                        left: 'left',
+                        text: '糖化血红蛋白数据'
+                    }],
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    xAxis: [{
+                        data: dateList
+                    }],
+                    yAxis: [{
+                        splitLine: {
+                            show: false
+                        }
+                    }],
+                    grid: [{
+                        bottom: '10%'
+                    }],
+                    series: [{
+                        type: 'line',
+                        showSymbol: false,
+                        data: hbalcValueList
+                    }]
+                };
+                hbalcChart.setOption(hbalcOption);
+                /*hbalc end*/
+                /*ecg start*/
+                var ecgOption = {
+                    // Make gradient line here
+                    // visualMap: [{
+                    //     show: false,
+                    //     type: 'continuous',
+                    //     seriesIndex: 0,
+                    //     min: 0,
+                    //     max: 400
+                    // }],
+                    title: [{
+                        left: 'left',
+                        text: '单导联心电'
+                    }],
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    xAxis: [{
+                        data: dateList
+                    }],
+                    yAxis: [{
+                        splitLine: {
+                            show: false
+                        }
+                    }],
+                    grid: [{
+                        bottom: '10%'
+                    }],
+                    series: [{
+                        type: 'line',
+                        showSymbol: false,
+                        data: ecgValueList
+                    }]
+                };
+                ecgChart.setOption(ecgOption);
+                /*ecg end*/
+                /*bmi start*/
+                var bmiOption = {
+                    title: [{
+                        left: 'left',
+                        text: 'BMI'
+                    }],
+                    tooltip: {
+                        formatter: "{a} <br/>{b} : {c}"
+                    },
+                    toolbox: {
+                        feature: {
+                            restore: {},
+                            saveAsImage: {}
+                        }
+                    },
+                    series: [{
+                        name: 'BMI数值',
+                        type: 'gauge',
+                        detail: {
+                            formatter: '{value}'
+                        },
+                        data: [{
+                            value: BMI,
+                            name: 'BMI'
+                        }]
+                    }]
+                };
+                bmiChart.setOption(bmiOption);
+                /*bmi end*/
+            }
+        })
+    }
+</script>
+</html>

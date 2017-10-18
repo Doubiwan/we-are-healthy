@@ -1,0 +1,445 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>病人基础详情</title>
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/Info.css" />
+</head>
+
+<body>
+    <div class="container">
+        <form id="patient_info">
+            <header class="aui-bar aui-bar-nav">
+                <a class="aui-pull-left aui-btn">
+                    <span class="aui-iconfont aui-icon-left"></span>
+                </a>
+                <div class="aui-title">Title</div>
+            </header>
+            <div class="aui-content aui-margin-b-15">
+                <ul class="aui-list aui-form-list">
+                    <li class="aui-list-header">基本情况</li>
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-inner">
+                            <div class="aui-list-item-label">
+                                姓名
+                            </div>
+                            <div class="aui-list-item-input">
+                                <input type="text" placeholder="请输入您的姓名" name="patientname">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-inner">
+                            <div class="aui-list-item-label">
+                                性别
+                            </div>
+                            <div class="aui-list-item-input">
+                                <div class="education1">
+                                    <label class="label_style"><input class="aui-radio" type="radio" name="educationLevels" value="0">男</label>
+                                    <label class="label_style"><input class="aui-radio" type="radio" name="educationLevels" value="2">女</label>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-inner">
+                            <div class="aui-list-item-label">
+                                主治医生
+                            </div>
+                            <div class="aui-list-item-input">
+                                <select class="select_style">
+                                  <option>王医生</option>
+                                  <option>李医生</option>
+                                  <option>张医生</option>
+                                </select>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-inner">
+                            <div class="aui-list-item-label">
+                                出生日期
+                            </div>
+                            <div class="aui-list-item-input">
+                                <input type="date" placeholder="请输入您的出生日期" name="birthday">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-inner">
+                            <div class="aui-list-item-label">
+                                联系方式
+                            </div>
+                            <div class="aui-list-item-input">
+                                <input type="text" placeholder="请输入您的联系电话" name="phone">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-inner">
+                            <div class="aui-list-item-label">
+                                家属姓名
+                            </div>
+                            <div class="aui-list-item-input">
+                                <input type="text" placeholder="请输入您家人的姓名" name="familyname">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-inner">
+                            <div class="aui-list-item-label">
+                                家属手机
+                            </div>
+                            <div class="aui-list-item-input">
+                                <input type="text" placeholder="请输入您家人的联系电话" name="familyphone">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-inner">
+                            <div class="aui-list-item-label">
+                                身高
+                            </div>
+                            <div class="aui-list-item-input">
+                                <input class="input_style" type="text" placeholder="请输入您的身高" name="height">
+                                <font>cm</font>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-inner">
+                            <div class="aui-list-item-label">
+                                体重
+                            </div>
+                            <div class="aui-list-item-input">
+                                <input type="text" placeholder="请输入您的体重" name="weight">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-inner">
+                            <div class="aui-list-item-label">
+                                地址
+                            </div>
+                            <div class="aui-list-item-input">
+                                <select class="select_style">
+                                  <option>北京</option>
+                                  <option>2016</option>
+                                  <option>2015</option>
+                                </select>
+                                <font>省</font>
+                                <select class="select_style">
+                                  <option>北京</option>
+                                  <option>11</option>
+                                  <option>10</option>
+                                </select>
+                                <font>市</font>
+                                <select class="select_style">
+                                  <option>海淀</option>
+                                  <option>2</option>
+                                  <option>3</option>
+                                </select>
+                                <font>县/区</font>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-inner">
+                            <div class="aui-list-item-label">
+                                文化水平
+                            </div>
+                            <div class="aui-list-item-input">
+                                <div class="education1">
+                                    <label class="label_style"><input class="aui-radio" type="radio" name="educationLevels" value="0"> 初中及以下</label>
+                                    <label class="label_style"><input class="aui-radio" type="radio" name="educationLevels" value="2">大专/大学</label>
+                                </div>
+                                <div class="education2">
+                                    <label class="label_style"><input class="aui-radio" type="radio" name="educationLevels" value="1">高中/中专&nbsp;&nbsp;&nbsp;</label>
+                                    <label class="label_style"><input class="aui-radio" type="radio" name="educationLevels" value="3">硕士及以上</label>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="aui-content aui-margin-b-15">
+                <ul class="aui-list aui-form-list">
+                    <li class="aui-list-header">特殊用药史</li>
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-inner">
+                            <div class="aui-list-item-label">
+                                是否长期使用以下药物？
+                            </div>
+                        </div>
+                    </li>
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-inner medicine">
+                            <div class="aui-list-item-input">
+                                <div>
+                                    糖皮质激素1<input id="medicine1" type="checkbox" class="aui-switch" value="0">
+                                    糖皮质激素2<input id="medicine2" type="checkbox" class="aui-switch" value="0">
+                                </div>
+                                <div>
+                                    糖皮质激素3<input id="medicine3" type="checkbox" class="aui-switch" value="0">
+                                    糖皮质激素4<input id="medicine4" type="checkbox" class="aui-switch" value="0">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="aui-content aui-margin-b-15">
+                <ul class="aui-list aui-form-list">
+                    <li class="aui-list-header">既往疾病史</li>
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-inner">
+                            <div class="aui-list-item-label">
+                                疾病1
+                            </div>
+                            <div class="aui-list-item-input">
+                                <div>
+                                    <label><input class="aui-radio" type="radio" name="illness1">是</label>
+                                    <label><input class="aui-radio" type="radio" name="illness1">否</label>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-inner">
+                            <div class="aui-list-item-label">
+                                疾病2
+                            </div>
+                            <div class="aui-list-item-input">
+                                <div>
+                                    <label><input class="aui-radio" type="radio" name="illness2">是</label>
+                                    <label><input class="aui-radio" type="radio" name="illness2">否</label>
+                                </div>
+                            </div>
+                    </li>
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-inner">
+                            <div class="aui-list-item-label">
+                                疾病3
+                            </div>
+                            <div class="aui-list-item-input">
+                                <div>
+                                    <label><input class="aui-radio" type="radio" name="illness3">是</label>
+                                    <label><input class="aui-radio" type="radio" name="illness3">否</label>
+                                </div>
+                            </div>
+                    </li>
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-inner">
+                            <div class="aui-list-item-label">
+                                疾病4
+                            </div>
+                            <div class="aui-list-item-input">
+                                <div>
+                                    <label><input class="aui-radio" type="radio" name="illness4">是</label>
+                                    <label><input class="aui-radio" type="radio" name="illness4">否</label>
+                                </div>
+                            </div>
+                    </li>
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-inner">
+                            <div class="aui-list-item-label">
+                                疾病5
+                            </div>
+                            <div class="aui-list-item-input">
+                                <div>
+                                    <label><input class="aui-radio" type="radio" name="illness5">是</label>
+                                    <label><input class="aui-radio" type="radio" name="illness5">否</label>
+                                </div>
+                            </div>
+                    </li>
+                </ul>
+                </div>
+                <div class="aui-content aui-margin-b-15">
+                    <ul class="aui-list aui-form-list">
+                        <li class="aui-list-header">带有图标的表单</li>
+                        <li class="aui-list-item">
+                            <div class="aui-list-item-inner">
+                                <div class="aui-list-item-label-icon">
+                                    <i class="aui-iconfont aui-icon-mobile"></i>
+                                    <button>糖尿病</button>
+                                    <button>糖尿病</button>
+                                    <button>糖尿病</button>
+                                    <button>糖尿病</button>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="aui-list-item">
+                            <div class="aui-list-item-inner">
+                                <div class="aui-list-item-label-icon">
+                                    <i class="aui-iconfont aui-icon-lock"></i>
+                                    <button>糖尿病</button>
+                                    <button>糖尿病</button>
+                                    <button>糖尿病</button>
+                                    <button>糖尿病</button>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="aui-content aui-margin-b-15">
+                    <ul class="aui-list aui-form-list">
+                        <li class="aui-list-header">生活方式</li>
+                        <li class="aui-list-item">
+                            <div class="aui-list-item-inner">
+                                <div class="aui-list-item-label tea_title">
+                                    饮茶
+                                </div>
+                                <div class="content_tea">
+                                    <div class="aui-list-item-input list_style">
+                                        <font>是否饮茶</font>
+                                        <label><input class="aui-radio" type="radio" name="tea" value="1">是</label>
+                                        <label><input class="aui-radio" type="radio" name="tea" value="0">否</label>
+                                    </div>
+                                    <!-- <div class="list_style">
+                                    <div class="type_style">主要种类</div>
+                                    <div class="type_content">
+                                        <div class="tea1">
+                                            <button>绿茶</button>
+                                            <button>红茶</button>
+                                        </div>
+                                        <div class="tea1">
+                                            <button>花茶</button>
+                                            <input placeholder="其他" />
+                                        </div>
+                                    </div>
+                                </div> -->
+                                    <div class="tea_fm_style">
+                                        <div class="tea_fm">饮茶频率</div>
+                                        <div class="aui-list-item-input">
+                                            <label class="everyday">平均每天<input class="count_tea" placeholder="1">杯</label>
+                                            <span>（约150mol）</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="aui-list-item">
+                            <div class="aui-list-item-inner">
+                                <div class="aui-list-item-label tea_title">
+                                    饮咖啡
+                                </div>
+                                <div class="content_tea">
+                                    <div class="aui-list-item-input list_style">
+                                        <font>是否饮咖啡</font>
+                                        <label><input class="aui-radio" type="radio" name="coffee" value="1">是</label>
+                                        <label><input class="aui-radio" type="radio" name="coffee" value="0">否</label>
+                                    </div>
+                                    <div class="tea_fm_style">
+                                        <div class="tea_fm">饮咖啡频率</div>
+                                        <div class="aui-list-item-input">
+                                            <label class="everyday">每天<input class="count_tea" placeholder="1" name="coffee">杯</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="aui-list-item">
+                            <div class="aui-list-item-inner">
+                                <div class="aui-list-item-label tea_title">
+                                    烟
+                                </div>
+                                <div class="content_tea">
+                                    <div class="aui-list-item-input list_style">
+                                        <font>是否吸烟</font>
+                                        <label><input class="aui-radio" type="radio" name="smoke" value="1">是</label>
+                                        <label><input class="aui-radio" type="radio" name="smoke" value="0">否</label>
+                                    </div>
+                                    <div class="tea_fm_style">
+                                        <div class="tea_fm">吸烟频率</div>
+                                        <div class="aui-list-item-input">
+                                            <label class="everyweek"><input class="aui-radio" type="radio" name="smoke">平均每天<input class="count_tea" placeholder="1">支</label>
+                                        </div>
+                                    </div>
+                                    <div class="aui-list-item-input list_style">
+                                        <div class="smoke_title">被动吸烟</div>
+                                        <div class="smoke_content">
+                                            <div>你身边的人中有吸烟的吗</div>
+                                            <div>
+                                                <label><input class="aui-radio" type="radio" name="ets" value="1">是</label>
+                                                <label><input class="aui-radio" type="radio" name="ets" value="0">否</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="aui-list-item">
+                            <div class="aui-list-item-inner">
+                                <div class="aui-list-item-label tea_title">
+                                    饮酒
+                                </div>
+                                <div class="content_tea">
+                                    <div class="aui-list-item-input list_style">
+                                        <div class="wine_type">是否饮酒</div>
+                                        <div class="wine_content">
+                                            <div>
+                                                <label><input class="aui-radio" type="radio" name="drink" value="1">偶尔喝</label>
+                                                <label><input class="aui-radio" type="radio" name="drink" value="3">经常喝</label>
+                                            </div>
+                                            <div>
+                                                <label><input class="aui-radio" type="radio" name="demo1" value="0">不喝</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="aui-list-item">
+                            <div class="aui-list-item-inner">
+                                <div class="aui-list-item-label tea_title">
+                                    运动
+                                </div>
+                                <div class="content_tea">
+                                    <label><input class="aui-radio" type="radio" name="sport" value="0">不运动</label>
+                                    <label><input class="aui-radio" type="radio" name="sport" value="1">偶尔运动</label>
+                                    <label><input class="aui-radio" type="radio" name="sport" value="2">经常运动</label>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="aui-list-item">
+                            <div class="aui-list-item-inner aui-list-item-center aui-list-item-btn">
+                                <div id="submit_patient_info" class="aui-btn aui-btn-info aui-margin-r-5">提交</div>
+                                <div class="aui-btn aui-btn-danger aui-margin-l-5">取消</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+        </form>
+        </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/jquery-2.1.4.min.js"></script>
+<script type="text/javascript">
+
+    if ($('#medicine1') === 'checked') {
+      var medicine1 = '1';
+    }
+
+    $('#submit_patient_info').on('click', function() {
+
+        $.ajax({
+            // cache: true,
+            type: "POST",
+            url: "http://114.215.156.99:8381/backend/infoController/insert",
+            data: $('#add_patient_info').serialize() + "&adminid=1&infoid=1",
+            // async: false,
+            error: function(request) {
+                alert("Connection error");
+            },
+            success: function(data) {
+                alert("Connection Success->" + JSON.stringify(data));
+            }
+        });
+    });
+</script>
+
+</html>

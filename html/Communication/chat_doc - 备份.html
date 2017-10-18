@@ -1,0 +1,482 @@
+<!DOCTYPE HTML>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>医生聊天端</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/chat_doc.css" />
+    <style type="text/css">
+        .lbl {
+            padding-right: 20px;
+        }
+
+        .aui-chat .doc {
+            text-align: right;
+        }
+
+        .aui-chat .pat {
+            text-align: left;
+        }
+
+        .aui-chat .doc .avatar {
+            float: right;
+            margin: 0 0 0 10px;
+            border-radius: 3px;
+        }
+
+        .aui-chat .pat .avatar {
+            float: left;
+            margin: 0 0 0 10px;
+            border-radius: 3px;
+        }
+
+        .aui-chat .doc .text {
+            background-color: #b2e281;
+        }
+
+        .aui-chat .pat .text {
+            background-color: #fff;
+        }
+
+        .aui-chat .doc .text:before {
+            right: inherit;
+            left: 100%;
+            border-right-color: transparent;
+            border-left-color: #b2e281;
+        }
+
+        .aui-chat .pat .text:before{
+          right: inherit;
+          left: 100%;
+          border-right-color: transparent;
+          border-left-color: #fff;
+        }
+
+    </style>
+</head>
+<html>
+
+<body>
+    <div class="container">
+        <header class="aui-bar aui-bar-nav aui-bar-light">
+            <div class="aui-pull-left aui-btn">
+                <span class="aui-iconfont aui-icon-left"></span>
+            </div>
+            <div class="aui-title">Title</div>
+            <div class="aui-pull-right aui-btn aui-btn-outlined">
+                <a id="alert" href="javascript:;" class="flipInX"><span class="aui-iconfont aui-icon-search"></span></a>
+            </div>
+        </header>
+        <section class="aui-chat">
+            <ul id="content_list">
+            </ul>
+        </section>
+        <div class="send_message">
+            <hr style=" height:1px;border:none;border-top:1px solid #185598;" />
+            <input type="text" id="input_message" class="input_message"></input>
+            <i id="send_btn" class="aui-iconfont aui-icon-paper send_btn"></i>
+            <i id="refresh_btn" class="aui-iconfont aui-icon-refresh"></i>
+        </div>
+        <div id="dialogBg"></div>
+        <div id="dialog" class="animated">
+            <img class="dialogIco" width="50" height="50" src="../../image/ico.png" alt="" />
+            <div class="dialogTop">
+                <a href="javascript:;" class="add_listitem"><i class="aui-iconfont aui-icon-plus"></i></a>
+                <a href="javascript:;" class="claseDialogBtn"><i class="aui-iconfont aui-icon-close"></i></a>
+            </div>
+            <form action="" method="post" id="editForm">
+                  <ul class="editInfos aui-list aui-select-list">
+                    <li id="list_start" class="aui-list-item">
+                        <div class="aui-list-item-inner">
+                            <label>
+                              <input class="aui-radio" type="checkbox" name="advice0" value="医生说：要多喝水啊喂">
+                              <span>医生说：要多喝水啊喂</span>
+                            </label>
+                            <div style="text-align:right">
+                              <i class="aui-iconfont aui-icon-edit"></i>
+                              <i class="aui-iconfont aui-icon-trash"></i>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-inner">
+                            <label>
+                              <input class="aui-radio" type="checkbox" name="advice1" value="医生说：喝什么别闹了">
+                              <span>医生说：喝什么别闹了</span>
+                            </label>
+                            <div style="text-align:right">
+                              <i class="aui-iconfont aui-icon-edit"></i>
+                              <i class="aui-iconfont aui-icon-trash"></i>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-inner">
+                            <label>
+                              <input class="aui-radio" type="checkbox" name="advice2" value="医生说：重要的是吃啥">
+                              <span>医生说：重要的是吃啥</span>
+                            </label>
+                            <div style="text-align:right">
+                              <i class="aui-iconfont aui-icon-edit"></i>
+                              <i class="aui-iconfont aui-icon-trash"></i>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="aui-list-item-inner send_style">
+                  <label><input id="submit_btn" type="button" value="确认发送" class="submitBtn" /></label>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+<script src="../../script/api.js"></script>
+<script src="../../script/jquery-2.1.4.min.js"></script>
+<script type="text/javascript">
+  var i = 3;
+  //点击按钮增加
+  $('.aui-icon-plus').click(function(){
+    var add_content =
+    `<li id="list_start" class="aui-list-item">
+        <div class="aui-list-item-inner">
+            <label>
+              <input class="aui-radio" type="checkbox" name="advice${i}" value="医生说：要多喝1啊喂">
+              <span><input type='text' class='insert_input edit_input${i}' value='请添加医嘱'/></span>
+            </label>
+            <div style="text-align:right">
+              <i class="aui-iconfont aui-icon-edit"></i>
+              <i class="aui-iconfont aui-icon-trash"></i>
+            </div>
+        </div>
+    </li>`;
+    var newtxt = "";
+    $('.editInfos').append(add_content);
+    $('.edit_input'+i+'').blur(function(){
+      newtxt = $(this).val();
+      $('input[name="advice'+i+'"]').val(newtxt);
+      i++;
+    });
+  });
+
+  //点击按钮编辑
+  $('.editInfos').on('click','li .aui-icon-edit',function() {
+    var text = $(this).parent().siblings().children();
+    var text_val = text.text();
+    var input = $("<input type='text' class='insert_input' value='" + text_val + "'/>");
+    text.html(input);
+    input.trigger("focus");
+    input.blur(function(){
+      var newtxt = $(this).val();
+      if (newtxt != text_val) {
+        text.val(newtxt);
+        //修改医嘱
+        //查询医嘱列表
+        $.ajax({
+          url: baseURL + "adminrecommendController/select",
+          type: 'POST',
+          async: true,
+          data:{
+            adminid: 1
+          },
+          timeout: 5000,
+          dataType: 'json',
+          success: function(data){
+            for(let item of data.body){
+              if (item.recommend == text_val) {
+                update_id(item.id,newtxt);
+              }
+            }
+          },
+          error: function(xhr){
+            console.log(xhr);
+            console.log("错误");
+          }
+        })
+
+        //修改医嘱
+        function update_id(id,newtxt){
+          $.ajax({
+            url: baseURL + "adminrecommendController/update",
+            type: 'POST',
+            async: true,
+            data:{
+              id:id,
+              recommend:newtxt
+            },
+            timeout: 5000,
+            dataType: 'json',
+            success: function(data){
+              console.log(data);
+              console.log("修改成功");
+            },
+            error: function(xhr){
+              console.log(xhr);
+              console.log("错误");
+            },
+          })
+        }
+
+      }
+
+    });
+  });
+
+  //点击按钮删除
+  $('.editInfos').on('click','li .aui-icon-trash',function(){
+    $(this).parent().parent().parent().remove();
+    var text_content = $($(this).parent().siblings().children("input").get(0)).val();
+
+    //查询医嘱列表
+    $.ajax({
+      url: baseURL + "adminrecommendController/select",
+      type: 'POST',
+      async: true,
+      data: {
+        adminid: 1
+      },
+      timeout: 5000,
+      dataType: 'json',
+      success: function(data){
+        for(let item of data.body){
+          if (item.recommend == text_content) {
+            delete_item(item.id);
+          }
+        }
+        console.log("179 "+delete_id);
+      },
+      error:function(xhr){
+        console.log("错误");
+        console.log(xhr);
+      },
+    })
+
+    //删除医嘱
+    function delete_item(id){
+      console.log("189 "+id);
+        $.ajax({
+          url: baseURL + "adminrecommendController/delete",
+          type: 'POST',
+          async: true,
+          data:{
+            id: id
+          },
+          timeout: 5000,
+          dataType: 'json',
+          success: function(data){
+            console.log(data);
+          },
+          error:function(xhr){
+            console.log("错误");
+            console.log(xhr);
+          },
+        });
+      }
+
+  });
+
+</script>
+<script type="text/javascript">
+    //获取checkbox值
+    $('#submit_btn').on('click',function(){
+      var chkLg = $('#editForm ul li').length;
+
+      $('#dialogBg').fadeOut(1, function() {
+        $('#dialog').removeAttr('class').addClass('animated bounceOutUp');
+        for (var i = 0; i < chkLg; i++) {
+          var items = document.getElementsByName("advice"+i);
+          if (items[0].checked) {
+            console.log(items[0]);
+
+            //增加医嘱
+            //发送ajax
+            $.ajax({
+              url: baseURL+'adminrecommendController/insert',
+              type: 'POST',
+              async: true,
+              data: {
+                adminid:1,
+                recommend:items[0].value
+              },
+              timeout: 5000,
+              dataType: 'json',
+              success: function(data){
+                console.log(data);
+              },
+              error:function(xhr) {
+                console.log(xhr);
+                console.log("错误");
+              },
+            })
+
+            send_recommend(items[0].value);
+          }
+        }
+      });
+    });
+    //发送医嘱
+    function send_recommend(value) {
+        var content =
+            `<li>
+                <p class="time">
+                    <span>2017-09-27 16:17:51</span>
+                </p>
+                <div class="doc">
+                    <button class="status0" onclick="finish(event)">未完成</button>
+                    <img src="../../image/liulangnan.png"  class="avatar" width="30" height="30">
+                    <div class="text">${value}</div>
+                </div>
+            </li>`;
+        $("#content_list").append(content);
+
+
+        $.ajax({
+            url: baseURL + 'historyController/insert',
+            type: 'POST', //GET
+            async: true, //或false,是否异步
+            data: {
+                adminid: '1',
+                userid: '1',
+                history: content
+            },
+            timeout: 5000, //超时时间
+            dataType: 'json', //返回的数据格式：json/xml/html/script/jsonp/text
+            success: function(data, textStatus, jqXHR) {
+                console.log(data)
+                console.log(textStatus)
+                console.log(jqXHR)
+            },
+            error: function(xhr, textStatus) {
+                console.log('错误')
+                console.log(xhr)
+                console.log(textStatus)
+            },
+        })
+    }
+    //更新医嘱
+
+
+</script>
+<script type="text/javascript">
+    var w, h, className;
+
+    function getSrceenWH() {
+        w = $(window).width();
+        h = $(window).height();
+        $('#dialogBg').width(w).height(h);
+    }
+
+    window.onresize = function() {
+        getSrceenWH();
+    }
+    $(window).resize();
+
+    $(function() {
+        getSrceenWH();
+
+        //显示弹框
+        $('#alert').click(function() {
+            className = $(this).attr('class');
+            $('#dialogBg').fadeIn(300);
+            $('#dialog').removeAttr('class').addClass('animated ' + className + '').fadeIn();
+            // console.log('animated ' + className + '');
+        });
+
+        //关闭弹窗
+        $('.claseDialogBtn').click(function() {
+            $('#dialogBg').fadeOut(300, function() {
+                $('#dialog').removeAttr('class').addClass('animated bounceOutUp').fadeOut();
+            });
+        });
+    });
+</script>
+<script type="text/javascript">
+    var baseURL = 'http://114.215.156.99:8381/backend/';
+    $(function() {
+        //点击发送input内容
+        $("#send_btn").bind('click', function() {
+            insert();
+        });
+
+        function insert() {
+            var content =
+                `<li>
+                    <p class="time">
+                        <span>2017-09-27 16:17:51</span>
+                    </p>
+                    <div class="doc">
+                        <img src="../../image/liulangnan.png"  class="avatar" width="30" height="30">
+                        <div class="text">${$("#input_message").val()}</div>
+                    </div>
+                </li>`;
+            $("#content_list").append(content);
+            $("#input_message").val("");
+
+
+            $.ajax({
+                url: baseURL + 'historyController/insert',
+                type: 'POST', //GET
+                async: true, //或false,是否异步
+                data: {
+                    adminid: '1',
+                    userid: '1',
+                    history: content
+                },
+                timeout: 5000, //超时时间
+                dataType: 'json', //返回的数据格式：json/xml/html/script/jsonp/text
+                success: function(data, textStatus, jqXHR) {
+                    console.log(data)
+                    console.log(textStatus)
+                    console.log(jqXHR)
+                },
+                error: function(xhr, textStatus) {
+                    console.log('错误')
+                    console.log(xhr)
+                    console.log(textStatus)
+                },
+            })
+        }
+    });
+</script>
+<!--获取聊天历史-->
+<script type="text/javascript">
+    $(function() {
+        $('#refresh_btn').bind('click', function() {
+            refresh();
+        });
+
+        function unescapeHTML(html) {
+            html += "";
+            return html.replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/&apos;/g, "'");
+        }
+
+        function refresh() {
+            $.ajax({
+                url: baseURL + 'historyController/selectAllByPage',
+                type: 'POST',
+                async: true,
+                data: {
+                    page: '1',
+                    rows: '10',
+                    order: 'id',
+                    sort: 'asc',
+                    adminid: '1',
+                    userid: '1'
+                },
+                timeout: 5000,
+                dataType: 'json',
+                success: function(data) {
+                    for (let item of data.rows) {
+                        var history_html = unescapeHTML(item.history);
+                        console.log(history_html);
+                        $("#content_list").append(history_html);
+                    }
+                }
+            })
+        }
+    });
+</script>
+
+</html>

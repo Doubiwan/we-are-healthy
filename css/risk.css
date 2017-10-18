@@ -1,0 +1,50 @@
+.first-title{
+  margin-top: 0.75rem;
+}
+.block{
+  display: block!important;
+  width: 100%!important;
+}
+.aui-list-item-input.block{
+  margin-bottom: 0.75rem;
+}
+.aui-list-item-input.block label{
+  margin-right: 0.75rem;
+}
+.aui-list-item-input.block label .aui-radio{
+  margin-right: 0.3rem;
+}
+.risk .aui-list .aui-list-item-label{
+  width: 80%;
+  white-space: normal;
+  line-height: 1.6;
+  padding: 0.35rem 0.25rem;
+  padding-left: 0;
+}
+h4{
+  font-size: 0.8rem;
+  padding: 0.25rem 0.75rem;
+}
+
+.button{
+  width: 100%;
+  text-align: center;
+  background: #03a9f4;
+  color: #fff;
+  height: 50px;
+  line-height: 50px;
+  position: fixed;
+  bottom: 0;
+}
+.button.disabled{
+  background: #6fccf6;
+}
+.button.active{
+  background: #0f86bc;
+}
+.risk{
+  padding-bottom: 50px;
+}
+.risk #riskForm  .aui-list .aui-list-item-label{
+  width: 35%;
+}

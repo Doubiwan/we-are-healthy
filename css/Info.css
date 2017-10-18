@@ -1,0 +1,89 @@
+header {
+    margin-top: 0.75rem;
+}
+.aui-searchbar {
+    background: transparent;
+}
+.aui-bar-nav .aui-searchbar-input {
+    background-color: #ffffff;
+}
+.aui-bar-light .aui-searchbar-input {
+    background-color: #f5f5f5;
+}
+.select_style{
+    display: inline;
+    width:auto;
+}
+.height_style{
+    display: inline;
+    width: auto;
+}
+.list_style{
+    width:100%;
+    display: block;
+}
+.aui-list-item .aui-list-item-inner .aui-list-item-input .input_style{
+    width:auto;
+    display:inline;
+}
+.aui-list-item-input .label_style{
+    margin: 0.5em 0;
+    display: inline-block;
+}
+.list_style .tea1 button,.list_style .tea1 input{
+    width: 25%;
+    display: inline-block;
+}
+.list_style .type_content,.list_style .type_style{
+    display: inline-block;
+}
+.list_style .type_style{
+    vertical-align: top;
+}
+.aui-list .aui-list-item .aui-list-item-inner{
+    -webkit-justify-content:flex-start;
+    justify-content:flex-start;
+}
+.aui-list-item-input .everyday,.aui-list-item-input .everyweek{
+    display: block;
+}
+.tea_fm_style .tea_fm,.tea_fm_style .aui-list-item-input{
+    display: inline-block;
+}
+.tea_fm_style .aui-list-item-input .count_tea{
+    width: 20%;
+}
+.tea_fm_style .aui-list-item-input{
+    width:50%;
+}
+.tea_fm_style .tea_fm{
+    vertical-align: top;
+}
+.aui-list-item-input .smoke_title,.aui-list-item-input .smoke_content{
+    display: inline-block;
+}
+.aui-list-item-input .smoke_title{
+    vertical-align: top;
+}
+.content_tea .aui-list-item-input .wine_type,.content_tea .aui-list-item-input .wine_content{
+    display: inline-block;
+}
+.content_tea .aui-list-item-input .wine_type{
+    vertical-align: top;
+}
+.content_tea .aui-list-item-input .count_tea{
+    width: 20%;
+}
+.aui-list-item .aui-list-item-inner .tea_title{
+    width:25%;
+}
+.aui-form-list .aui-list-item .medicine{
+    display: block;
+}
+.aui-list-item .medicine .remarks .remarks_content{
+    border: 1px solid black;
+}
+.aui-list-item-input .education1,.aui-list-item-input .education2{
+    display: inline-block;
+    margin: 0 0.1em;
+}

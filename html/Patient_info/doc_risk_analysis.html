@@ -1,0 +1,395 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>风险评估</title>
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/risk.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/loading.css" />
+</head>
+
+<body>
+    <div class="container risk">
+        <h4 class="first-title">风险因素</h4>
+        <div class="risk-info">
+            <div class="aui-content aui-margin-b-15">
+                <ul class="aui-list aui-form-list">
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-label">
+                            血压(SBP&DBP)
+                        </div>
+                        <div class="aui-list-item-inner">
+                            <div><span id="sbp">加载中</span> / <span id="dbp">加载中</span></div>
+                        </div>
+                    </li>
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-label">
+                            血脂(胆固醇)
+                        </div>
+                        <div class="aui-list-item-inner" id="cholesterol">
+                            加载中
+                        </div>
+                    </li>
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-label">
+                            空腹血糖(HbAlc)
+                        </div>
+                        <div class="aui-list-item-inner" id="hbalc">
+                            加载中
+                        </div>
+                    </li>
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-label">
+                            BMI
+                        </div>
+                        <div class="aui-list-item-inner" id="bmi">
+                            加载中
+                        </div>
+                    </li>
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-label">
+                            年龄
+                        </div>
+                        <div class="aui-list-item-inner" id="age">
+                            加载中
+                        </div>
+                    </li>
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-label">
+                            是否吸烟
+                        </div>
+                        <div class="aui-list-item-inner" id="smoke">
+                            加载中
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <h4>其他因素</h4>
+        <form id="riskForm">
+            <div class="aui-content aui-margin-b-15">
+                <ul class="aui-list aui-form-list">
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-inner">
+                            <div class="aui-list-item-label">
+                                腰围
+                            </div>
+                            <div class="aui-list-item-input">
+                                <input type="text" name="waist" placeholder="请输入腰围 cm">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-inner block">
+                            <div class="aui-list-item-label block">
+                                左心室是否肥厚？(心电图或超声检查)
+                            </div>
+                            <div class="aui-list-item-input block">
+                                <div>
+                                    <label><input class="aui-radio" type="radio" name="illness1" value="1">是</label>
+                                    <label><input class="aui-radio" type="radio" name="illness1" value="0">否</label>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-inner block">
+                            <div class="aui-list-item-label block">
+                                超声检查证实的动脉粥状硬化？
+                            </div>
+                            <div class="aui-list-item-input block">
+                                <div>
+                                    <label><input class="aui-radio" type="radio" name="illness2" value="1">是</label>
+                                    <label><input class="aui-radio" type="radio" name="illness2" value="0">否</label>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-inner block">
+                            <div class="aui-list-item-label block">
+                                踝肱指数: <0.9
+                            </div>
+                            <div class="aui-list-item-input block">
+                                <div>
+                                    <label><input class="aui-radio" type="radio" name="illness3" value="1">是</label>
+                                    <label><input class="aui-radio" type="radio" name="illness3" value="0">否</label>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-inner block">
+                            <div class="aui-list-item-label block">
+                                基于血肌酐估算的肾小球滤过率: <60ml/min
+                            </div>
+                            <div class="aui-list-item-input block">
+                                <div>
+                                    <label><input class="aui-radio" type="radio" name="illness31" value="1">是</label>
+                                    <label><input class="aui-radio" type="radio" name="illness31" value="0">否</label>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-inner block">
+                            <div class="aui-list-item-label block">
+                                是否具有微量蛋白尿？
+                            </div>
+                            <div class="aui-list-item-input block">
+                                <div>
+                                    <label><input class="aui-radio" type="radio" name="illness32" value="1">是</label>
+                                    <label><input class="aui-radio" type="radio" name="illness32" value="0">否</label>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-inner block">
+                            <div class="aui-list-item-label block">
+                                是否具有心血管疾病？(TIA，脑梗，脑出血)
+                            </div>
+                            <div class="aui-list-item-input block">
+                                <div>
+                                    <label><input class="aui-radio" type="radio" name="illness33" value="1">是</label>
+                                    <label><input class="aui-radio" type="radio" name="illness33" value="0">否</label>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-inner block">
+                            <div class="aui-list-item-label block">
+                                眼底高压三到四级？(出血，视神经水肿)
+                            </div>
+                            <div class="aui-list-item-input block">
+                                <div>
+                                    <label><input class="aui-radio" type="radio" name="illness4" value="1">是</label>
+                                    <label><input class="aui-radio" type="radio" name="illness4" value="0">否</label>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-inner block">
+                            <div class="aui-list-item-label block">
+                                是否患有冠心病？(心绞痛，心梗，早前PCI或搭桥手术)
+                            </div>
+                            <div class="aui-list-item-input block">
+                                <div>
+                                    <label><input class="aui-radio" type="radio" name="illness5" value="1">是</label>
+                                    <label><input class="aui-radio" type="radio" name="illness5" value="0">否</label>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-inner block">
+                            <div class="aui-list-item-label block">
+                                是否患有慢性心衰？(缺血性或高压性)
+                            </div>
+                            <div class="aui-list-item-input block">
+                                <div>
+                                    <label><input class="aui-radio" type="radio" name="illness6" value="1">是</label>
+                                    <label><input class="aui-radio" type="radio" name="illness6" value="0">否</label>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-inner block">
+                            <div class="aui-list-item-label block">
+                                是否患有外周血管病？
+                            </div>
+                            <div class="aui-list-item-input block">
+                                <div>
+                                    <label><input class="aui-radio" type="radio" name="illness7" value="1">是</label>
+                                    <label><input class="aui-radio" type="radio" name="illness7" value="0">否</label>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-inner block">
+                            <div class="aui-list-item-label block">
+                                是否患有慢性肾病？(三期到四期)
+                            </div>
+                            <div class="aui-list-item-input block">
+                                <div>
+                                    <label><input class="aui-radio" type="radio" name="illness8" value="1">是</label>
+                                    <label><input class="aui-radio" type="radio" name="illness8" value="0">否</label>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="button" id="submit" tapmode="active" onclick="submitForm(this)">提交</div>
+        </form>
+    </div>
+</body>
+<script type="text/javascript" src="../../script/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/config.js"></script>
+<script type="text/javascript" src="../../script/loading.js"></script>
+<script type="text/javascript">
+    var userInfoData = {};
+    var userid = 0;
+    apiready = function() {
+        userid = api.pageParam.userId;
+        api.parseTapmode();
+        getInfo(userid);
+    }
+
+    // getInfo(1);
+    /**
+     * 获取基本信息
+     * @Author   Warrenyang
+     * @DateTime 2017-09-23
+     * @version  [version]
+     * @return   {[type]}   [description]
+     */
+    function getInfo(userid){
+        $.ajax({
+            url: getRiskInfoUrl,
+            type: "post",
+            dataType: "json",
+            data: {
+                userid: userid
+            },
+            success: function(res) {
+                if(res.code === 0){
+                    userInfoData = res.body;
+                    for(var i in res.body){
+                        if(i != 'smoke'){
+                            $('#'+i).html(res.body[i]);
+                        }else{
+                            $('#'+i).html((res.body[i]==0?'否':'是'));
+                        }
+                    }
+                }else{
+                   api.alert({
+                        title: '系统提示',
+                        msg: res.msg,
+                    });
+                }
+            },
+            error: function(res) {
+                api.alert({
+                    title: '系统提示',
+                    msg: '网络错误',
+                });
+            }
+        })
+    }
+    /**
+     * 提交表单
+     * @Author   Warrenyang
+     * @DateTime 2017-09-23
+     * @version  [version]
+     * @param    {[type]}   event [description]
+     * @return   {[type]}         [description]
+     */
+    function submitForm(event){
+
+        //如果正在提交中，则禁止二次提交
+        if($(event).hasClass('disabled')){
+            return false;
+        }
+
+        var form = $('#riskForm');
+        var data = serializeObject(form);
+        var yaowei = '';
+        var points = 0;
+        for(var i in data){
+            if(i == 'waist'){
+                yaowei = data[i];
+            }else{
+                points += parseInt(data[i]);
+            }
+        }
+
+
+        userInfoData.otherindex = points;
+        userInfoData.waist = yaowei;
+        userInfoData.userid = userid;
+
+        var reg = /^[0-9]+([.]{1}[0-9]{1,2})?$/;
+
+        if (!reg.test(yaowei)){
+            api.alert({
+                title: '系统提示',
+                msg: '腰围不能为空！且腰围大于0，精确到小数点后2位!',
+            });
+            return false;
+        }
+
+        $.ajax({
+            url: submitRiskInfoUrl,
+            type: "post",
+            dataType: "json",
+            data: userInfoData,
+            beforeSend: function(){
+                loadingShow('提交中...'); // loading.js里面设计的方法，显示loading
+                $(event).addClass('disabled').html('提交中...');
+            },
+            complete: function(){
+                $(event).removeClass('disabled').html('提交');
+                loadingHide(); //隐藏loading
+            },
+            success: function(res) {
+                if(res.code === 0){
+                    api.alert({
+                        title: '评估结果',
+                        msg: ('您的心血管风险评估结果为：' + res.body.riskresult + '。给您的建议是：' + res.body.advice),
+                    });
+                }else{
+                    api.alert({
+                        title: '系统提示',
+                        msg: res.msg,
+                    });
+                }
+            },
+            error: function(res) {
+                api.alert({
+                    title: '系统提示',
+                    msg: '网络错误',
+                });
+            }
+        });
+    }
+
+    /**
+     * 批量提交转换form表单的name为key
+     * @Author   Warrenyang
+     * @DateTime 2017-09-20
+     * @version  [version]
+     * @param    {[type]}   form   表单dom
+     * @return   {[type]}   结构化的数据
+     */
+    function serializeObject(form){
+        var obj = {};
+        var data = form.serializeArray();
+        $.each(data, function() {
+            if (obj[this.name] !== undefined) {
+                if (!obj[this.name].push) {
+                    obj[this.name] = [obj[this.name]];
+                }
+                obj[this.name].push(this.value || '');
+            } else {
+                obj[this.name] = this.value || '';
+            }
+        });
+
+        return obj;
+    }
+</script>
+</html>

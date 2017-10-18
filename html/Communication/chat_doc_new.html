@@ -1,0 +1,341 @@
+<!DOCTYPE HTML>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>医生聊天端</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/chat_doc.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/aui-pull-refresh.css" />
+    <style type="text/css">
+        .lbl {
+            padding-right: 20px;
+        }
+
+        .aui-chat .list-item,.aui-chat_recommend .list-item {
+          padding: 10px 10px;
+        }
+
+        .aui-chat .doc, .aui-chat_recommend .doc {
+            text-align: right;
+        }
+
+        .aui-chat .pat {
+            text-align: left;
+        }
+
+        .aui-chat .doc .avatar,.aui-chat_recommend .doc .avatar {
+            float: right;
+            margin: 0 0 0 10px;
+            border-radius: 3px;
+        }
+
+        .aui-chat .pat .avatar {
+            float: left;
+            margin: 0 0 0 10px;
+            border-radius: 3px;
+        }
+
+        .aui-chat .doc .text,.aui-chat_recommend .doc .text {
+            background-color: #b2e281;
+        }
+
+        .aui-chat .pat .text {
+            background-color: #fff;
+        }
+
+        .aui-chat .doc .text:before,.aui-chat_recommend .doc .text:before {
+            right: inherit;
+            left: 100%;
+            border-right-color: transparent;
+            border-left-color: #b2e281;
+        }
+
+        .aui-chat .pat .text:before{
+          right: inherit;
+          left: 100%;
+          border-right-color: transparent;
+          border-left-color: #fff;
+        }
+    </style>
+</head>
+<html>
+
+<body>
+    <div class="container">
+      <div class="title">
+        <header class="aui-bar aui-bar-nav aui-bar-light">
+            <div class="aui-pull-left aui-btn">
+                <span class="aui-iconfont aui-icon-left"></span>
+            </div>
+            <div class="aui-title">王患者</div>
+            <!-- <div class="aui-pull-right aui-btn aui-btn-outlined">
+              <a id="alert_update_delete" href="javascript:;" class="flipInX">
+                <span class="aui-iconfont aui-icon-menu"></span>
+              </a>
+            </div> -->
+            <div class="aui-pull-right aui-btn aui-btn-outlined">
+              <a id="alert_add_send" href="javascript:;" class="flipInX">
+                <span class="aui-iconfont aui-icon-pencil"></span>
+              </a>
+            </div>
+        </header>
+        <div class="aui-tab" id="tab">
+            <div id="chat_view" class="aui-tab-item aui-active">聊天历史</div>
+            <div id="commend_view" class="aui-tab-item">医嘱历史</div>
+        </div>
+      </div>
+      <section id="refresh_section">
+        <div class="history">
+          <section class="aui-chat">
+            <ul id="content_list"></ul>
+
+          </section>
+        </div>
+        <div class="history aui-hide">
+          <section class="aui-chat_recommend">
+            <ul id="content_list_recommend"></ul>
+            
+          </section>
+        </div>
+      </section>
+      <div class="send_message_real">
+        <hr style=" height:1px;border:none;border-top:1px solid #185598;" />
+        <input type="text" id="input_message" class="input_message"></input>
+        <i id="send_btn" class="aui-iconfont aui-icon-paper send_btn"></i>
+        <i id="refresh_btn" class="aui-iconfont aui-icon-refresh"></i>
+      </div>
+      <div class="recommend_btn_real aui-hide">
+        <hr style=" height:1px;border:none;border-top:1px solid #185598;" />
+        <!-- <div class="aui-btn aui-btn-primary">
+          <a id="show_list" href="javascript:;" class="bounceInDown">
+            <i class="aui-iconfont aui-icon-menu"></i>医嘱列表
+          </a>
+        </div> -->
+        <div class="aui-btn aui-btn-success">
+          <a id="send_list" href="javascript:;" class="bounceInDown">
+            <i class="aui-iconfont aui-icon-paper"></i>发送医嘱
+          </a>
+        </div>
+      </div>
+      <!-- 增加和发送对话框 -->
+      <div id="dialogBg"></div>
+      <div id="dialog" class="animated">
+          <img class="dialogIco" width="50" height="50" src="../../image/ico.png" alt="" />
+          <div class="dialogTop">
+              <a href="javascript:;" class="add_listitem"><i class="aui-iconfont aui-icon-plus"></i></a>
+              <a href="javascript:;" class="claseDialogBtn aui-pull-right"><i class="aui-iconfont aui-icon-close"></i></a>
+          </div>
+          <form action="" method="post" id="editForm">
+                <ul id="add_recommend_list" class="editInfos aui-list aui-select-list">
+                  <!-- <li class="aui-list-item">
+                      <div class="aui-list-item-inner">
+                          <label>
+                            <input class="aui-radio" type="checkbox" name="advice0" value="医生说：要多喝水啊喂">
+                            <span>医生说：要多喝水啊喂</span>
+                          </label>
+                          <div style="text-align:right">
+                            <i class="aui-iconfont aui-icon-edit"></i>
+                            <i class="aui-iconfont aui-icon-trash"></i>
+                          </div>
+                      </div>
+                  </li>
+                  <li class="aui-list-item second_list">
+                      <div class="aui-list-item-inner">
+                          <label>
+                            <input class="aui-radio" type="checkbox" name="advice1" value="医生说：喝什么别闹了">
+                            <span>医生说：喝什么别闹了</span>
+                          </label>
+                          <div style="text-align:right">
+                            <i class="aui-iconfont aui-icon-edit"></i>
+                            <i class="aui-iconfont aui-icon-trash"></i>
+                          </div>
+                      </div>
+                  </li>
+                  <li class="aui-list-item">
+                      <div class="aui-list-item-inner">
+                          <label>
+                            <input class="aui-radio" type="checkbox" name="advice2" value="医生说：重要的是吃啥">
+                            <span>医生说：重要的是吃啥</span>
+                          </label>
+                          <div style="text-align:right">
+                            <i class="aui-iconfont aui-icon-edit"></i>
+                            <i class="aui-iconfont aui-icon-trash"></i>
+                          </div>
+                      </div>
+                  </li> -->
+              </ul>
+              <div class="aui-list-item-inner send_style">
+                <label><input id="submit_btn" type="button" value="确认发送" class="submitBtn" /></label>
+              </div>
+          </form>
+      </div>
+      <!-- 更新和删除对话框 -->
+      <!-- <div id="dialogBg_recommend"></div>
+      <div id="dialog_recommend" class="animated">
+          <img class="dialogIco" width="50" height="50" src="../../image/ico.png" alt="" />
+          <div class="dialogTop">
+              <a href="javascript:;" class="claseDialogBtn aui-pull-right"><i class="aui-iconfont aui-icon-close"></i></a>
+          </div>
+          <form action="" method="post" id="editForm_recommend">
+                <ul class="editInfos aui-list aui-select-list recommend_list">
+                </ul>
+              <div class="aui-list-item-inner send_style">
+                <label><input id="submit_btn_recommend" type="button" value="确认修改" class="submitBtn" /></label>
+              </div>
+          </form>
+      </div> -->
+    </div>
+</body>
+<script src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/aui-tab.js" ></script>
+<script src="../../script/aui-pull-refresh.js"></script>
+<script src="../../script/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="../../script/chat_doc.js"></script>
+<script type="text/javascript">
+
+    //对话框
+    var w, h, className;
+
+    function getSrceenWH() {
+        w = $(window).width();
+        h = $(window).height();
+        $('#dialogBg').width(w).height(h);
+        $('#dialogBg_recommend').width(w).height(h);
+    }
+
+    window.onresize = function() {
+        getSrceenWH();
+    }
+    $(window).resize();
+
+    $(function() {
+
+        // if ($('#commend_view').hasClass('aui-active')) {
+        //   $('.recommend_btn_real').removeClass('class').addClass('aui-active');
+        //   $('.send_message_real').removeClass('class').addClass('aui-hide');
+        // }else if ($('#chat_view').hasClass('aui-active')) {
+        //   $('.send_message_real').removeClass('class').addClass('aui-active');
+        //   $('.recommend_btn_real').removeClass('class').addClass('aui-hide');
+        // }
+
+        getSrceenWH();
+
+        //显示增加和发送的弹框
+        $('#alert_add_send').click(function() {
+          // console.log("点击了增加和发送的弹框");
+          // api.setFrameAttr({
+          //   name: 'chatHistory',
+          //   hidden: false
+          // });
+          className = $(this).attr('class');
+          $('#dialogBg').fadeIn(300);
+          $('#dialog').removeAttr('class').addClass('animated ' + className + '').fadeIn();
+          // console.log('animated ' + className + '');
+        });
+
+        $('#send_list').click(function() {
+          className = $(this).attr('class');
+          $('#dialogBg').fadeIn(300);
+          $('#dialog').removeAttr('class').addClass('animated ' + className + '').fadeIn();
+        });
+
+        //关闭增加和发送的弹窗
+        $('.claseDialogBtn').click(function() {
+          $('#dialogBg').fadeOut(300, function() {
+              $('#dialog').removeAttr('class').addClass('animated bounceOutUp').fadeOut();
+          });
+        });
+
+        // //显示更新和删除的弹框
+        // $('#alert_update_delete').click(function() {
+        //   className = $(this).attr('class');
+        //   $('#dialogBg_recommend').fadeIn(300);
+        //   $('#dialog_recommend').removeAttr('class').addClass('animated ' + className + '').fadeIn();
+        //   // console.log('animated ' + className + '');
+        // });
+        // $('#show_list').click(function() {
+        //   className = $(this).attr('class');
+        //   $('#dialogBg_recommend').fadeIn(300);
+        //   $('#dialog_recommend').removeAttr('class').addClass('animated ' + className + '').fadeIn();
+        // });
+        //
+        // //关闭更新和删除的弹窗
+        // $('.claseDialogBtn').click(function() {
+        //     $('#dialogBg_recommend').fadeOut(300, function() {
+        //         $('#dialog_recommend').removeAttr('class').addClass('animated bounceOutUp').fadeOut();
+        //     });
+        // });
+
+    });
+
+    // //点击tab切换frame
+    // $('.aui-tab-item').click(function() {
+    //   // console.log("已经点击！");
+    //   // if($api.hasCls(this,'aui-active')) {return};
+    //   // $api.addCls(this, 'aui-active');
+    //   var tabList = $api.domAll('.aui-tab-item'),
+    //   index = 0;
+    //   // console.log(tabList);
+    //   for (var i = 0; i < tabList.length; i++) {
+    //     if (this == tabList[i]) {
+    //       index = i;
+    //     }
+    //     // console.log("for循环内"+index);
+    //   }
+    //   // console.log("for循环外"+index);
+    //   api.setFrameGroupIndex({
+    //     name: 'group',
+    //     index: index
+    //   });
+    // });
+
+    //初始化frameGroup
+    // function initGroup(){
+    //   api.openFrameGroup({
+    //       name: 'group',
+    //       scrollEnabled: true,
+    //       rect: {
+    //           x: 0,
+    //           y: $api.dom('.title').offsetHeight,
+    //           w: api.winWidth,
+    //           h: 'auto'
+    //       },
+    //       index: 0,
+    //       frames: [{
+    //         name: 'chatHistory',
+    //         url: './chatHistory.html',
+    //         bounces: true
+    //       },{
+    //         name: 'recommendHistory',
+    //         url: './recommendHistory.html',
+    //         bounces: true
+    //       }]
+    //   }, function(ret, err) {
+    //     console.log(JSON.stringify(ret));
+    //     if (ret.index === 0) {
+    //       api.setFrameAttr({
+    //         name: 'chatHistory',
+    //         hidden: true,
+    //       });
+    //     }
+    //   });
+    // }
+
+    //点击切换历史记录tab
+    var tab = new auiTab({
+        element:document.getElementById("tab"),
+        index:1,
+        repeatClick:false
+    },function(ret){
+        $('.container .history').addClass('aui-hide');
+        $('.container .history').eq(ret.index - 1 ).removeClass('aui-hide');
+    });
+
+
+
+
+</script>
+</html>

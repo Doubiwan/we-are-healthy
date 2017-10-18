@@ -1,0 +1,120 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>病人注册</title>
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/register_doctor.css" />
+</head>
+
+<body>
+    <div class="container">
+      <form id="form">
+        <div class="aui-content aui-margin-b-15">
+            <ul class="aui-list aui-form-list">
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-label">
+                            用户名
+                        </div>
+                        <div class="aui-list-item-input">
+                            <input type="text" placeholder="4-16位英文字母或数字" name="username">
+                        </div>
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-label">
+                            密码
+                        </div>
+                        <div class="aui-list-item-input">
+                            <input type="password" placeholder="6-16位密码" name="password">
+                        </div>
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-label">
+                            确认密码
+                        </div>
+                        <div class="aui-list-item-input">
+                            <input type="password" placeholder="请确认密码" >
+                        </div>
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-label validate_code">
+                            验证码
+                        </div>
+                        <div class="aui-list-item-input">
+                            <input class="authCode" id="authCode" keyup="validate()" name="authCode" type="text" placeholder="4-16位英文字母或数字" />
+                            <div class="codeImage"><img id="codeImage" onclick="changeCode()" title="图片看不清？点击重新得到验证码" type="image" /></div>
+                        </div>
+                        <!-- <p><div class="aui-btn aui-btn-primary">获取验证码</div></p> -->
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner aui-list-item-center aui-list-item-btn">
+                        <div id="submit_register" class="aui-btn aui-btn-info aui-margin-r-5">提交</div>
+                        <div class="aui-btn aui-btn-danger aui-margin-l-5">取消</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+      </form>
+    </div>
+</body>
+<script type="text/javascript" src="../../script/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript">
+    apiready = function() {
+        api.parseTapmode();
+    }
+</script>
+<!-- 获取验证码和sessionId -->
+<script type="text/javascript">
+    var address = "http://114.215.156.99:8381/backend/";
+    var authcode = false;
+
+    function changeCode() {
+        $('#codeImage').attr('src', address + 'userController/authCode?abc=' + Math.random()); //链接后添加Math.random，确保每次产生新的验证码，避免缓存问题。
+        //获取sessionId并将其存放在sessionstorage之中
+        $.ajax({
+            type: 'post',
+            url: address + "userController/getSessionId",
+            dataType: 'json',
+            success: function(data) {
+                sessionStorage.setItem('sessionId', data.body.sessionId);
+            }
+        });
+    }
+
+    $(document).ready(function() {
+        console.log(address);
+        changeCode();
+// 发送注册请求
+        $('#submit_register').click(function() {
+                $.ajax({
+                    type: 'post',
+                    url: address + "userController/register",
+                    data: $("#form").serialize() + "&sessionId=" + sessionStorage.getItem('sessionId'),
+                    dataType: "json",
+                    success: function(data) {
+                        console.info(data);
+                        if (data.code === 0) {
+                            alert("connection success -> " + JSON.stringify(data));
+                        } else {
+                            alert("connection failed  -> " + JSON.stringify(data));
+                        }
+                    }
+                });
+
+            });
+
+    });
+</script>
+</html>

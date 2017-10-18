@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+  <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+  <title>医嘱历史界面</title>
+  <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+  <link rel="stylesheet" type="text/css" href="../../css/chat_doc.css" />
+  <link rel="stylesheet" type="text/css" href="../../css/aui-pull-refresh.css" />
+</head>
+<body>
+  <div class="history">
+    医嘱历史
+    <section class="aui-chat_recommend">
+      <ul id="content_list_recommend"></ul>
+      <div class="recommend_btn">
+        <hr style=" height:1px;border:none;border-top:1px solid #185598;" />
+        <div class="aui-btn aui-btn-primary">
+          <a id="show_list" href="javascript:;" class="bounceInDown">
+            <i class="aui-iconfont aui-icon-menu"></i>医嘱列表
+          </a>
+        </div>
+        <div class="aui-btn aui-btn-success">
+          <a id="send_list" href="javascript:;" class="bounceInDown">
+            <i class="aui-iconfont aui-icon-paper"></i>发送医嘱
+          </a>
+        </div>
+      </div>
+    </section>
+   </div>
+</body>
+<script src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/aui-tab.js" ></script>
+<script src="../../script/aui-pull-refresh.js"></script>
+<script src="../../script/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="../../script/chat_doc.js"></script>
+<script type="text/javascript">
+"use strict";
+//下拉刷新
+var pullRefresh_recommend = new auiPullToRefresh({
+    container: document.querySelector('.aui-chat_recommend'),
+    triggerDistance: 100
+},function(ret){
+    if(ret.status=="success"){
+        setTimeout(function(){
+            //查询医嘱列表
+            $.ajax({
+              url: baseURL + "adminrecommendController/select",
+              type: 'POST',
+              async: true,
+              data: {
+                adminid: 1
+              },
+              timeout: 5000,
+              dataType: 'json',
+              success: function(data){
+                for (let item of data.body) {
+                  show_recommend(item.recommend);
+                }
+              },
+              error:function(xhr){
+                console.log("错误");
+                console.log(xhr);
+              },
+            })
+            alert("刷新成功");
+            pullRefresh_recommend.cancelLoading(); //刷新成功后调用此方法隐藏
+        },1500)
+    }
+});
+</script>
+</html>

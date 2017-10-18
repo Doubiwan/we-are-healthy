@@ -1,0 +1,284 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>老年人糖尿病风险评估</title>
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/risk.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/loading.css" />
+    <style type="text/css">
+        .aui-list-item-input.block label{
+            margin-bottom: 0.5rem;
+            display: inline-block;
+        }
+        .aui-list-item-input.block label > *{
+            vertical-align: middle;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container risk">
+        <h4 class="first-title">老年人糖尿病风险评估因素</h4>
+        <form id="riskForm">
+            <div class="aui-content aui-margin-b-15">
+                <ul class="aui-list aui-form-list">
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-inner block">
+                            <div class="aui-list-item-label block">
+                                1、年龄
+                            </div>
+                            <div class="aui-list-item-input block">
+                                <div>
+                                    <label><input class="aui-radio" type="radio" name="illness1" value="0"><span>< 45岁</span></label>
+                                    <label><input class="aui-radio" type="radio" name="illness1" value="2"><span>45 - 54岁</span></label>
+                                    <label><input class="aui-radio" type="radio" name="illness1" value="3"><span>55 - 64岁</span></label>
+                                    <label><input class="aui-radio" type="radio" name="illness1" value="4"><span>> 64岁</span></label>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-inner block">
+                            <div class="aui-list-item-label block">
+                                2、体质指数？( 计算方法：体重/(身高*身高) )
+                            </div>
+                            <div class="aui-list-item-input block">
+                                <div>
+                                    <label><input class="aui-radio" type="radio" name="illness2" value="0"><span>< 24公斤/米<sup>2</sup></span></label>
+                                    <label><input class="aui-radio" type="radio" name="illness2" value="1"><span>24 - 28公斤/米<sup>2</sup></span></label>
+                                    <label><input class="aui-radio" type="radio" name="illness2" value="3"><span>> 28公斤/米<sup>2</sup></span></label>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-inner block">
+                            <div class="aui-list-item-label block">
+                                3、腰围？（男 女）
+                            </div>
+                            <div class="aui-list-item-input block">
+                                <div>
+                                    <label><input class="aui-radio" type="radio" name="illness3" value="0"><span>< 85厘米 &nbsp;&nbsp; < 80厘米</span></label>
+                                    <label><input class="aui-radio" type="radio" name="illness3" value="1"><span>85 - 95厘米 &nbsp;&nbsp; 80 - 90厘米</span></label>
+                                    <label><input class="aui-radio" type="radio" name="illness3" value="3"><span>> 95厘米  &nbsp;&nbsp; > 90厘米</span></label>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-inner block">
+                            <div class="aui-list-item-label block">
+                                4、每天锻炼30分钟以上？
+                            </div>
+                            <div class="aui-list-item-input block">
+                                <div>
+                                    <label><input class="aui-radio" type="radio" name="illness4" value="0">是</label>
+                                    <label><input class="aui-radio" type="radio" name="illness4" value="2">否</label>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-inner block">
+                            <div class="aui-list-item-label block">
+                                5、每天吃水果？
+                            </div>
+                            <div class="aui-list-item-input block">
+                                <div>
+                                    <label><input class="aui-radio" type="radio" name="illness5" value="0">是</label>
+                                    <label><input class="aui-radio" type="radio" name="illness5" value="1">否</label>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-inner block">
+                            <div class="aui-list-item-label block">
+                                6、每天吃蔬菜？
+                            </div>
+                            <div class="aui-list-item-input block">
+                                <div>
+                                    <label><input class="aui-radio" type="radio" name="illness6" value="0">是</label>
+                                    <label><input class="aui-radio" type="radio" name="illness6" value="1">否</label>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-inner block">
+                            <div class="aui-list-item-label block">
+                                7、长期服用过降血压药？
+                            </div>
+                            <div class="aui-list-item-input block">
+                                <div>
+                                    <label><input class="aui-radio" type="radio" name="illness7" value="0">否</label>
+                                    <label><input class="aui-radio" type="radio" name="illness7" value="2">是</label>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-inner block">
+                            <div class="aui-list-item-label block">
+                                8、血糖高（体检、患病或是怀孕期间查出）？
+                            </div>
+                            <div class="aui-list-item-input block">
+                                <div>
+                                    <label><input class="aui-radio" type="radio" name="illness8" value="0">否</label>
+                                    <label><input class="aui-radio" type="radio" name="illness8" value="5">是</label>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-inner block">
+                            <div class="aui-list-item-label block">
+                                9、直系或旁系亲属中有被确诊为糖尿病？
+                            </div>
+                            <div class="aui-list-item-input block">
+                                <div>
+                                    <label><input class="aui-radio" type="radio" name="illness9" value="0">否</label>
+                                    <label><input class="aui-radio" type="radio" name="illness9" value="3">有，爷爷/姥爷，奶奶/姥姥，姑妈/姨妈，叔，伯/舅，表兄妹/堂兄妹（或其子女）</label>
+                                    <label><input class="aui-radio" type="radio" name="illness9" value="5">有，父母，兄妹，子女</label>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="button" id="submit" tapmode="active" onclick="submitForm(this)">提交</div>
+        </form>
+    </div>
+</body>
+<script type="text/javascript" src="../../script/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/config.js"></script>
+<script type="text/javascript" src="../../script/loading.js"></script>
+<script type="text/javascript">
+    var userInfoData = {};
+    var userid = 0;
+    apiready = function() {
+        userid = api.pageParam.userId;
+        api.parseTapmode();
+    }
+
+    function submitForm(event){
+
+        //如果正在提交中，则禁止二次提交
+        if($(event).hasClass('disabled')){
+            return false;
+        }
+
+        var form = $('#riskForm');
+        var data = serializeObject(form);
+        var yaowei = '';
+        var points = 0;
+        for(var i in data){
+            points += parseInt(data[i]);
+        }
+
+        var resultArr = [
+            '10年内得2型糖尿病可能性较低，仅有1%。',
+            '10年内得2型糖尿病的可能性轻度升高，为4%。',
+            '10年内得2型糖尿病的可能性中度升高，为17%。',
+            '10年内得2型糖尿病的可能性较高，为33%。',
+            '10年内得2型糖尿病的可能性非常高，为50%。'
+        ];
+
+        var resultMsg = '';
+
+        if(points < 7){
+            resultMsg = resultArr[0];
+        }else if( points >= 7 && points <= 11){
+            resultMsg = resultArr[1];
+        }else if( points >= 12 && points <= 14){
+            resultMsg = resultArr[2];
+        }else if( points >= 15 && points <= 20){
+            resultMsg = resultArr[3];
+        }else if( points > 20 ){
+            resultMsg = resultArr[4];
+        }
+        api.alert({
+            title: '测试结果',
+            msg: resultMsg,
+        });
+
+        $.ajax({
+            url: oldSubmitRiskInfoUrl,
+            type: "post",
+            dataType: "json",
+            data: {
+              riskresult: points,
+              advice: resultMsg,
+              userid: 1,
+              type: 2
+            },
+            beforeSend: function(){
+                loadingShow('提交中...'); // loading.js里面设计的方法，显示loading
+                $(event).addClass('disabled').html('提交中...');
+            },
+            complete: function(){
+                $(event).removeClass('disabled').html('提交');
+                loadingHide(); //隐藏loading
+            },
+            success: function(res) {
+                if(res.code === 0){
+                    api.alert({
+                        title: '评估结果',
+                        msg: ('您的糖尿病风险评估结果为：' + res.body.riskresult + '。给您的建议是：' + res.body.advice),
+                    });
+                }else{
+                    api.alert({
+                        title: '系统提示',
+                        msg: res.msg,
+                    });
+                }
+            },
+            error: function(res) {
+                api.alert({
+                    title: '系统提示',
+                    msg: '网络错误',
+                });
+            }
+        });
+
+    }
+
+    /**
+     * 批量提交转换form表单的name为key
+     * @Author   Warrenyang
+     * @DateTime 2017-09-20
+     * @version  [version]
+     * @param    {[type]}   form   表单dom
+     * @return   {[type]}   结构化的数据
+     */
+    function serializeObject(form){
+        var obj = {};
+        var data = form.serializeArray();
+        $.each(data, function() {
+            if (obj[this.name] !== undefined) {
+                if (!obj[this.name].push) {
+                    obj[this.name] = [obj[this.name]];
+                }
+                obj[this.name].push(this.value || '');
+            } else {
+                obj[this.name] = this.value || '';
+            }
+        });
+
+        return obj;
+    }
+</script>
+</html>

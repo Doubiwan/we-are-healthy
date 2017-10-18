@@ -1,0 +1,153 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>录入信息</title>
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+</head>
+
+<body>
+    <div class="container">
+      <form id="add_patient_info">
+        <div class="aui-content aui-margin-b-15">
+            <ul class="aui-list aui-form-list">
+                <li class="aui-list-header">录入表</li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-label">
+                            录入时间
+                        </div>
+                        <div class="aui-list-item-input">
+                            <input type="text" placeholder="2017.9.9 11:24">
+                        </div>
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-label">
+                            患者姓名
+                        </div>
+                        <div class="aui-list-item-input">
+                            <input type="text" placeholder="陈患者" name="patientname">
+                        </div>
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-label">
+                            责任医生
+                        </div>
+                        <div class="aui-list-item-input">
+                            <input type="text" placeholder="常医生" name="adminid">
+                        </div>
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-label">
+                            血压
+                        </div>
+                        <div class="aui-list-item-input">
+                            <input type="text" placeholder="收缩压" name="sbp">
+                            <input type="text" placeholder="舒张压" name="dbp">
+                        </div>
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-label">
+                            空腹血糖
+                        </div>
+                        <div class="aui-list-item-input">
+                            <input type="text" placeholder="11.2mmol/l" name="glu">
+                        </div>
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-label">
+                            血氧
+                        </div>
+                        <div class="aui-list-item-input">
+                            <input type="text" placeholder="99%" name="bloodoxygen">
+                        </div>
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-label">
+                            胆固醇
+                        </div>
+                        <div class="aui-list-item-input">
+                            <input type="text" placeholder="4.5mmol/l" name="cholesterol">
+                        </div>
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-label">
+                            心电图
+                        </div>
+                        <div class="aui-list-item-input">
+                            <select name="ecg">
+                            <option>窦性心律过速</option>
+                            <option>窦性心律过速</option>
+                            <option>窦性心律过速</option>
+                        </select>
+                        </div>
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-label">
+                            疲劳值
+                        </div>
+                        <div class="aui-list-item-input">
+                            <input type="text" placeholder="4.5mmol/l">
+                        </div>
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                <div class="aui-list-item-inner aui-list-item-center aui-list-item-btn">
+                    <div class="aui-btn aui-btn-info aui-margin-r-5" type="submit">提交</div>
+                    <div class="aui-btn aui-btn-danger aui-margin-l-5">取消</div>
+                </div>
+            </li>
+            </ul>
+        </div>
+      </form>
+    </div>
+</body>
+<script type="text/javascript" src="script/jquery-3.2.1.js"></script>
+<script type="text/javascript" src="script/api.js"></script>
+<script type="text/javascript">
+    apiready = function() {
+        api.parseTapmode();
+    }
+</script>
+<script  type="text/javascript"  >
+
+        $('#add_patient_info').submit(function () {
+
+            $.ajax({
+                cache: true,
+                type: "POST",
+                url: "http://114.215.156.99:8381/backend/",
+                data: $('#add_patient_info').serialize(),
+                async: false,
+                error: function (request) {
+                    alert("Connection error");
+                },
+                success: function (data) {
+                    alert("Connection Success->" + data);
+                }
+            });
+
+            return false;
+        });
+
+    </script>
+</html>

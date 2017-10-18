@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+  <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+  <title>聊天历史界面</title>
+  <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+  <link rel="stylesheet" type="text/css" href="../../css/chat_doc.css" />
+  <link rel="stylesheet" type="text/css" href="../../css/aui-pull-refresh.css" />
+</head>
+<body>
+  <div class="history">
+    聊天历史
+    <section class="aui-chat">
+      <ul id="content_list"></ul>
+      <div class="send_message">
+        <hr style=" height:1px;border:none;border-top:1px solid #185598;" />
+        <input type="text" id="input_message" class="input_message"></input>
+        <i id="send_btn" class="aui-iconfont aui-icon-paper send_btn"></i>
+        <i id="refresh_btn" class="aui-iconfont aui-icon-refresh"></i>
+      </div>
+    </section>
+  </div>
+</body>
+<script src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/aui-tab.js" ></script>
+<script src="../../script/aui-pull-refresh.js"></script>
+<script src="../../script/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="../../script/chat_doc.js"></script>
+<script type="text/javascript">
+//下拉刷新
+var pullRefresh = new auiPullToRefresh({
+    container: document.querySelector('.aui-chat'),
+    triggerDistance: 100
+},function(ret){
+    if(ret.status=="success"){
+        setTimeout(function(){
+            alert("刷新成功");
+            pullRefresh.cancelLoading(); //刷新成功后调用此方法隐藏
+        },1500)
+    }
+})
+</script>
+</html>

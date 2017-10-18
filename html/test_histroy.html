@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <title>底部</title>
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+
+</head>
+
+<body>
+    <style>
+
+    </style>
+    <input id="date" type="date" onchange="infoid()" />
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+
+    var baseaddress = 'http://114.215.156.99:8381/backend';
+
+    function infoid() {
+        var datetime = document.getElementById('date').value;
+        if (datetime !== null) {
+            //根据userid获取infoid
+            // console.log($api.byId('date').value);
+            api.ajax({
+                url: baseaddress + '/infoController/selectByUserId',
+                method: 'post',
+                data: {
+                    values: {
+                        "userid": 1
+                    }
+                }
+            }, function(ret, err) {
+                if (ret) {
+                    $api.setStorage('infoid', ret.body.id);
+                    // alert($api.getStorage('infoid'));
+                } else {
+                    alert(JSON.stringify(err));
+                }
+            });
+            //根据infoid和datetime获取历史数据
+            api.ajax({
+                url: baseaddress + '/healthController/selectByDay',
+                method: 'post',
+                data: {
+                    values: {
+                        infoid: $api.getStorage('infoid'),
+                        datetime: datetime
+                    }
+                }
+            }, function(ret, err) {
+                if (ret) {
+                    alert(JSON.stringify(ret));
+                    if(ret.body.id == $api.getStorage('infoid')){
+                      var glu = [];
+                      glu.push(ret.body.glu);
+                      alert(glu);
+                    }
+                } else {
+                    alert(JSON.stringify(err));
+                }
+            });
+        } else {
+            alert('输入日期为空');
+        }
+    }
+</script>
+
+</html>

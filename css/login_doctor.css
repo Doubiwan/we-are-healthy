@@ -1,0 +1,51 @@
+html{
+  height: 100%;
+}
+body{
+  height: 100%;
+}
+.login_item{
+  height: 100%;
+}
+.logo{
+  margin: 0 auto;
+}
+.phone_validate{
+  font-size: 12px;
+  margin-right: 2%;
+  margin-top: 2%;
+  float: right;
+}
+.forgot_password{
+  font-size: 12px;
+  margin-left: 2%;
+  margin-top: 2%;
+  float: left;
+}
+.aui-list .submit_btn{
+  margin: 10%;
+  display: block;
+}
+.authCode_name{
+  font-size:11px;
+}
+.aui-list-item-inner .aui-list-item-icon{
+  width: 10%;
+}
+.aui-list-item-input .authCode,.aui-list-item-input .codeImage{
+  display: inline-block;
+}
+.aui-list-item-input .authCode{
+  width: 77%;
+}
+.aui-list-item-input .codeImage{
+  margin-left: 1.6%;
+  margin-bottom: -1.5%;
+  margin-top: 1.5%
+}
+.aui-list-item .aui-list-item-inner .aui-margin-r-5{
+  width: 100%;
+}
+.aui-list-item .aui-list-item-inner .aui-margin-l-5{
+  width: 100%;
+}

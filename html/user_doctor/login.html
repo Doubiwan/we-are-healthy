@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>登陆</title>
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/login_doctor.css" />
+</head>
+
+<body>
+    <div class="container">
+        <div class="aui-content aui-margin-b-15">
+          <div class="logo">
+            <img src="../../image/loading_more.gif">
+          </div>
+            <ul class="aui-list aui-form-list">
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-label-icon">
+                            <i class="aui-iconfont aui-icon-mobile"></i>
+                        </div>
+                        <div class="aui-list-item-input">
+                            <input type="text" placeholder="username" name="username">
+                        </div>
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-label-icon">
+                            <i class="aui-iconfont aui-icon-lock"></i>
+                        </div>
+                        <div class="aui-list-item-input">
+                            <input type="password" placeholder="password" name="password">
+                        </div>
+                        <div class="aui-list-item-label-icon">
+                            <i class="aui-iconfont aui-icon-display"></i>
+                        </div>
+                    </div>
+                </li>
+                <div class="forgot_password">
+                  <a href="register.html">忘记密码？</a>
+                </div>
+                <div class="phone_validate">
+                  <a href="register.html">手机验证登陆</a>
+                </div>
+                <li class="aui-list-item submit_btn">
+                    <div class="aui-list-item-inner aui-list-item-center aui-list-item-btn">
+                        <div id="login" class="aui-btn aui-btn-info aui-margin-r-5" >登陆</div>
+                        <div class="aui-btn aui-btn-danger aui-margin-l-5">注册</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../script/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript">
+    apiready = function() {
+        api.parseTapmode();
+    }
+</script>
+<script type="text/javascript">
+  $('#login').on('click',function(){
+
+    $.ajax({
+        // cache: true,
+        type: "POST",
+        url: "http://114.215.156.99:8381/backend/healthController/insert",
+        data: $('#add_patient_info').serialize() + "&adminid=1&infoid=1",
+        // async: false,
+        error: function(request) {
+            alert("Connection error");
+        },
+        success: function(data) {
+            alert("Connection Success->" + JSON.stringify(data));
+        }
+    });
+  });
+</script>
+</html>
