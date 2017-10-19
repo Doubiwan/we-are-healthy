@@ -18,7 +18,7 @@
 
     <access origin="*" />
 
-    <preference name="pageBounce" value="false"/>
+    <preference name="pageBounce" value="true"/>
 
 	<preference name="appBackground" value="rgba(0,0,0,0.0)"/>
 
@@ -57,6 +57,5 @@
 	<permission name="bootCompleted" />
 
 	<permission name="hardware" />
-	
-</widget>
 
+</widget>

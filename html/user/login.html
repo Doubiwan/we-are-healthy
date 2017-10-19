@@ -68,7 +68,7 @@
                         <li class="aui-list-item submit_btn">
                             <div class="aui-list-item-inner aui-list-item-center aui-list-item-btn">
                                 <div id="login_doctor" class="aui-btn aui-btn-info aui-margin-r-5">登陆</div>
-                                <div class="aui-btn aui-btn-danger aui-margin-l-5">注册</div>
+                                <div id="register_doctor" class="aui-btn aui-btn-danger aui-margin-l-5">注册</div>
                             </div>
                         </li>
                     </ul>
@@ -123,7 +123,7 @@
                         <li class="aui-list-item submit_btn">
                             <div class="aui-list-item-inner aui-list-item-center aui-list-item-btn">
                                 <div id="login_patient" class="aui-btn aui-btn-info aui-margin-r-5">登陆</div>
-                                <div class="aui-btn aui-btn-danger aui-margin-l-5">注册</div>
+                                <div id="register_patient" class="aui-btn aui-btn-danger aui-margin-l-5">注册</div>
                             </div>
                         </li>
                     </ul>
@@ -254,6 +254,23 @@
                   }
               });
           });
+
+          $('#register_doctor').click(function functionName() {
+            api.openWin({
+              name: 'register_doctor_frame',
+              url: './register_doctor_frame.html',
+              slidBackEnabled:false
+            });
+          });
+
+          $('#register_patient').click(function functionName() {
+            api.openWin({
+              name: 'register_patient_frame',
+              url: './register_patient_frame.html',
+              slidBackEnabled:false
+            });
+          });
+
     });
 </script>
 
