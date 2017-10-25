@@ -14,21 +14,56 @@ header {
     display: inline;
     width:auto;
 }
+.aui-list .aui-list-item .education{
+  width: 30%;
+}
 .height_style{
     display: inline;
     width: auto;
 }
+.familyhistory{
+  margin-left: 2%;
+}
+.aui-list .aui-list-item .familyhistoryTitle{
+  width: 5%;
+}
+.familyhistoryParent{
+  width: 100%;
+}
 .list_style{
-    width:100%;
-    display: block;
+  margin-bottom: 3%;
+}
+.aui-content .medicineTitle{
+  width: 60%;
+}
+.aui-switch{
+  margin-left: 3%;
+  margin-right: 3%;
+}
+.medicineLine1{
+  margin: 3% 0 3%;
+}
+.medicineLine2{
+  margin: 5% 0 3%;
+}
+.iDate input{
+  height: 100%;
+  font-size: 12px;
+  padding-left: 7px;
+}
+.addOn:after{
+  margin-left: 5%;
 }
 .aui-list-item .aui-list-item-inner .aui-list-item-input .input_style{
-    width:auto;
+    width:50%;
     display:inline;
 }
 .aui-list-item-input .label_style{
-    margin: 0.5em 0;
+    margin: 0.5em;
     display: inline-block;
+}
+label{
+  font-weight: 400;
 }
 .list_style .tea1 button,.list_style .tea1 input{
     width: 25%;
@@ -51,16 +86,41 @@ header {
     display: inline-block;
 }
 .tea_fm_style .aui-list-item-input .count_tea{
-    width: 20%;
+    width: 28%;
+    height: 50%;
+    border: 1px solid #cecece;
 }
 .tea_fm_style .aui-list-item-input{
-    width:50%;
+    width:55%;
+}
+.tea_fm_style{
+    margin-bottom: 3%;
+}
+.coffee_fm_style .aui-list-item-input{
+    width: 50%;
+    display: inline-block;
 }
 .tea_fm_style .tea_fm{
     vertical-align: top;
+    margin-right: 10%;
+}
+.smoke_name{
+    margin-bottom: 5%;
+}
+.wine_content .wine_fm{
+  margin-bottom: 5%;
+}
+.coffee_style{
+    margin-bottom: 3%;
+}
+.coffee_fm_style .coffee_fm{
+    vertical-align: top;
+    margin-right: 4%;
+    display: inline-block;
 }
 .aui-list-item-input .smoke_title,.aui-list-item-input .smoke_content{
     display: inline-block;
+    margin-right: 10%;
 }
 .aui-list-item-input .smoke_title{
     vertical-align: top;
@@ -71,11 +131,34 @@ header {
 .content_tea .aui-list-item-input .wine_type{
     vertical-align: top;
 }
-.content_tea .aui-list-item-input .count_tea{
-    width: 20%;
+.drinkTea{
+    margin: 5% 0;
 }
-.aui-list-item .aui-list-item-inner .tea_title{
-    width:25%;
+.list_style font{
+  margin-right: 10%;
+}
+#txt_area4{
+  width: 100%;
+}
+.coffee_style font{
+  margin-right: 4%;
+}
+.teaTrue{
+  margin-right: 2%;
+}
+.content_tea{
+  margin: 5% 0;
+}
+.content_tea .aui-list-item-input .count_tea{
+  width: 28%;
+  height: 50%;
+  border: 1px solid #cecece;
+}
+.aui-list-item-btn div{
+  flex: 1;
+}
+.aui-list-item .tea_title{
+    flex: 0 0 25%;
 }
 .aui-form-list .aui-list-item .medicine{
     display: block;

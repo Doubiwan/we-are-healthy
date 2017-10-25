@@ -14,14 +14,13 @@
 <body>
     <div class="container1">
         <div class="logo">
-            <img src="../../image/loading_more.gif">
+            <img src="../../image/doc_LOGO.png">
         </div>
         <div id="tab" class="aui-bar aui-bar-btn aui-bar-btn-full">
             <div id="loginDoc" class="aui-bar-btn-item aui-active">医生登陆</div>
             <div id="loginPat" class="aui-bar-btn-item">病人登陆</div>
         </div>
         <div class="login_item doctor">
-            <span>医生登陆</span>
             <form id="form_doctor">
                 <div class="aui-content aui-margin-b-15">
                     <ul class="aui-list aui-form-list">
@@ -54,7 +53,7 @@
                                     <i class="aui-iconfont aui-icon-info"></i>
                                 </div>
                                 <div class="aui-list-item-input">
-                                    <input class="authCode" id="authCode" keyup="validate()" name="authCode" type="text" placeholder="4-16位英文字母或数字" />
+                                    <input class="authCode" id="authCode" keyup="validate()" name="authCode" type="text" placeholder="请输入验证码" />
                                     <div class="codeImage"><img id="doc_codeImage" onclick="changeCode()" title="图片看不清？点击重新得到验证码" type="image" /></div>
                                 </div>
                             </div>
@@ -76,7 +75,6 @@
             </form>
         </div>
         <div class="login_item patient aui-hide">
-            <span>病人登陆</span>
             <form id="form_patient">
                 <div class="aui-content aui-margin-b-15">
                     <ul class="aui-list aui-form-list">
@@ -109,7 +107,7 @@
                                     <i class="aui-iconfont aui-icon-info"></i>
                                 </div>
                                 <div class="aui-list-item-input">
-                                    <input class="authCode" id="authCode" keyup="validate()" name="authCode" type="text" placeholder="4-16位英文字母或数字" />
+                                    <input class="authCode" id="authCode" keyup="validate()" name="authCode" type="text" placeholder="请输入验证码" />
                                     <div class="codeImage"><img id="pat_codeImage" onclick="changeUserCode()" title="图片看不清？点击重新得到验证码" type="image" /></div>
                                 </div>
                             </div>
@@ -137,6 +135,14 @@
 <script type="text/javascript" src="../../script/aui-tab.js"></script>
 <script type="text/javascript">
 
+    var bodyHeight = document.getElementsByTagName("html")[0].offsetHeight;
+    var screenHeight = screen.availHeight;
+    // console.log("赋值前html高度"+bodyHeight);
+    // console.log("赋值前screen高度"+screenHeight);
+    bodyHeight = screenHeight;
+    // console.log("赋值后html高度"+bodyHeight);
+    // console.log("赋值后screen高度"+screenHeight);
+
     //点击切换
     var tab = new auiTab({
         element: document.getElementById("tab"),
@@ -146,8 +152,12 @@
         console.log(ret.index);
         if(ret.index==2){
           changeUserCode();
+          $('.logo img').attr('src','../../image/pat_LOGO.png');
+          $('body').addClass('body2');
         }else if (ret.index==1) {
           changeCode();
+          $('.logo img').attr('src','../../image/doc_LOGO.png');
+          $('body').removeClass('body2');
         }
         $('.container1 .login_item').addClass('aui-hide');
         // console.log($('.container1 doctor').hasClass('aui-hide'));

@@ -1,14 +1,49 @@
 html{
-  height: 100%;
+  background-color: #fff;
+}
+.container1{
+  padding: 10px 20px;
+  /*height: 100%;
+  width: 100%;*/
+}
+.aui-list{
+  background-color: transparent;
 }
 body{
-  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /*padding: 20px;*/
+  background-image: url(../image/backgroundimg.png);
+  background-size:100% 100%;
+}
+.body2{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /*padding: 20px;*/
+  background-image: url(../image/backgroundimg2.png);
+  background-size:100% 100%;
 }
 .login_item{
-  height: 100%;
+  line-height: 70px;
 }
-.logo{
-  margin: 0 auto;
+.logo img{
+  margin: 20% auto 20% auto;
+  width: 40%;
+  height: 40%;
 }
 .phone_validate{
   font-size: 12px;
@@ -23,7 +58,6 @@ body{
   float: left;
 }
 .aui-list .submit_btn{
-  margin: 10%;
   display: block;
 }
 .authCode_name{
@@ -36,12 +70,12 @@ body{
   display: inline-block;
 }
 .aui-list-item-input .authCode{
-  width: 77%;
+  width: 50%;
 }
 .aui-list-item-input .codeImage{
-  margin-left: 1.6%;
-  margin-bottom: -1.5%;
-  margin-top: 1.5%
+  position: absolute;
+  top: 16px;
+  right: 16px;
 }
 .aui-list-item .aui-list-item-inner .aui-margin-r-5{
   width: 100%;

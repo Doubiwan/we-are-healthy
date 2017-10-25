@@ -31,14 +31,14 @@
 <script type="text/javascript" src="../../script/api.js"></script>
 <script type="text/javascript">
     apiready = function(){
-        $api.fixStatusBar( $api.dom('header') );
+        // $api.fixStatusBar( $api.dom('header') );
         // $api.dom('.title').innerHTML = api.pageParam.name;
         api.openFrame({
             name: 'chat_pat_new',
             url: './chat_pat_new.html',
             rect: {
                 x: 0,
-                y: 0,
+                y: 15,
                 w: api.winWidth,
                 h: $api.dom('#main').offsetHeight
             },

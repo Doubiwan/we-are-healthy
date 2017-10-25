@@ -31,18 +31,18 @@
 <script type="text/javascript" src="../../script/api.js"></script>
 <script type="text/javascript">
     apiready = function(){
-        $api.fixStatusBar( $api.dom('header') );
+        // $api.fixStatusBar( $api.dom('header') );
         // $api.dom('.title').innerHTML = api.pageParam.name;
         api.openFrame({
             name: 'login',
             url: './login.html',
             rect: {
                 x: 0,
-                y: $api.dom('header').offsetHeight,
+                y: 0,
                 w: api.winWidth,
                 h: $api.dom('#main').offsetHeight
             },
-            bounces : true,
+            bounces : false,
             // pageParam: {
             //     name: api.pageParam.name
             // }

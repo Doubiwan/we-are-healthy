@@ -12,30 +12,9 @@
 </head>
 
 <body>
-    <header class="aui-bar aui-bar-nav">
-        <div class="aui-pull-left aui-btn">
-            <span class="aui-iconfont aui-icon-left"></span>
-        </div>
-        <div class="aui-title" style="left:2rem; right: 2rem;">
-            <div class="aui-searchbar">
-                <div class="aui-searchbar-input aui-border-radius">
-                    <i class="aui-iconfont aui-icon-search"></i>
-                    <input type="search" placeholder="请输入搜索内容" id="search-input">
-                    <div class="aui-searchbar-clear-btn">
-                        <i class="aui-iconfont aui-icon-close"></i>
-                    </div>
-                </div>
-                <div class="aui-searchbar-btn" tapmode>取消</div>
-            </div>
-        </div>
-        <div class="aui-pull-right aui-btn">
-            <span class="aui-iconfont aui-icon-comment"></span>
-        </div>
-    </header>
     <div id="patient-list" class="aui-card-list">
         <div class="aui-card-list-header header_padding">
             <div class="menu_poll">
-                <!-- <i class="aui-iconfont aui-icon-my aui-text-danger"></i> -->
                 <span class="aui-text-danger pastillness">
                   <dl class="topmenu">
 	                  <dt>
@@ -62,15 +41,44 @@
               </dl>
           </span>
     </div>
-    <!-- <i class="aui-iconfont aui-icon-more"></i> -->
     </div>
     <div class="aui-card-list-content">
         <ul class="aui-list aui-media-list patient_list">
-
+          <!-- <li class="aui-list-item aui-list-item-middle">
+            <div class="aui-media-list-item-inner">
+              <div class="aui-list-item-inner">
+                <div class="aui-row aui-row-padded">
+                  <div class="aui-col-xs-1">
+                    <i class="aui-iconfont aui-icon-my" style="padding-right:0.5em"></i>
+                  </div>
+                  <div class="aui-col-xs-4">
+                    <div class="aui-list-item-text">
+                      <div class="aui-list-item-title aui-font-size-22 patientname">周相关</div>
+                    </div>
+                    <div class="aui-list-item-text Diagnosis">
+                      <span class="address">16548478979</span>
+                    </div>
+                  </div>
+                  <div class="aui-col-xs-7">
+                    <div class="info_btn">
+                      <div class="aui-btn aui-btn-primary base_info">基本信息</div>
+                      <div class="aui-btn aui-btn-success history_info">历史数据</div>
+                      <div class="aui-btn aui-btn-danger aui-pull-right write">录入</div>
+                      <div class="aui-btn aui-btn-warning dangerGao">高血压风险</div>
+                      <div class="aui-btn aui-btn-primary dangerTang">糖尿病风险</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="function_btn">
+                  <span class="time">2017.10.22</span>
+                  <i class="aui-iconfont aui-icon-edit"></i>
+                  <i class="aui-iconfont aui-icon-trash"></i>
+                  <i class="aui-iconfont aui-icon-comment"></i>
+                </div>
+              </div>
+            </div>
+          </li> -->
         </ul>
-    </div>
-    <div class="aui-card-list-footer aui-text-center">
-        查看更多
     </div>
     </div>
 </body>
@@ -85,14 +93,30 @@
     var userid_guan = new Array();
     var userid_tang = new Array();
 
+    // var elm = $('header');
+    // var startPos = elm.offset().top;
+    // $.event.add(window,'scroll',function(){
+    //   var p = $(window).scrollTop();
+    //   if (p > startPos) {
+    //     $(elm).css('position','fixed');
+    //     $(elm).css('top','0');
+    //   }else {
+    //     $(elm).css('position','static');
+    //   }
+    // });
+    // var headerHeight = $('header')[0].offsetHeight;
+    // $('.aui-card-list').css("margin-top",headerHeight);
+
     apiready = function(){
+
+      gaoxueyaClick();
 
       //插入DOM
       function insert(patientname,phone,birthday){
         var content = `
         <li class="aui-list-item aui-list-item-middle">
           <div class="aui-media-list-item-inner">
-            <div class="aui-list-item-inner aui-list-item-arrow">
+            <div class="aui-list-item-inner">
               <div class="aui-row aui-row-padded">
                 <div class="aui-col-xs-1">
                   <i class="aui-iconfont aui-icon-my" style="padding-right:0.5em"></i>
@@ -104,25 +128,22 @@
                   <div class="aui-list-item-text Diagnosis">
                     <span class="address">${phone}</span>
                   </div>
-                  <div class="aui-list-item-text time">
-                    <span class="time">${birthday}</span>
-                  </div>
                 </div>
                 <div class="aui-col-xs-7">
-                  <div class="info_btn1">
+                  <div class="info_btn">
                     <div class="aui-btn aui-btn-primary base_info">基本信息</div>
                     <div class="aui-btn aui-btn-success history_info">历史数据</div>
                     <div class="aui-btn aui-btn-danger aui-pull-right write">录入</div>
-                  </div>
-                  <div class="info_btn2">
                     <div class="aui-btn aui-btn-warning dangerGao">高血压风险</div>
                     <div class="aui-btn aui-btn-primary dangerTang">糖尿病风险</div>
                   </div>
-                  <div class="function_btn">
-                    <i class="aui-iconfont aui-icon-edit"></i>
-                    <i class="aui-iconfont aui-icon-trash"></i>
-                  </div>
                 </div>
+              </div>
+              <div class="function_btn">
+                <span class="time">${birthday}</span>
+                <i class="aui-iconfont aui-icon-edit"></i>
+                <i class="aui-iconfont aui-icon-trash"></i>
+                <i class="aui-iconfont aui-icon-comment"></i>
               </div>
             </div>
           </div>
@@ -130,9 +151,7 @@
         $api.append($api.domAll('.patient_list')[0],content);
       }
 
-      // 点击高血压
-      $('.select_first_ul').on('click','#gaoxueya',function(){
-
+      function gaoxueyaClick(){
         // 发送ajax
         api.ajax({
             url: baseaddress + '/infoController/selectAllByPage',
@@ -161,7 +180,7 @@
                       userid_gao.push(item.userid);
                       insert(item.patientname,item.phone,item.birthday);
                       //点击列表项跳转
-                      $('.patient_list').on('click','.aui-list-item',function() {
+                      $('.patient_list').on('click','.aui-icon-comment',function() {
                         api.openWin({
                             name: 'chat_doc_new_frame',
                             url: '../Communication/chat_doc_new_frame.html',
@@ -227,7 +246,11 @@
                 alert(JSON.stringify(err));
             }
         });
+      }
 
+      // 点击高血压
+      $('.select_first_ul').on('click','#gaoxueya',function(){
+        gaoxueyaClick();
       });
 
       // 点击冠心病发送ajax
@@ -252,13 +275,72 @@
               $api.append($api.domAll('.aui-card-list-content')[0],Div);
                 for(var item of ret.rows){
                   if (item.pastillness == null) {
-                    alert(JSON.stringify(item.pastillness));
+                    // alert(JSON.stringify(item.pastillness));
                   }else {
                     // alert(JSON.stringify(item.pastillness.charAt(0)));
                     if (item.pastillness.charAt(1) == 1 ) {
                       userid_guan.push(item.userid);
                       insert(item.patientname,item.phone,item.birthday);
-                      alert(userid_guan);
+                      //点击列表项跳转
+                      $('.patient_list').on('click','.aui-icon-comment',function() {
+                        api.openWin({
+                            name: 'chat_doc_new_frame',
+                            url: '../Communication/chat_doc_new_frame.html',
+                            // pageParam: {
+                            //     name: 'test'
+                            // }
+                        });
+                      });
+                      //点击基本信息跳转
+                      $('.patient_list').on('click','.base_info',function() {
+                        api.openWin({
+                            name: 'specific_info_frame',
+                            url: './specific_info_frame.html',
+                            // pageParam: {
+                            //     name: 'test'
+                            // }
+                        });
+                      });
+                      //点击历史数据跳转
+                      $('.patient_list').on('click','.history_info',function() {
+                        api.openWin({
+                            name: 'history_info_frame',
+                            url: './history_info_frame.html',
+                            // pageParam: {
+                            //     name: 'test'
+                            // }
+                        });
+                      });
+                      //点击录入跳转
+                      $('.patient_list').on('click','.write',function() {
+                        api.openWin({
+                            name: 'add_patient_info_frame',
+                            url: './add_patient_info_frame.html',
+                            // pageParam: {
+                            //     name: 'test'
+                            // }
+                        });
+                      });
+                      //点击高血压风险跳转
+                      $('.patient_list').on('click','.dangerGao',function() {
+                        api.openWin({
+                            name: 'doc_risk_anal',
+                            url: './doc_risk_anal.html',
+                            // pageParam: {
+                            //     name: 'test'
+                            // }
+                        });
+                      });
+                      //点击糖尿病风险跳转
+                      $('.patient_list').on('click','.dangerTang',function() {
+                        api.openWin({
+                            name: 'old_risk_anal',
+                            url: './old_risk_anal.html',
+                            // pageParam: {
+                            //     name: 'test'
+                            // }
+                        });
+                      });
                     }
                   }
                 }
@@ -266,45 +348,6 @@
                 alert(JSON.stringify(err));
             }
         });
-
-      //   //插入DOM
-      //   function insert(patientname,phone,birthday){
-      //   var content = `<li class="aui-list-item aui-list-item-middle">
-      //       <div class="aui-media-list-item-inner">
-      //           <div class="aui-list-item-inner aui-list-item-arrow">
-      //               <div class="aui-row aui-row-padded">
-      //                   <div class="aui-col-xs-1">
-      //                       <i class="aui-iconfont aui-icon-my" style="padding-right:0.5em"></i>
-      //                   </div>
-      //                   <div class="aui-col-xs-4">
-      //                       <div class="aui-list-item-text">
-      //                           <div class="aui-list-item-title aui-font-size-22 patientname">${patientname}</div>
-      //                       </div>
-      //                       <div class="aui-list-item-text Diagnosis">
-      //                           <span class="address">${phone}</span>
-      //                       </div>
-      //                       <div class="aui-list-item-text time">
-      //                           <span class="time">${birthday}</span>
-      //                       </div>
-      //                   </div>
-      //                   <div class="aui-col-xs-7">
-      //                       <div class="info_btn">
-      //                           <div class="aui-btn aui-btn-primary base_info">基本信息</div>
-      //                           <div class="aui-btn aui-btn-success history_info">历史数据</div>
-      //                           <div class="aui-btn aui-btn-info scale_info">查看量表</div>
-      //                           <div class="aui-btn aui-btn-danger add_info">录入</div>
-      //                       </div>
-      //                       <div class="function_btn">
-      //                           <i class="aui-iconfont aui-icon-edit"></i>
-      //                           <i class="aui-iconfont aui-icon-trash"></i>
-      //                       </div>
-      //                   </div>
-      //               </div>
-      //           </div>
-      //       </div>
-      //   </li>`;
-      //   $api.append($api.domAll('.patient_list')[0],content);
-      // }
       });
 
       // 点击糖尿病发送ajax
@@ -329,13 +372,72 @@
               $api.append($api.domAll('.aui-card-list-content')[0],Div);
                 for(var item of ret.rows){
                   if (item.pastillness == null) {
-                    alert(JSON.stringify(item.pastillness));
+                    // alert(JSON.stringify(item.pastillness));
                   }else {
                     // alert(JSON.stringify(item.pastillness.charAt(0)));
                     if (item.pastillness.charAt(2) == 1 ) {
                       userid_tang.push(item.userid);
                       insert(item.patientname,item.phone,item.birthday);
-                      alert(userid_tang);
+                      //点击列表项跳转
+                      $('.patient_list').on('click','.aui-icon-comment',function() {
+                        api.openWin({
+                            name: 'chat_doc_new_frame',
+                            url: '../Communication/chat_doc_new_frame.html',
+                            // pageParam: {
+                            //     name: 'test'
+                            // }
+                        });
+                      });
+                      //点击基本信息跳转
+                      $('.patient_list').on('click','.base_info',function() {
+                        api.openWin({
+                            name: 'specific_info_frame',
+                            url: './specific_info_frame.html',
+                            // pageParam: {
+                            //     name: 'test'
+                            // }
+                        });
+                      });
+                      //点击历史数据跳转
+                      $('.patient_list').on('click','.history_info',function() {
+                        api.openWin({
+                            name: 'history_info_frame',
+                            url: './history_info_frame.html',
+                            // pageParam: {
+                            //     name: 'test'
+                            // }
+                        });
+                      });
+                      //点击录入跳转
+                      $('.patient_list').on('click','.write',function() {
+                        api.openWin({
+                            name: 'add_patient_info_frame',
+                            url: './add_patient_info_frame.html',
+                            // pageParam: {
+                            //     name: 'test'
+                            // }
+                        });
+                      });
+                      //点击高血压风险跳转
+                      $('.patient_list').on('click','.dangerGao',function() {
+                        api.openWin({
+                            name: 'doc_risk_anal',
+                            url: './doc_risk_anal.html',
+                            // pageParam: {
+                            //     name: 'test'
+                            // }
+                        });
+                      });
+                      //点击糖尿病风险跳转
+                      $('.patient_list').on('click','.dangerTang',function() {
+                        api.openWin({
+                            name: 'old_risk_anal',
+                            url: './old_risk_anal.html',
+                            // pageParam: {
+                            //     name: 'test'
+                            // }
+                        });
+                      });
                     }
                   }
                 }
@@ -343,66 +445,7 @@
                 alert(JSON.stringify(err));
             }
         });
-
-      //   //插入DOM
-      //   function insert(patientname,phone,birthday){
-      //   var content = `<li class="aui-list-item aui-list-item-middle">
-      //       <div class="aui-media-list-item-inner">
-      //           <div class="aui-list-item-inner aui-list-item-arrow">
-      //               <div class="aui-row aui-row-padded">
-      //                   <div class="aui-col-xs-1">
-      //                       <i class="aui-iconfont aui-icon-my" style="padding-right:0.5em"></i>
-      //                   </div>
-      //                   <div class="aui-col-xs-4">
-      //                       <div class="aui-list-item-text">
-      //                           <div class="aui-list-item-title aui-font-size-22 patientname">${patientname}</div>
-      //                       </div>
-      //                       <div class="aui-list-item-text Diagnosis">
-      //                           <span class="address">${phone}</span>
-      //                       </div>
-      //                       <div class="aui-list-item-text time">
-      //                           <span class="time">${birthday}</span>
-      //                       </div>
-      //                   </div>
-      //                   <div class="aui-col-xs-7">
-      //                       <div class="info_btn">
-      //                           <div class="aui-btn aui-btn-primary base_info">基本信息</div>
-      //                           <div class="aui-btn aui-btn-success history_info">历史数据</div>
-      //                           <div class="aui-btn aui-btn-info scale_info">查看量表</div>
-      //                           <div class="aui-btn aui-btn-danger add_info">录入</div>
-      //                       </div>
-      //                       <div class="function_btn">
-      //                           <i class="aui-iconfont aui-icon-edit"></i>
-      //                           <i class="aui-iconfont aui-icon-trash"></i>
-      //                       </div>
-      //                   </div>
-      //               </div>
-      //           </div>
-      //       </div>
-      //   </li>`;
-      //   $api.append($api.domAll('.patient_list')[0],content);
-      // }
       });
-
-    //点击基本信息跳转
-    $('.patient_list').on('click','.base_info',function() {
-      console.log("已点击");
-      api.openWin({
-          name: 'specific_info_frame',
-          url: './specific_info_frame.html',
-          // pageParam: {
-          //     name: 'test'
-          // }
-      });
-    });
-    //点击历史数据跳转
-
-    //点击录入跳转
-
-    //点击高血压风险跳转
-
-    //点击糖尿病风险跳转
-
   }
 </script>
 <html>

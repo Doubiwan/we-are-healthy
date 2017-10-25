@@ -18,7 +18,7 @@
 <body>
 <div id="wrap" class="flex-wrap flex-vertical" >
     <header>
-        <b tapmode="hover" onclick="api.closeWin();" class="iconfont icon-back">返回</b>
+        <b tapmode="hover" onclick="api.closeWin();" class="iconfont icon-fanhui">返回</b>
         <div class="title"></div>
         <!--<b tapmode="hover" onclick="funActionSheet();"  class="ic-check"></b>-->
     </header>
@@ -31,7 +31,7 @@
 <script type="text/javascript" src="../../script/api.js"></script>
 <script type="text/javascript">
     apiready = function(){
-        $api.fixStatusBar( $api.dom('header') );
+        $api.fixIos7Bar( $api.dom('header') );
         $api.dom('.title').innerHTML = api.pageParam.name;
         api.openFrame({
             name: 'risk_analysis',
@@ -42,7 +42,7 @@
                 w: api.winWidth,
                 h: $api.dom('#main').offsetHeight
             },
-            bounces : true,
+            bounces : false,
             pageParam: {
                 name: api.pageParam.name,
                 userId: api.pageParam.userId,

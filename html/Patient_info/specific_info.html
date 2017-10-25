@@ -6,19 +6,15 @@
     <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
     <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
     <title>病人基础详情</title>
+    <link rel="stylesheet" type="text/css" href="../../css/stylesDate.css" media="all">
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/mobile-select-area@3.0.4/src/mobile-select-area.css">
     <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
     <link rel="stylesheet" type="text/css" href="../../css/Info.css" />
 </head>
 
 <body>
     <div class="container">
-        <form id="patient_info">
-            <header class="aui-bar aui-bar-nav">
-                <a class="aui-pull-left aui-btn">
-                    <span class="aui-iconfont aui-icon-left"></span>
-                </a>
-                <div class="aui-title">Title</div>
-            </header>
+        <form>
             <div class="aui-content aui-margin-b-15">
                 <ul class="aui-list aui-form-list">
                     <li class="aui-list-header">基本情况</li>
@@ -28,7 +24,7 @@
                                 姓名
                             </div>
                             <div class="aui-list-item-input">
-                                <input type="text" placeholder="请输入您的姓名" name="patientname">
+                                <input id="patientname" type="text" placeholder="请输入您的姓名">
                             </div>
                         </div>
                     </li>
@@ -39,8 +35,8 @@
                             </div>
                             <div class="aui-list-item-input">
                                 <div class="education1">
-                                    <label class="label_style"><input class="aui-radio" type="radio" name="educationLevels" value="0">男</label>
-                                    <label class="label_style"><input class="aui-radio" type="radio" name="educationLevels" value="2">女</label>
+                                    <label class="label_style"><input class="aui-radio" type="radio">男</label>
+                                    <label class="label_style"><input class="aui-radio" type="radio">女</label>
                                 </div>
                             </div>
                         </div>
@@ -52,20 +48,21 @@
                             </div>
                             <div class="aui-list-item-input">
                                 <select class="select_style">
-                                  <option>王医生</option>
-                                  <option>李医生</option>
-                                  <option>张医生</option>
+                                  <option value="1">1</option>
+                                  <option value="2">2</option>
+                                  <option value="3">chai</option>
                                 </select>
                             </div>
                         </div>
                     </li>
                     <li class="aui-list-item">
                         <div class="aui-list-item-inner">
-                            <div class="aui-list-item-label">
+                            <div class="aui-list-item-label" style="width: 26%;">
                                 出生日期
                             </div>
-                            <div class="aui-list-item-input">
-                                <input type="date" placeholder="请输入您的出生日期" name="birthday">
+                            <div class="iDate date">
+	                              <input type="text">
+	                              <button type="button" class="addOn"></button>
                             </div>
                         </div>
                     </li>
@@ -85,7 +82,7 @@
                                 家属姓名
                             </div>
                             <div class="aui-list-item-input">
-                                <input type="text" placeholder="请输入您家人的姓名" name="familyname">
+                                <input id="familyname" type="text" placeholder="请输入您家人的姓名">
                             </div>
                         </div>
                     </li>
@@ -116,7 +113,8 @@
                                 体重
                             </div>
                             <div class="aui-list-item-input">
-                                <input type="text" placeholder="请输入您的体重" name="weight">
+                                <input class="input_style" type="text" placeholder="请输入您的体重" name="weight">
+                                <font>kg</font>
                             </div>
                         </div>
                     </li>
@@ -126,30 +124,13 @@
                                 地址
                             </div>
                             <div class="aui-list-item-input">
-                                <select class="select_style">
-                                  <option>北京</option>
-                                  <option>2016</option>
-                                  <option>2015</option>
-                                </select>
-                                <font>省</font>
-                                <select class="select_style">
-                                  <option>北京</option>
-                                  <option>11</option>
-                                  <option>10</option>
-                                </select>
-                                <font>市</font>
-                                <select class="select_style">
-                                  <option>海淀</option>
-                                  <option>2</option>
-                                  <option>3</option>
-                                </select>
-                                <font>县/区</font>
+                                <input id="txt_area4" placeholder="请输入您的地址"></input>
                             </div>
                         </div>
                     </li>
                     <li class="aui-list-item">
                         <div class="aui-list-item-inner">
-                            <div class="aui-list-item-label">
+                            <div class="aui-list-item-label education">
                                 文化水平
                             </div>
                             <div class="aui-list-item-input">
@@ -171,7 +152,7 @@
                     <li class="aui-list-header">特殊用药史</li>
                     <li class="aui-list-item">
                         <div class="aui-list-item-inner">
-                            <div class="aui-list-item-label">
+                            <div class="aui-list-item-label medicineTitle">
                                 是否长期使用以下药物？
                             </div>
                         </div>
@@ -179,19 +160,20 @@
                     <li class="aui-list-item">
                         <div class="aui-list-item-inner medicine">
                             <div class="aui-list-item-input">
-                                <div>
-                                    糖皮质激素1<input id="medicine1" type="checkbox" class="aui-switch" value="0">
-                                    糖皮质激素2<input id="medicine2" type="checkbox" class="aui-switch" value="0">
+                                <div class="medicineLine1">
+                                    <span>糖皮质激素1</span><input id="medicine1" type="checkbox" class="aui-switch">
+                                    <span>糖皮质激素2</span><input id="medicine2" type="checkbox" class="aui-switch">
                                 </div>
-                                <div>
-                                    糖皮质激素3<input id="medicine3" type="checkbox" class="aui-switch" value="0">
-                                    糖皮质激素4<input id="medicine4" type="checkbox" class="aui-switch" value="0">
+                                <div class="medicineLine2">
+                                    <span>糖皮质激素3</span><input id="medicine3" type="checkbox" class="aui-switch">
+                                    <span>糖皮质激素4</span><input id="medicine4" type="checkbox" class="aui-switch">
                                 </div>
                             </div>
                         </div>
                     </li>
                 </ul>
             </div>
+          </form>
             <div class="aui-content aui-margin-b-15">
                 <ul class="aui-list aui-form-list">
                     <li class="aui-list-header">既往疾病史</li>
@@ -202,7 +184,7 @@
                             </div>
                             <div class="aui-list-item-input">
                                 <div>
-                                    <label><input class="aui-radio" type="radio" name="illness1">是</label>
+                                    <label><input id="illness1" class="aui-radio" type="radio" name="illness1">是</label>
                                     <label><input class="aui-radio" type="radio" name="illness1">否</label>
                                 </div>
                             </div>
@@ -215,10 +197,11 @@
                             </div>
                             <div class="aui-list-item-input">
                                 <div>
-                                    <label><input class="aui-radio" type="radio" name="illness2">是</label>
+                                    <label><input id="illness2" class="aui-radio" type="radio" name="illness2">是</label>
                                     <label><input class="aui-radio" type="radio" name="illness2">否</label>
                                 </div>
                             </div>
+                        </div>
                     </li>
                     <li class="aui-list-item">
                         <div class="aui-list-item-inner">
@@ -227,10 +210,11 @@
                             </div>
                             <div class="aui-list-item-input">
                                 <div>
-                                    <label><input class="aui-radio" type="radio" name="illness3">是</label>
+                                    <label><input id="illness3" class="aui-radio" type="radio" name="illness3">是</label>
                                     <label><input class="aui-radio" type="radio" name="illness3">否</label>
                                 </div>
                             </div>
+                        </div>
                     </li>
                     <li class="aui-list-item">
                         <div class="aui-list-item-inner">
@@ -239,10 +223,11 @@
                             </div>
                             <div class="aui-list-item-input">
                                 <div>
-                                    <label><input class="aui-radio" type="radio" name="illness4">是</label>
+                                    <label><input id="illness4" class="aui-radio" type="radio" name="illness4">是</label>
                                     <label><input class="aui-radio" type="radio" name="illness4">否</label>
                                 </div>
                             </div>
+                        </div>
                     </li>
                     <li class="aui-list-item">
                         <div class="aui-list-item-inner">
@@ -251,36 +236,42 @@
                             </div>
                             <div class="aui-list-item-input">
                                 <div>
-                                    <label><input class="aui-radio" type="radio" name="illness5">是</label>
+                                    <label><input id="illness5" class="aui-radio" type="radio" name="illness5">是</label>
                                     <label><input class="aui-radio" type="radio" name="illness5">否</label>
                                 </div>
                             </div>
+                        </div>
                     </li>
                 </ul>
-                </div>
+              </div>
+              <form>
                 <div class="aui-content aui-margin-b-15">
                     <ul class="aui-list aui-form-list">
-                        <li class="aui-list-header">带有图标的表单</li>
+                        <li class="aui-list-header">家族病史</li>
                         <li class="aui-list-item">
                             <div class="aui-list-item-inner">
-                                <div class="aui-list-item-label-icon">
-                                    <i class="aui-iconfont aui-icon-mobile"></i>
-                                    <button>糖尿病</button>
-                                    <button>糖尿病</button>
-                                    <button>糖尿病</button>
-                                    <button>糖尿病</button>
-                                </div>
+                              <div class="aui-list-item-label familyhistoryTitle">
+                                <i class="aui-iconfont aui-icon-my"></i>
+                              </div>
+                              <div class="familyhistoryParent">
+                                  <div class="aui-btn family01 familyhistory">疾病1</div>
+                                  <div class="aui-btn family02 familyhistory">疾病2</div>
+                                  <div class="aui-btn family03 familyhistory">疾病3</div>
+                                  <div class="aui-btn family04 familyhistory">疾病4</div>
+                              </div>
                             </div>
                         </li>
                         <li class="aui-list-item">
                             <div class="aui-list-item-inner">
-                                <div class="aui-list-item-label-icon">
-                                    <i class="aui-iconfont aui-icon-lock"></i>
-                                    <button>糖尿病</button>
-                                    <button>糖尿病</button>
-                                    <button>糖尿病</button>
-                                    <button>糖尿病</button>
-                                </div>
+                              <div class="aui-list-item-label familyhistoryTitle">
+                                <i class="aui-iconfont aui-icon-my"></i>
+                              </div>
+                              <div class="familyhistoryParent">
+                                  <div class="aui-btn family11 familyhistory">疾病1</div>
+                                  <div class="aui-btn family12 familyhistory">疾病2</div>
+                                  <div class="aui-btn family13 familyhistory">疾病3</div>
+                                  <div class="aui-btn family14 familyhistory">疾病4</div>
+                              </div>
                             </div>
                         </li>
                     </ul>
@@ -289,35 +280,22 @@
                     <ul class="aui-list aui-form-list">
                         <li class="aui-list-header">生活方式</li>
                         <li class="aui-list-item">
-                            <div class="aui-list-item-inner">
-                                <div class="aui-list-item-label tea_title">
-                                    饮茶
-                                </div>
+                          <div class="aui-list-item-label tea_title">
+                            饮茶
+                          </div>
+                            <div class="drinkTea">
                                 <div class="content_tea">
                                     <div class="aui-list-item-input list_style">
                                         <font>是否饮茶</font>
-                                        <label><input class="aui-radio" type="radio" name="tea" value="1">是</label>
-                                        <label><input class="aui-radio" type="radio" name="tea" value="0">否</label>
+                                        <label class="teaTrue"><input class="aui-radio" type="radio" onchange="teaChangeTrue(this)">是</label>
+                                        <label><input class="aui-radio" type="radio" value="0" onchange="teaChangeFalse(this)">否</label>
                                     </div>
-                                    <!-- <div class="list_style">
-                                    <div class="type_style">主要种类</div>
-                                    <div class="type_content">
-                                        <div class="tea1">
-                                            <button>绿茶</button>
-                                            <button>红茶</button>
-                                        </div>
-                                        <div class="tea1">
-                                            <button>花茶</button>
-                                            <input placeholder="其他" />
-                                        </div>
-                                    </div>
-                                </div> -->
-                                    <div class="tea_fm_style">
-                                        <div class="tea_fm">饮茶频率</div>
-                                        <div class="aui-list-item-input">
-                                            <label class="everyday">平均每天<input class="count_tea" placeholder="1">杯</label>
-                                            <span>（约150mol）</span>
-                                        </div>
+                                </div>
+                                <div class="tea_fm_style">
+                                    <div class="tea_fm">饮茶频率</div>
+                                    <div class="aui-list-item-input">
+                                      <label class="everyday">平均每天<input id="tea_fm" onchange="teaChangeTrue(this)" class="count_tea" placeholder="1">杯</label>
+                                      <span>（约150mol）</span>
                                     </div>
                                 </div>
                             </div>
@@ -328,15 +306,16 @@
                                     饮咖啡
                                 </div>
                                 <div class="content_tea">
-                                    <div class="aui-list-item-input list_style">
+                                    <div class="aui-list-item-input coffee_style">
                                         <font>是否饮咖啡</font>
-                                        <label><input class="aui-radio" type="radio" name="coffee" value="1">是</label>
-                                        <label><input class="aui-radio" type="radio" name="coffee" value="0">否</label>
+                                        <label><input class="aui-radio" type="radio" onchange="coffeeChangeTrue(this)">是</label>
+                                        <label><input class="aui-radio" type="radio" value="0" onchange="coffeeChangeFalse(this)">否</label>
                                     </div>
-                                    <div class="tea_fm_style">
-                                        <div class="tea_fm">饮咖啡频率</div>
+                                    <div class="coffee_fm_style">
+                                        <div class="coffee_fm">饮咖啡频率</div>
                                         <div class="aui-list-item-input">
-                                            <label class="everyday">每天<input class="count_tea" placeholder="1" name="coffee">杯</label>
+                                            <label class="everyday">平均每天<input id="coffee_fm" onchange="coffeeChangeTrue(this)" class="count_tea" placeholder="1">杯</label>
+                                            <span>（约150mol）</span>
                                         </div>
                                     </div>
                                 </div>
@@ -350,19 +329,19 @@
                                 <div class="content_tea">
                                     <div class="aui-list-item-input list_style">
                                         <font>是否吸烟</font>
-                                        <label><input class="aui-radio" type="radio" name="smoke" value="1">是</label>
-                                        <label><input class="aui-radio" type="radio" name="smoke" value="0">否</label>
+                                        <label><input class="aui-radio" type="radio" onchange="smokeChangeTrue(this)">是</label>
+                                        <label><input class="aui-radio" type="radio" value="0" onchange="smokeChangeFalse(this)">否</label>
                                     </div>
                                     <div class="tea_fm_style">
                                         <div class="tea_fm">吸烟频率</div>
                                         <div class="aui-list-item-input">
-                                            <label class="everyweek"><input class="aui-radio" type="radio" name="smoke">平均每天<input class="count_tea" placeholder="1">支</label>
+                                            <label class="everyweek">平均每天<input id="smoke_fm" onchange="smokeChangeTrue(this)" class="count_tea" placeholder="1">支</label>
                                         </div>
                                     </div>
                                     <div class="aui-list-item-input list_style">
                                         <div class="smoke_title">被动吸烟</div>
                                         <div class="smoke_content">
-                                            <div>你身边的人中有吸烟的吗</div>
+                                            <div class="smoke_name">你身边有吸烟的吗</div>
                                             <div>
                                                 <label><input class="aui-radio" type="radio" name="ets" value="1">是</label>
                                                 <label><input class="aui-radio" type="radio" name="ets" value="0">否</label>
@@ -381,7 +360,7 @@
                                     <div class="aui-list-item-input list_style">
                                         <div class="wine_type">是否饮酒</div>
                                         <div class="wine_content">
-                                            <div>
+                                            <div class="wine_fm">
                                                 <label><input class="aui-radio" type="radio" name="drink" value="1">偶尔喝</label>
                                                 <label><input class="aui-radio" type="radio" name="drink" value="3">经常喝</label>
                                             </div>
@@ -413,32 +392,181 @@
                         </li>
                     </ul>
                 </div>
+              </div>
         </form>
         </div>
 </body>
 <script type="text/javascript" src="../../script/api.js"></script>
 <script type="text/javascript" src="../../script/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="../../script/moment.js"></script>
+<script type="text/javascript" src="../../script/bootstrap-datetimepicker.js"></script>
+<script type="text/javascript" src="https://unpkg.com/mobile-select-area@3.0.5/src/dialog.js"></script>
+<script type="text/javascript" src="https://unpkg.com/mobile-select-area@3.0.5/src/mobile-select-area.js"></script>
+<script src="../../script/area.js"></script>
 <script type="text/javascript">
 
-    if ($('#medicine1') === 'checked') {
-      var medicine1 = '1';
+    //smoke
+    var smoke = '';
+    function smokeChangeTrue(target) {
+      smoke = $('#smoke_fm').val();
     }
+
+    function smokeChangeFalse(target) {
+      smoke = target.value;
+    }
+
+    //tea
+    var tea = '';
+    function teaChangeTrue(target) {
+      tea = $('#tea_fm').val();
+    }
+
+    function teaChangeFalse(target) {
+      tea = target.value;
+    }
+
+    //coffee
+    var coffee = '';
+    function coffeeChangeTrue(target) {
+      coffee = $('#coffee_fm').val();
+    }
+
+    function coffeeChangeFalse(target) {
+      coffee = target.value;
+    }
+
+
+    //日期插件
+    if($(".iDate.date").length>0){
+      $(".iDate.date").datetimepicker({
+        locale:"zh-cn",
+        format:"YYYY-MM-DD",
+        dayViewHeaderFormat:"YYYY年 MMMM"
+      });
+    }
+
+    //特殊药物获取checkbox值
+    var medicine = new Array("0","0","0","0");
+    $('#medicine1').click(function () {
+      if ($('#medicine1')[0].checked) {
+        medicine[0] = 1;
+      }else if($('#medicine1')[0].unchecked) {
+        medicine[0] = 0;
+      }
+    });
+    $('#medicine2').click(function () {
+      if ($('#medicine2')[0].checked) {
+        medicine[1] = 1;
+      }else if($('#medicine2')[0].unchecked) {
+        medicine[1] = 0;
+      }
+    });
+    $('#medicine3').click(function () {
+      if ($('#medicine3')[0].checked) {
+        medicine[2] = 1;
+      }else if($('#medicine3')[0].unchecked) {
+        medicine[2] = 0;
+      }
+    });
+    $('#medicine4').click(function () {
+      if ($('#medicine4')[0].checked) {
+        medicine[3] = 1;
+      }else if($('#medicine4')[0].unchecked){
+        medicine[3] = 0;
+      }
+    });
+
+    //疾病史获取值
+    var illness = new Array("0","0","0","0","0");
+    $('#illness1').click(function () {
+      if ($('#illness1')[0].checked) {
+        illness[0] = 1;
+      }else if ($('#illness1')[0].unchecked){
+        illness[0] = 0;
+      }
+    });
+    $('#illness2').click(function () {
+      if ($('#illness2')[0].checked) {
+        illness[1] = 1;
+      }else if ($('#illness2')[0].unchecked){
+        illness[1] = 0;
+      }
+    });
+    $('#illness3').click(function () {
+      if ($('#illness3')[0].checked) {
+        illness[2] = 1;
+      }else if ($('#illness3')[0].unchecked){
+        illness[2] = 0;
+      }
+    });
+    $('#illness4').click(function () {
+      if ($('#illness4')[0].checked) {
+        illness[3] = 1;
+      }else if ($('#illness4')[0].unchecked){
+        illness[3] = 0;
+      }
+    });
+    $('#illness5').click(function () {
+      if ($('#illness5')[0].checked) {
+        illness[4] = 1;
+      }else if ($('#illness5')[0].unchecked){
+        illness[4] = 0;
+      }
+    });
+
+    //点击按钮切换样式
+    $('.family01').click(function() {
+      $('.family01').toggleClass('aui-btn-primary');
+    });
+    $('.family02').click(function() {
+      $('.family02').toggleClass('aui-btn-success');
+    });
+    $('.family03').click(function() {
+      $('.family03').toggleClass('aui-btn-info');
+    });
+    $('.family04').click(function() {
+      $('.family04').toggleClass('aui-btn-warning');
+    });
+    $('.family11').click(function() {
+      $('.family11').toggleClass('aui-btn-primary');
+    });
+    $('.family12').click(function() {
+      $('.family12').toggleClass('aui-btn-success');
+    });
+    $('.family13').click(function() {
+      $('.family13').toggleClass('aui-btn-info');
+    });
+    $('.family14').click(function() {
+      $('.family14').toggleClass('aui-btn-warning');
+    });
 
     $('#submit_patient_info').on('click', function() {
 
-        $.ajax({
-            // cache: true,
-            type: "POST",
-            url: "http://114.215.156.99:8381/backend/infoController/insert",
-            data: $('#add_patient_info').serialize() + "&adminid=1&infoid=1",
-            // async: false,
-            error: function(request) {
-                alert("Connection error");
-            },
-            success: function(data) {
-                alert("Connection Success->" + JSON.stringify(data));
-            }
-        });
+      var adminid = $('.select_style option:selected').val();
+      var patientname = $('#patientname').val();
+      var birthday = $(".iDate.date input").val();
+      var medicationHistory = medicine.join().split(",").join("");
+      var pastillness = illness.join().split(",").join("");
+      var address = $('#txt_area4').val();
+      var familyname = $('#familyname').val();
+      console.log($('form').serialize() + "&infoid=1&adminid=" + adminid + "&patientname=" + patientname
+            + "&birthday=" + birthday + "&medicationHistory=" + medicationHistory + "&smoke=" + smoke
+            + "&pastillness=" + pastillness + "&address=" + address + "&familyname=" + familyname
+            + "&coffee=" + coffee + "&tea=" + tea);
+        // $.ajax({
+        //     type: "POST",
+        //     url: "http://114.215.156.99:8381/backend/infoController/insert",
+        //     data: $('form').serialize() + "&infoid=1&adminid=" + adminid
+        //           + "&birthday=" + birthday + "&medicationHistory=" + medicationHistory
+        //           + "pastillness=" + pastillness,
+        //     async: true,
+        //     error: function(request) {
+        //         alert("Connection error");
+        //     },
+        //     success: function(data) {
+        //         alert("Connection Success->" + JSON.stringify(data));
+        //     }
+        // });
     });
 </script>
 

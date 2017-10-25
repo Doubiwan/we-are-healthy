@@ -174,8 +174,9 @@ jQuery(document).ready(function() {
                 </li>`;
                 $('#content_list').prepend(moreContentHistory);
                 //将滚动条固定在底部
-                console.log($('#refresh_section')[0].offsetHeight);
-                $('.aui-chat').scrollTop($('#content_list')[0].offsetHeight);
+                console.log($('#content_list')[0].offsetHeight);
+                $('.aui-chat').scrollTop(177);
+                console.log($('.aui-chat').scrollTop());
             }
         });
     }

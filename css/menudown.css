@@ -23,6 +23,7 @@ body {
 	-webkit-user-select: auto;
 	margin: auto;
 	height:100vh;
+	background-color: #fff;
 }
 a {
 	color: #54d09e;

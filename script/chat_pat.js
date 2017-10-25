@@ -123,15 +123,16 @@ jQuery(document).ready(function() {
               console.log("自加后index="+indexHistory);
               //点击查看更多滚动条保持位置不变
               console.log(iterateIndex);
-
+              var liHeight = $('#content_list .list-item')[0].offsetHeight;
+              var moreHeight = $('#content_list .aui-list-item')[0].offsetHeight;
               if (iterateIndex < 10) {
                 //当所有数据请求结束后，查看更多消失
                 $('.readMore'+indexHistory).hide();
                 //若请求结束，将查看更多隐藏
-                $('.aui-chat')[0].scrollTop = iterateIndex * 110.4 - 34.4;
+                $('.aui-chat')[0].scrollTop = iterateIndex * liHeight - moreHeight;
               }else{
                 setTimeout(function() {
-                  $('.aui-chat')[0].scrollTop = iterateIndex * 110.4 ;
+                  $('.aui-chat')[0].scrollTop = iterateIndex * liHeight ;
                 },1);
               }
           }
@@ -219,37 +220,6 @@ jQuery(document).ready(function() {
          },
        })
 
-      //  //查询status状态
-      //  function search_status(data_before){
-      //    $.ajax({
-      //      url: baseURL + "recommendachieveController/selectAllByPage",
-      //      type: 'POST',
-      //      async: true,
-      //      data:{
-      //        page: 1,
-      //        rows: 100,
-      //        order: 'id',
-      //        sort: 'asc',
-      //        userid: 1
-      //      },
-      //      timeout: 5000,
-      //      dataType: 'json',
-      //      success: function(data){
-      //        data.rows.forEach((item1) => {
-      //          data_before.body.forEach((item2) => {
-      //            if (item2.id === item1.recommendid) {
-      //              Object.assign(item2, {status: item1.status});
-      //              send_recommend(item2.recommend,item2.id,item2.status);
-      //            }
-      //          });
-      //        });
-       //
-      //      },
-      //      error: function() {
-       //
-      //      },
-      //    });
-      //  }
 
        //将获取到的医嘱列表发送到聊天列表中
        function show_recommend(value,id,status,historyid) {
@@ -327,14 +297,16 @@ jQuery(document).ready(function() {
                  </li>`;
                  // console.log($('#refresh_section')[0].scrollTop);
                  $('#content_list_recommend').prepend(moreContentHistory);
+                 var liHeight = $('#content_list_recommend .list-item')[0].offsetHeight;
+                 var moreHeight = $('#content_list_recommend .aui-list-item')[0].offsetHeight;
                  if (iterateIndex < 10) {
                    //当所有数据请求结束后，查看更多消失
                    $('.readMore'+indexRecommend).hide();
                    //若请求结束，将查看更多隐藏
-                   $('.aui-chat_recommend')[0].scrollTop = iterateIndex * 110.4 - 34.4;
+                   $('.aui-chat_recommend')[0].scrollTop = iterateIndex * liHeight - moreHeight;
                  }else{
                    setTimeout(function() {
-                     $('.aui-chat_recommend')[0].scrollTop = iterateIndex * 110.4 ;
+                     $('.aui-chat_recommend')[0].scrollTop = iterateIndex * liHeight ;
                    },1);
                  }
              }

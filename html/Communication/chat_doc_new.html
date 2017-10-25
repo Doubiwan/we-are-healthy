@@ -59,6 +59,8 @@
           border-right-color: transparent;
           border-left-color: #fff;
         }
+
+        header{line-height: 50px; height: 50px;}
     </style>
 </head>
 <html>
@@ -68,7 +70,7 @@
       <div class="title">
         <header class="aui-bar aui-bar-nav aui-bar-light">
             <div class="aui-pull-left aui-btn">
-                <span class="aui-iconfont aui-icon-left"></span>
+                <span class="aui-iconfont aui-icon-left" onclick="api.closeWin();"></span>
             </div>
             <div class="aui-title">王患者</div>
             <!-- <div class="aui-pull-right aui-btn aui-btn-outlined">
@@ -97,7 +99,7 @@
         <div class="history aui-hide">
           <section class="aui-chat_recommend">
             <ul id="content_list_recommend"></ul>
-            
+
           </section>
         </div>
       </section>
@@ -191,7 +193,6 @@
 </body>
 <script src="../../script/api.js"></script>
 <script type="text/javascript" src="../../script/aui-tab.js" ></script>
-<script src="../../script/aui-pull-refresh.js"></script>
 <script src="../../script/jquery-2.1.4.min.js"></script>
 <script type="text/javascript" src="../../script/chat_doc.js"></script>
 <script type="text/javascript">
@@ -213,23 +214,10 @@
 
     $(function() {
 
-        // if ($('#commend_view').hasClass('aui-active')) {
-        //   $('.recommend_btn_real').removeClass('class').addClass('aui-active');
-        //   $('.send_message_real').removeClass('class').addClass('aui-hide');
-        // }else if ($('#chat_view').hasClass('aui-active')) {
-        //   $('.send_message_real').removeClass('class').addClass('aui-active');
-        //   $('.recommend_btn_real').removeClass('class').addClass('aui-hide');
-        // }
-
         getSrceenWH();
 
         //显示增加和发送的弹框
         $('#alert_add_send').click(function() {
-          // console.log("点击了增加和发送的弹框");
-          // api.setFrameAttr({
-          //   name: 'chatHistory',
-          //   hidden: false
-          // });
           className = $(this).attr('class');
           $('#dialogBg').fadeIn(300);
           $('#dialog').removeAttr('class').addClass('animated ' + className + '').fadeIn();
@@ -249,80 +237,7 @@
           });
         });
 
-        // //显示更新和删除的弹框
-        // $('#alert_update_delete').click(function() {
-        //   className = $(this).attr('class');
-        //   $('#dialogBg_recommend').fadeIn(300);
-        //   $('#dialog_recommend').removeAttr('class').addClass('animated ' + className + '').fadeIn();
-        //   // console.log('animated ' + className + '');
-        // });
-        // $('#show_list').click(function() {
-        //   className = $(this).attr('class');
-        //   $('#dialogBg_recommend').fadeIn(300);
-        //   $('#dialog_recommend').removeAttr('class').addClass('animated ' + className + '').fadeIn();
-        // });
-        //
-        // //关闭更新和删除的弹窗
-        // $('.claseDialogBtn').click(function() {
-        //     $('#dialogBg_recommend').fadeOut(300, function() {
-        //         $('#dialog_recommend').removeAttr('class').addClass('animated bounceOutUp').fadeOut();
-        //     });
-        // });
-
     });
-
-    // //点击tab切换frame
-    // $('.aui-tab-item').click(function() {
-    //   // console.log("已经点击！");
-    //   // if($api.hasCls(this,'aui-active')) {return};
-    //   // $api.addCls(this, 'aui-active');
-    //   var tabList = $api.domAll('.aui-tab-item'),
-    //   index = 0;
-    //   // console.log(tabList);
-    //   for (var i = 0; i < tabList.length; i++) {
-    //     if (this == tabList[i]) {
-    //       index = i;
-    //     }
-    //     // console.log("for循环内"+index);
-    //   }
-    //   // console.log("for循环外"+index);
-    //   api.setFrameGroupIndex({
-    //     name: 'group',
-    //     index: index
-    //   });
-    // });
-
-    //初始化frameGroup
-    // function initGroup(){
-    //   api.openFrameGroup({
-    //       name: 'group',
-    //       scrollEnabled: true,
-    //       rect: {
-    //           x: 0,
-    //           y: $api.dom('.title').offsetHeight,
-    //           w: api.winWidth,
-    //           h: 'auto'
-    //       },
-    //       index: 0,
-    //       frames: [{
-    //         name: 'chatHistory',
-    //         url: './chatHistory.html',
-    //         bounces: true
-    //       },{
-    //         name: 'recommendHistory',
-    //         url: './recommendHistory.html',
-    //         bounces: true
-    //       }]
-    //   }, function(ret, err) {
-    //     console.log(JSON.stringify(ret));
-    //     if (ret.index === 0) {
-    //       api.setFrameAttr({
-    //         name: 'chatHistory',
-    //         hidden: true,
-    //       });
-    //     }
-    //   });
-    // }
 
     //点击切换历史记录tab
     var tab = new auiTab({

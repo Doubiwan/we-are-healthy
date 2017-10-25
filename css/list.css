@@ -1,17 +1,24 @@
+#patient-list{
+  overflow: auto;
+}
+.aui-bar{
+  min-height: 2.5rem;
+  line-height: 2.5rem;
+  position: fixed;
+  top: 0;
+}
+.aui-bar .aui-pull-left{
+  height: 2.5rem;
+}
 .header_padding{
-  padding: 0.5rem 0.55rem;
+  padding-bottom: 0px;
 }
 .icon_style{
   vertical-align: top;
   display: inline-block;
 }
 .aui-col-xs-7 .info_btn .write,.aui-col-xs-7 .info_btn .base_info,.aui-col-xs-7 .info_btn .history_info,.aui-col-xs-7 .info_btn .dangerGao,.aui-col-xs-7 .info_btn .dangerTang{
-  display: inline-flex;;
-  width: 22%;
-  font-size: 0.1rem;
-  height: 1rem;
-  justify-content: center;
-  align-items: center;
+  margin-bottom: 5%;
 }
 .aui-col-xs-7 .info_btn .add_info{
   width: 10%;
@@ -19,19 +26,32 @@
   float: right;
   margin-top: 2%;
 }
-.aui-col-xs-7 .function_btn .aui-icon-edit,.aui-col-xs-7 .function_btn .aui-icon-trash,.aui-col-xs-7 .function_btn .aui-icon-share{
-  padding: 0.7rem;
+.function_btn .aui-icon-edit{
+  margin-left: 12%;
+}
+.function_btn .aui-icon-trash{
+  margin-left: 3%;
+}
+.aui-card-list-content .aui-list-item-inner .function_btn .aui-icon-comment{
+  font-size: 1.4rem;
+  position: absolute;
+  right: 3%;
+  bottom: 5%;
+  color: #9c9c9c;
 }
 .aui-col-xs-7 .function_btn{
   margin-top: 14%;
 }
 .aui-col-xs-4 .Diagnosis{
   font-size: 0.6rem;
-  margin-top: 5%;
+  margin-top: 20%;
 }
-.aui-col-xs-4 .time{
+.function_btn{
+  margin: 1% 0px 0 8.6%;
+}
+.function_btn .time{
   font-size: 0.5rem;
-  margin-top: 5%;
+  color: #757575;
 }
 .aui-list-item-arrow:before{
   border: 1px solid #646464;

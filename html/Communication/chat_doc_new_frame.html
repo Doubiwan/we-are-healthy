@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="../../css/api.css" />
     <link rel="stylesheet" type="text/css" href="../../css/style.css" />
     <link rel="stylesheet" type="text/css" href="../../css/dz-style.css"/>
+    <link rel="stylesheet" href="../iconfont/iconfont/iconfont.css">
     <style>
         header{ background-color: #03a9f4; line-height: 50px; height: 50px; position: relative;color: #fff; }
         header b{ font-size: 16px!important; color: #fff; width: 84px; height: 100%; display: inline-block; position: relative; z-index: 1; padding-left: 15px; font-weight: normal;}
@@ -18,7 +19,9 @@
 <body>
 <div id="wrap" class="flex-wrap flex-vertical" >
     <!-- <header>
-        <b tapmode="hover" onclick="api.closeWin();" class="iconfont icon-back">返回</b>
+        <b tapmode="hover" onclick="api.closeWin();" class="iconfont icon-fanhui">
+          返回
+        </b>
         <div class="title"></div>
         <b tapmode="hover" onclick="funActionSheet();"  class="ic-check"></b>
     </header> -->
@@ -31,14 +34,14 @@
 <script type="text/javascript" src="../../script/api.js"></script>
 <script type="text/javascript">
     apiready = function(){
-        $api.fixStatusBar( $api.dom('header') );
+        // $api.fixIos7Bar( $api.dom('header') );
         // $api.dom('.title').innerHTML = api.pageParam.name;
         api.openFrame({
             name: 'chat_doc_new',
             url: './chat_doc_new.html',
             rect: {
                 x: 0,
-                y: 0,
+                y: 15,
                 w: api.winWidth,
                 h: $api.dom('#main').offsetHeight
             },
