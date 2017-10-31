@@ -149,11 +149,16 @@ flex-direction: column;
     background-color: #fafafa;
     border-radius: 4px;
 }
-.aui-chat .doc .avatar,.aui-chat_recommend .doc .avatar {
+/*.aui-chat .doc .avatar,.aui-chat_recommend .doc .avatar {
     float: right;
     margin: 0 0 0 10px;
     border-radius: 3px;
 }
+.aui-chat .pat .avatar,.aui-chat_recommend .pat .avatar {
+    float: right;
+    margin: 0 0 0 10px;
+    border-radius: 3px;
+}*/
 #editForm .editInfos .second_list{
   border-bottom:none;
 }
