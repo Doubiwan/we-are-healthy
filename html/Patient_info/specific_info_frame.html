@@ -35,6 +35,7 @@
 <script type="text/javascript">
     apiready = function(){
         $api.fixIos7Bar( $api.dom('header') );
+        $api.fixStatusBar( $api.dom('header'));
         $api.dom('.title').innerHTML = api.pageParam.name;
         api.openFrame({
             name: 'specific_info',
