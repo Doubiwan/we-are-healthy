@@ -245,6 +245,7 @@
     var userid = 0;
     apiready = function() {
         userid = api.pageParam.userId;
+        console.log(userid);
         api.parseTapmode();
         getInfo(userid);
     }
@@ -283,9 +284,10 @@
                 }
             },
             error: function(res) {
+              console.log(res);
                 api.alert({
                     title: '系统提示',
-                    msg: '网络错误',
+                    msg: '暂无录入数据',
                 });
             }
         })

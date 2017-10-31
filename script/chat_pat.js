@@ -34,22 +34,24 @@
     //点击按钮发送input聊天内容
     $("#send_btn").bind('click', function() {
         insert();
+        refresh();
     });
 
     function insert() {
-        var content =
-            `<li>
-      <p class="time">
-        <span>2017-09-27 16:17:51</span>
-      </p>
-      <div class="pat">
-        <img src="../../image/liulangnan.png"  class="avatar" width="30" height="30">
-        <div class="text">${$("#input_message").val()}</div>
-      </div>
-    </li>`;
+        var content = `
+          <li class="list-item">
+            <p class="time">
+              <span>2017-09-27 16:17:51</span>
+            </p>
+            <div class="pat">
+              <img src="../../image/avatar_pat.jpg"  class="avatar" width="30" height="30">
+              <div class="text">${$("#input_message").val()}</div>
+            </div>
+          </li>
+        `;
         $("#content_list").append(content);
         $("#input_message").val("");
-
+        $('.aui-chat').scrollTop($('#content_list')[0].offsetHeight);
 
         $.ajax({
             url: baseURL + 'historyController/insert',
@@ -63,7 +65,7 @@
             timeout: 5000, //超时时间
             dataType: 'json', //返回的数据格式：json/xml/html/script/jsonp/text
             success: function(data, textStatus, jqXHR) {
-                console.log(unescapeHTML(data.body.history))
+                // console.log(unescapeHTML(data.body.history))
                 console.log(textStatus)
                 console.log(jqXHR)
             },
@@ -107,7 +109,7 @@
                   iterateIndex++;
               }
               $("#content_list").prepend(history_html);
-              console.log($('.readMore'+indexHistory));
+              // console.log($('.readMore'+indexHistory));
               $('.readMore'+indexHistory).hide();
               indexHistory++;
               var moreContentHistory =
@@ -165,7 +167,7 @@
                   history_html += unescapeHTML(item.history);
               }
               $("#content_list").html(history_html);
-              console.log(history_html);
+              // console.log(history_html);
               if (history_html != "") {
                 var moreContentHistory =
                 `<li class="aui-list-item">
@@ -228,101 +230,98 @@
              console.log(xhr);
          },
        })
-
-
-       //将获取到的医嘱列表发送到聊天列表中
-       function show_recommend(value,id,status,historyid) {
-         var content =
-         `<li class="list-item">
-           <p class="time">
-             <span>2017-09-27 16:17:51</span>
-           </p>
-           <div class="doc">
-             <img src="../../image/liulangnan.png"  class="avatar" width="30" height="30">
-             <div class="text">${value}</div>
-             <button history-id=${historyid} data-id=${id} data-status=${status} class="status" onclick="finish(event)">
-              未完成
-             </button>
-           </div>
-         </li>`;
-         $("#content_list_recommend").append(content);
-
-         selectStatusStyle(historyid,status);
-       }
-
-       //根据status状态显示状态
-       function selectStatusStyle(historyid,status){
-        //  console.log($('.doc button[data-id='+id+']'));
-         if (status == 1) {
-           $('.doc button[history-id='+historyid+']').addClass('done');
-          //  $('.doc button[data-id='+id+']').children().text("已完成");
-         }else if (status == 0) {
-           $('.doc button[history-id='+historyid+']').removeClass('done');
-          //  $('.doc button[data-id='+id+']').children().text("未完成");
-         }
-       }
-
-       var indexRecommend = 1;
-       //点击查看更多加载
-       $('#content_list_recommend').on('click','li #readMoreRecommend',function readMore() {
-         console.log("自加前index="+indexRecommend);
-         $.ajax({
-             url: baseURL + 'recommendachieveController/selectAllByPage',
-             type: 'POST',
-             async: true,
-             data: {
-               page: indexRecommend+1,
-               rows: 10,
-               order: 'id',
-               sort: 'desc',
-               userid: userid
-             },
-             timeout: 5000,
-             dataType: 'json',
-             success: function(data) {
-                 var iterateIndex = 0;
-                 for (var item of data.rows.reverse()) {
-                   var content =
-                       `<li class="list-item">
-                           <p class="time">
-                               <span>2017-09-27 16:17:51</span>
-                           </p>
-                           <div class="doc">
-                               <img src="../../image/liulangnan.png"  class="avatar" width="30" height="30">
-                               <div class="text">${item.recommend}</div>
-                               <button class="status" onclick="finish(event)">未完成</button>
-                           </div>
-                       </li>`;
-                   $("#content_list_recommend").prepend(content);
-                   iterateIndex++;
-                 }
-                 $('.readMore'+indexRecommend).hide();
-                 indexRecommend++;
-                 var moreContentHistory =
-                 `<li class="aui-list-item">
-                     <div id="readMoreRecommend" class="aui-list-item-inner readMore${indexRecommend}">
-                         查看更多
-                     </div>
-                 </li>`;
-                 // console.log($('#refresh_section')[0].scrollTop);
-                 $('#content_list_recommend').prepend(moreContentHistory);
-                 var liHeight = $('#content_list_recommend .list-item')[0].offsetHeight;
-                 var moreHeight = $('#content_list_recommend .aui-list-item')[0].offsetHeight;
-                 if (iterateIndex < 10) {
-                   //当所有数据请求结束后，查看更多消失
-                   $('.readMore'+indexRecommend).hide();
-                   //若请求结束，将查看更多隐藏
-                   $('.aui-chat_recommend')[0].scrollTop = iterateIndex * liHeight - moreHeight;
-                 }else{
-                   setTimeout(function() {
-                     $('.aui-chat_recommend')[0].scrollTop = iterateIndex * liHeight ;
-                   },1);
-                 }
-             }
-         });
-       });
-
      }
+     //将获取到的医嘱列表发送到聊天列表中
+     function show_recommend(value,id,status,historyid) {
+       var content =
+       `<li class="list-item">
+         <p class="time">
+           <span>2017-09-27 16:17:51</span>
+         </p>
+         <div class="doc">
+           <img src="../../image/avatar_pat.jpg"  class="avatar" width="30" height="30">
+           <div class="text">${value}</div>
+           <button history-id=${historyid} data-id=${id} data-status=${status} class="status" onclick="finish(event)">
+            未完成
+           </button>
+         </div>
+       </li>`;
+       $("#content_list_recommend").append(content);
+       $('.aui-chat_recommend').scrollTop(1800);
+       selectStatusStyle(historyid,status);
+     }
+
+     //根据status状态显示状态
+     function selectStatusStyle(historyid,status){
+      //  console.log($('.doc button[data-id='+id+']'));
+       if (status == 1) {
+         $('.doc button[history-id='+historyid+']').addClass('done');
+        //  $('.doc button[data-id='+id+']').children().text("已完成");
+       }else if (status == 0) {
+         $('.doc button[history-id='+historyid+']').removeClass('done');
+        //  $('.doc button[data-id='+id+']').children().text("未完成");
+       }
+     }
+
+     var indexRecommend = 1;
+     //点击查看更多加载
+     $('#content_list_recommend').on('click','li #readMoreRecommend',function readMore() {
+       console.log("自加前index="+indexRecommend);
+       $.ajax({
+           url: baseURL + 'recommendachieveController/selectAllByPage',
+           type: 'POST',
+           async: true,
+           data: {
+             page: indexRecommend+1,
+             rows: 10,
+             order: 'id',
+             sort: 'desc',
+             userid: userid
+           },
+           timeout: 5000,
+           dataType: 'json',
+           success: function(data) {
+               var iterateIndex = 0;
+               for (var item of data.rows.reverse()) {
+                 var content =
+                     `<li class="list-item">
+                         <p class="time">
+                             <span>2017-09-27 16:17:51</span>
+                         </p>
+                         <div class="doc">
+                             <img src="../../image/avatar_pat.jpg"  class="avatar" width="30" height="30">
+                             <div class="text">${item.recommend}</div>
+                             <button class="status" onclick="finish(event)">未完成</button>
+                         </div>
+                     </li>`;
+                 $("#content_list_recommend").prepend(content);
+                 iterateIndex++;
+               }
+               $('.readMore'+indexRecommend).hide();
+               indexRecommend++;
+               var moreContentHistory =
+               `<li class="aui-list-item">
+                   <div id="readMoreRecommend" class="aui-list-item-inner readMore${indexRecommend}">
+                       查看更多
+                   </div>
+               </li>`;
+               // console.log($('#refresh_section')[0].scrollTop);
+               $('#content_list_recommend').prepend(moreContentHistory);
+               var liHeight = $('#content_list_recommend .list-item')[0].offsetHeight;
+               var moreHeight = $('#content_list_recommend .aui-list-item')[0].offsetHeight;
+               if (iterateIndex < 10) {
+                 //当所有数据请求结束后，查看更多消失
+                 $('.readMore'+indexRecommend).hide();
+                 //若请求结束，将查看更多隐藏
+                 $('.aui-chat_recommend')[0].scrollTop = iterateIndex * liHeight - moreHeight;
+               }else{
+                 setTimeout(function() {
+                   $('.aui-chat_recommend')[0].scrollTop = iterateIndex * liHeight ;
+                 },1);
+               }
+           }
+       });
+     });
 
 
 

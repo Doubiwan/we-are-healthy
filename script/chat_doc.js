@@ -38,6 +38,7 @@
     //点击按钮发送input聊天内容
     $("#send_btn").bind('click', function() {
         insert();
+        refresh();
     });
 
     function insert() {
@@ -47,12 +48,13 @@
                 <span>2017-09-27 16:17:51</span>
               </p>
               <div class="doc" >
-                <img src="../../image/liulangnan.png"  class="avatar" width="30" height="30">
+                <img src="../../image/avatar_doc.jpg"  class="avatar" width="30" height="30">
                 <div class="text">${$("#input_message").val()}</div>
               </div>
               </li>`;
         $("#content_list").append(content);
         $("#input_message").val("");
+        $('.aui-chat').scrollTop($('#content_list')[0].offsetHeight);
 
 
         $.ajax({
@@ -261,7 +263,7 @@
                         </p>
                         <div class="doc">
                             <button class="status" onclick="finish(event)">未完成</button>
-                            <img src="../../image/liulangnan.png"  class="avatar" width="30" height="30">
+                            <img src="../../image/avatar_doc.jpg"  class="avatar" width="30" height="30">
                             <div class="text">${item.recommend}</div>
                         </div>
                     </li>`;
@@ -328,7 +330,7 @@
                 </p>
                 <div class="doc">
                     <button class="status" onclick="finish(event)">未完成</button>
-                    <img src="../../image/liulangnan.png"  class="avatar" width="30" height="30">
+                    <img src="../../image/avatar_doc.jpg"  class="avatar" width="30" height="30">
                     <div class="text">${value}</div>
                 </div>
             </li>`;
@@ -430,11 +432,12 @@
             </p>
             <div class="doc">
                 <button class="status" onclick="finish(event)">未完成</button>
-                <img src="../../image/liulangnan.png"  class="avatar" width="30" height="30">
+                <img src="../../image/avatar_doc.jpg"  class="avatar" width="30" height="30">
                 <div class="text">${value}</div>
             </div>
         </li>`;
         $("#content_list_recommend_doc").append(content);
+        $('.aui-chat_recommend').scrollTop(1800);
 
         //发送ajax
         $.ajax({
@@ -456,7 +459,8 @@
             console.log(xhr);
           }
         });
-
+        refresh_recommend();
+        refresh_recommend_dialog();
     }
 
     //点击按钮删除

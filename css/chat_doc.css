@@ -54,7 +54,7 @@ flex-direction: column;
     display: flex;
     flex-direction: column;
     position: fixed;
-    top: 92px;
+    top: 93px;
     bottom: 0px;
     overflow: auto;
     width: 100%;
@@ -77,6 +77,7 @@ flex-direction: column;
 }
 #content_list{
   flex: 1;
+  margin-bottom: 23%;
 }
 .send_message_real .aui-icon-refresh{
   padding-left: 9%;
