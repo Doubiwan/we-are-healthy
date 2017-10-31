@@ -32,6 +32,7 @@
 <script type="text/javascript">
     apiready = function(){
         $api.fixIos7Bar( $api.dom('header') );
+        $api.fixStatusBar( $api.dom('header'));
         $api.dom('.title').innerHTML = api.pageParam.name;
         api.openFrame({
             name: 'risk_analysis',
@@ -42,7 +43,7 @@
                 w: api.winWidth,
                 h: $api.dom('#main').offsetHeight
             },
-            bounces : false,
+            bounces : true,
             pageParam: {
                 name: api.pageParam.name,
                 userId: api.pageParam.userId,

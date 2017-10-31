@@ -13,15 +13,16 @@
         header{ background-color: #03a9f4; line-height: 50px; height: 50px; position: relative;color: #fff; }
         header b{ font-size: 16px!important; color: #fff; width: 84px; height: 100%; display: inline-block; position: relative; z-index: 1; padding-left: 15px; font-weight: normal;}
         header .title{ position: absolute; left: 0; bottom: 0; right: 0;  text-align: center; font-size: 18px; color: #fff; }
+        #main{background: #fff;}
     </style>
 </head>
 <body>
 <div id="wrap" class="flex-wrap flex-vertical" >
-    <!-- <header>
+    <header>
         <b tapmode="hover" onclick="api.closeWin();" class="iconfont icon-back">返回</b>
-        <div class="title"></div>
-        <b tapmode="hover" onclick="funActionSheet();"  class="ic-check"></b>
-    </header> -->
+        <div class="title">病人注册</div>
+    </header>
+    <!-- <b tapmode="hover" onclick="funActionSheet();"  class="ic-check"></b> -->
     <div id="main" class="flex-con" >
 
     </div>
@@ -31,6 +32,7 @@
 <script type="text/javascript" src="../../script/api.js"></script>
 <script type="text/javascript">
     apiready = function(){
+        $api.fixIos7Bar( $api.dom('header') );
         $api.fixStatusBar( $api.dom('header') );
         // $api.dom('.title').innerHTML = api.pageParam.name;
         api.openFrame({
@@ -38,7 +40,7 @@
             url: './register_doctor.html',
             rect: {
                 x: 0,
-                y: 0,
+                y: $api.dom('header').offsetHeight,
                 w: api.winWidth,
                 h: $api.dom('#main').offsetHeight
             },

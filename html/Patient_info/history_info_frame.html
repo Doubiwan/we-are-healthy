@@ -36,6 +36,7 @@
 <script type="text/javascript">
     apiready = function(){
         $api.fixIos7Bar( $api.dom('header') );
+        $api.fixStatusBar( $api.dom('header'));
         $api.dom('.title').innerHTML = api.pageParam.name;
         $.ajax({
           url: 'http://114.215.156.99:8381/backend/infoController/selectByUserId',
@@ -54,7 +55,7 @@
                     w: api.winWidth,
                     h: $api.dom('#main').offsetHeight
                 },
-                bounces : false,
+                bounces : true,
                 pageParam: {
                     name: api.pageParam.name,
                     userId: api.pageParam.userId,

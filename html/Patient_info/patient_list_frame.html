@@ -38,7 +38,7 @@
     apiready = function(){
 
         $api.fixIos7Bar( $api.dom('header') );
-        // $api.fixStatusBar( $api.dom('header') );
+        $api.fixStatusBar( $api.dom('header') );
         // console.log("wocao"+$api.dom('header').toString());
 
         $api.dom('.title').innerHTML = api.pageParam.name;
@@ -51,7 +51,7 @@
                 w: api.winWidth,
                 h: $api.dom('#main').offsetHeight
             },
-            bounces : false,
+            bounces : true,
             pageParam: {
                 name: api.pageParam.name
             }

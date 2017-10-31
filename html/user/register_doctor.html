@@ -12,12 +12,6 @@
 
 <body>
     <div class="container">
-      <header class="aui-bar aui-bar-nav">
-        <div class="aui-pull-left aui-btn">
-            <span class="aui-iconfont aui-icon-left"></span>返回
-        </div>
-        <div class="aui-title">医生注册</div>
-      </header>
       <form id="form">
         <div class="aui-content aui-margin-b-15">
             <ul class="aui-list aui-form-list">
@@ -135,28 +129,33 @@
         });
     }
 
-    $(document).ready(function() {
-        console.log(address);
-        changeCode();
-// 发送注册请求
-        $('#submit_register').click(function() {
-                $.ajax({
-                    type: 'post',
-                    url: address + "adminController/register",
-                    data: $("#form").serialize() + "&sessionId=" + sessionStorage.getItem('sessionId'),
-                    dataType: "json",
-                    success: function(data) {
-                        console.info(data);
-                        if (data.code === 0) {
-                            alert("connection success -> " + JSON.stringify(data));
-                        } else {
-                            alert("connection failed  -> " + JSON.stringify(data));
-                        }
-                    }
-                });
+    changeCode();
+    apiready = function functionName() {
+      // 发送注册请求
+      $('#submit_register').click(function() {
+        $.ajax({
+          type: 'post',
+          url: address + "adminController/register",
+          data: $("#form").serialize() + "&sessionId=" + sessionStorage.getItem('sessionId'),
+          dataType: "json",
+          success: function(data) {
+            console.info(data);
+            if (data.code === 0) {
+              alert("注册成功" + JSON.stringify(data));
+              api.openWin({
+                  name: 'login_frame',
+                  url: './login_frame.html',
+                  // pageParam: {
+                  //     name: 'test'
+                  // }
+              });
+            } else {
+              alert("connection failed  -> " + JSON.stringify(data));
+            }
+          }
+        });
+      });
+    }
 
-            });
-
-    });
 </script>
 </html>
