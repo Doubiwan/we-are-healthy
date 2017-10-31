@@ -101,6 +101,11 @@ flex-direction: column;
   padding: 0;
   /*background-color: #fff;*/
 }
+#content_list_recommend_doc{
+  flex: 1;
+  margin-bottom: 20%;
+  padding: 0;
+}
 #editForm_recommend{
   height: 40vh;
   overflow: auto;

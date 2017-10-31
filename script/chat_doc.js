@@ -1,13 +1,12 @@
-    var userid;
-apiready = function () {
-    console.log(api.pageParam.name);
-    $('.aui-title').html(api.pageParam.name);
-    userid = api.pageParam.userId;
-}
-jQuery(document).ready(function() {
-
+    var userid =1;
     var baseURL = 'http://114.215.156.99:8381/backend/';
     var i = 3;
+    // apiready = function () {
+    //   userid = api.pageParam.userId;
+    //   $('.aui-title').html(api.pageParam.name);
+    //   refresh();
+    // }
+
     //将title固定在顶部
     var elm = $('.title');
     var startPos = elm.offset().top;
@@ -17,9 +16,8 @@ jQuery(document).ready(function() {
       $(elm).css('top', ((p) > startPos) ? '0px' : '');
     });
 
-    //初始化页面
-    refresh();
 
+    //初始化页面
     $('#chat_view').click(function (){
       $('.send_message_real').removeClass('aui-hide').addClass('aui-active');
       $('.recommend_btn_real').removeClass('aui-active').addClass('aui-hide');
@@ -127,15 +125,16 @@ jQuery(document).ready(function() {
               console.log("自加后index="+indexHistory);
               //点击查看更多滚动条保持位置不变
               console.log(iterateIndex);
-
+              var liHeight = $('#content_list .list-item')[0].offsetHeight;
+              var moreHeight = $('#content_list .aui-list-item')[0].offsetHeight;
               if (iterateIndex < 10) {
                 //当所有数据请求结束后，查看更多消失
                 $('.readMore'+indexHistory).hide();
                 //若请求结束，将查看更多隐藏
-                $('.aui-chat')[0].scrollTop = iterateIndex * 110.4 - 34.4;
+                $('.aui-chat')[0].scrollTop = iterateIndex * liHeight - moreHeight;
               }else{
                 setTimeout(function() {
-                  $('.aui-chat')[0].scrollTop = iterateIndex * 110.4 ;
+                  $('.aui-chat')[0].scrollTop = iterateIndex * liHeight ;
                 },1);
               }
           }
@@ -170,17 +169,20 @@ jQuery(document).ready(function() {
                     history_html += unescapeHTML(item.history);
                 }
                 $("#content_list").html(history_html);
-                var moreContentHistory =
-                `<li class="aui-list-item">
-                    <div id="readMoreHistory" class="aui-list-item-inner readMore${indexHistory}">
-                        查看更多
-                    </div>
-                </li>`;
-                $('#content_list').prepend(moreContentHistory);
-                //将滚动条固定在底部
-                console.log($('#content_list')[0].offsetHeight);
-                $('.aui-chat').scrollTop(177);
-                console.log($('.aui-chat').scrollTop());
+                if (history_html != "") {
+                  var moreContentHistory =
+                  `<li class="aui-list-item">
+                  <div id="readMoreHistory" class="aui-list-item-inner readMore${indexHistory}">
+                  查看更多
+                  </div>
+                  </li>`;
+                  $('#content_list').prepend(moreContentHistory);
+                  //将滚动条固定在底部
+                  console.log($('#content_list')[0].offsetHeight);
+                  $('.aui-chat').scrollTop($('#content_list')[0].offsetHeight);
+                  console.log($('.aui-chat').scrollTop());
+
+                }
             }
         });
     }
@@ -206,20 +208,24 @@ jQuery(document).ready(function() {
           timeout: 5000,
           dataType: 'json',
           success: function(data) {
-            $("#content_list_recommend").html('');
+            $("#content_list_recommend_doc").html('');
             // console.log(JSON.stringify(data));
               for (var item of data.rows.reverse()) {
                   show_recommend(item.recommend);
                   console.log(item.recommend);
               }
-              // console.log(JSON.stringify(window.getComputedStyle($('#content_list_recommend')[0])));
-              var moreContentRecommend =
-              `<li class="aui-list-item">
-                  <div id="readMoreRecommend" class="aui-list-item-inner readMore${indexRecommend}">
-                      查看更多
-                  </div>
-              </li>`;
-              $('#content_list_recommend').prepend(moreContentRecommend);
+              if (data.rows != "") {
+                var moreContentRecommend =
+                `<li class="aui-list-item">
+                <div id="readMoreRecommend" class="aui-list-item-inner readMore${indexRecommend}">
+                查看更多
+                </div>
+                </li>`;
+                $('#content_list_recommend_doc').prepend(moreContentRecommend);
+                $('.aui-chat_recommend').scrollTop(1800);
+                // setTimeout(function() {
+                // },1000);
+              }
           },
           error: function(xhr) {
               console.log("错误");
@@ -230,7 +236,7 @@ jQuery(document).ready(function() {
 
     var indexRecommend = 1;
     //点击查看更多加载
-    $('#content_list_recommend').on('click','li #readMoreRecommend',function readMore() {
+    $('#content_list_recommend_doc').on('click','li #readMoreRecommend',function readMore() {
       console.log("自加前index="+indexRecommend);
       $.ajax({
           url: baseURL + 'recommendachieveController/selectAllByPage',
@@ -259,7 +265,7 @@ jQuery(document).ready(function() {
                             <div class="text">${item.recommend}</div>
                         </div>
                     </li>`;
-                $("#content_list_recommend").prepend(content);
+                $("#content_list_recommend_doc").prepend(content);
                 iterateIndex++;
               }
               $('.readMore'+indexRecommend).hide();
@@ -271,16 +277,17 @@ jQuery(document).ready(function() {
                   </div>
               </li>`;
               // console.log($('#refresh_section')[0].scrollTop);
-              $('#content_list_recommend').prepend(moreContentHistory);
-
+              $('#content_list_recommend_doc').prepend(moreContentHistory);
+              var liHeight = $('#content_list_recommend_doc .list-item')[0].offsetHeight;
+              var moreHeight = $('#content_list_recommend_doc .aui-list-item')[0].offsetHeight;
               if (iterateIndex < 10) {
                 //当所有数据请求结束后，查看更多消失
                 $('.readMore'+indexRecommend).hide();
                 //若请求结束，将查看更多隐藏
-                $('.aui-chat_recommend')[0].scrollTop = iterateIndex * 110.4 - 34.4;
+                $('.aui-chat_recommend')[0].scrollTop = iterateIndex * liHeight - moreHeight;
               }else{
                 setTimeout(function() {
-                  $('.aui-chat_recommend')[0].scrollTop = iterateIndex * 110.4 ;
+                  $('.aui-chat_recommend')[0].scrollTop = iterateIndex * liHeight ;
                 },1);
               }
 
@@ -325,10 +332,7 @@ jQuery(document).ready(function() {
                     <div class="text">${value}</div>
                 </div>
             </li>`;
-        $("#content_list_recommend").append(content);
-        //将滚动条固定在底部
-        // console.log($('.aui-chat_recommend')[0].offsetHeight);
-        $('.aui-chat_recommend').scrollTop($('#content_list_recommend')[0].offsetHeight);
+        $("#content_list_recommend_doc").append(content);
     }
 
     //将查询到的医嘱列表显示在对话框中
@@ -430,7 +434,7 @@ jQuery(document).ready(function() {
                 <div class="text">${value}</div>
             </div>
         </li>`;
-        $("#content_list_recommend").append(content);
+        $("#content_list_recommend_doc").append(content);
 
         //发送ajax
         $.ajax({
@@ -582,5 +586,3 @@ jQuery(document).ready(function() {
       }
     });
     });
-
-});
