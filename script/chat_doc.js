@@ -1,11 +1,11 @@
-    var userid =1;
+    var userid;
     var baseURL = 'http://114.215.156.99:8381/backend/';
     var i = 3;
-    // apiready = function () {
-    //   userid = api.pageParam.userId;
-    //   $('.aui-title').html(api.pageParam.name);
-    //   refresh();
-    // }
+    apiready = function () {
+      userid = api.pageParam.userId;
+      $('.aui-title').html(api.pageParam.name);
+      refresh();
+    }
 
     //将title固定在顶部
     var elm = $('.title');
