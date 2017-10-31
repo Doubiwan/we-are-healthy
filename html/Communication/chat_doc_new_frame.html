@@ -46,10 +46,12 @@
                 h: $api.dom('#main').offsetHeight
             },
             bounces : false,
-            // pageParam: {
-            //     name: api.pageParam.name
-            // }
+            pageParam: {
+                name: api.pageParam.name,
+                userId: api.pageParam.userId,
+            }
         });
+        console.log(api.pageParam.name+"  "+api.pageParam.userId);
     };
 
 

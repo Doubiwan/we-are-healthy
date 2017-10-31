@@ -17,8 +17,30 @@
   vertical-align: top;
   display: inline-block;
 }
-.aui-col-xs-7 .info_btn .write,.aui-col-xs-7 .info_btn .base_info,.aui-col-xs-7 .info_btn .history_info,.aui-col-xs-7 .info_btn .dangerGao,.aui-col-xs-7 .info_btn .dangerTang{
+.aui-col-xs-7 .info_btn .base_info{
   margin-bottom: 5%;
+  font-size: 10px;
+  width: 32%;
+}
+.aui-col-xs-7 .info_btn .history_info{
+  margin-bottom: 5%;
+  font-size: 10px;
+  width: 32%;
+}
+.aui-col-xs-7 .info_btn .dangerGao{
+  margin-bottom: 5%;
+  font-size: 10px;
+  width: 37%;
+}
+.aui-col-xs-7 .info_btn .dangerTang{
+  margin-bottom: 5%;
+  font-size: 10px;
+  width: 37%;
+}
+.aui-col-xs-7 .info_btn .write{
+  margin-bottom: 5%;
+  font-size: 10px;
+  width: 21%;
 }
 .aui-col-xs-7 .info_btn .add_info{
   width: 10%;
@@ -27,7 +49,7 @@
   margin-top: 2%;
 }
 .function_btn .aui-icon-edit{
-  margin-left: 12%;
+  margin-left: 20%;
 }
 .function_btn .aui-icon-trash{
   margin-left: 3%;

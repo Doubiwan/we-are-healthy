@@ -30,7 +30,7 @@
                                     <i class="aui-iconfont aui-icon-mobile"></i>
                                 </div>
                                 <div class="aui-list-item-input">
-                                    <input type="text" placeholder="username" name="username">
+                                    <input id="username" type="text" placeholder="username" name="username">
                                 </div>
                             </div>
                         </li>
@@ -214,13 +214,14 @@
             success: function(data) {
               console.info(data);
               if (data.code === 0) {
+                console.log($('#username').val());
                 alert("connection success -> " + JSON.stringify(data));
                 api.openWin({
                   name: 'patient_list' ,
                   url: '../Patient_info/patient_list_frame.html',
-                  // pageParam: {
-                  //     name: ""
-                  // },
+                  pageParam: {
+                      name: $('#username').val(),
+                  },
                   slidBackEnabled:false
                 });
               } else {
@@ -236,7 +237,6 @@
                   data: $("#form_patient").serialize() + "&sessionId=" + sessionStorage.getItem('sessionId'),
                   dataType: "json",
                   success: function(data) {
-                      console.info(data);
                       if (data.code === 0) {
                         $.ajax({
                           url: baseURL + 'userController/getUser',
@@ -246,16 +246,18 @@
                           },
                           dataType: 'json',
                           success: function(data){
+                            console.log(data);
                             sessionStorage.setItem('userId',data.body.id);
+                            api.openWin({
+                              name: 'frame0' ,
+                              url: '../frame0.html',
+                              pageParam: {
+                                userId: data.body.id,
+                                username: data.body.username,
+                              },
+                              slidBackEnabled:false
+                            });
                           }
-                        });
-                        api.openWin({
-                          name: 'frame0' ,
-                          url: '../frame0.html',
-                          pageParam: {
-                              name: ""
-                          },
-                          slidBackEnabled:false
                         });
                           alert("connection success -> " + JSON.stringify(data));
                       } else {

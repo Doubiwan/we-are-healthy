@@ -80,7 +80,7 @@
                  </div>
                  <div tapmode="hover" onclick="funOpenCommunication( this );"  class="flex-wrap flex-con layout-wrap">
                      <div class="flex-con layout ic-like">
-                       <div class="title">医患交流</div>
+                       <div class="title Communication">医患交流</div>
                        <div class="introduce">简介</div>
                      </div>
                  </div>
@@ -91,9 +91,41 @@
 </html>
 <script type="text/javascript" src="../script/api.js"></script>
 <script type="text/javascript" src="../script/swipe.js"></script>
+<script type="text/javascript" src="../script/jquery-2.1.4.min.js"></script>
 <script type="text/javascript">
     apiready = function(){
-
+        $.ajax({
+          url: 'http://114.215.156.99:8381/backend/infoController/selectByUserId',
+          type: 'post',
+          data: {
+            userid: api.pageParam.userId
+          },
+          success:function (data) {
+            $.ajax({
+              url: 'http://114.215.156.99:8381/backend/adminController/selectAllByPage',
+              type: 'post',
+              data:{
+                page: 1,
+                rows: 100,
+                order: 'id',
+                sort: 'asc'
+              },
+              success: function (ret) {
+                for (var item of ret.rows) {
+                  if (item.id == data.body.adminid) {
+                    $('.Communication').html(item.username);
+                  }
+                }
+              },
+              error:function (xhr) {
+                console.log(xhr);
+              }
+            });
+          },
+          error:function (xhr) {
+            console.log(xhr);
+          }
+        });
     };
     var mySwipe = new Swipe($api.dom('.swipe'), {
         speed: 400,
@@ -111,7 +143,8 @@
             name: 'specific_info_frame',
             url: './Patient_info/specific_info_frame.html',
             pageParam: {
-                name: tag.querySelector('.title').innerHTML
+                name: api.pageParam.username,
+                userId: api.pageParam.userId,
            }
         });
     }
@@ -121,7 +154,8 @@
             name: 'history_info_frame',
             url: './Patient_info/history_info_frame.html',
             pageParam: {
-                name: tag.querySelector('.title').innerHTML
+                name: api.pageParam.username,
+                userId: api.pageParam.userId,
            }
         });
     }
@@ -132,7 +166,7 @@
             url: './Communication/risk_anal.html',
             pageParam: {
                 name: tag.querySelector('.title').innerHTML,
-                userId: 1 //此处userid动态获取
+                userId: api.pageParam.userId, //此处userid动态获取
            }
         });
     }
@@ -143,7 +177,7 @@
             url: './Patient_info/old_risk_anal.html',
             pageParam: {
                 name: tag.querySelector('.title').innerHTML,
-                userId: 1 //此处userid动态获取
+                userId: api.pageParam.userId
            }
         });
     }
@@ -154,7 +188,7 @@
             url: './Communication/chat_pat_new_frame.html',
             pageParam: {
                 name: tag.querySelector('.title').innerHTML,
-                userId: 1 //此处userid动态获取
+                userId: api.pageParam.userId
            }
         });
     }

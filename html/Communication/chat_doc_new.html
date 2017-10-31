@@ -72,7 +72,7 @@
             <div class="aui-pull-left aui-btn">
                 <span class="aui-iconfont aui-icon-left" onclick="api.closeWin();"></span>
             </div>
-            <div class="aui-title">王患者</div>
+            <div class="aui-title"></div>
             <!-- <div class="aui-pull-right aui-btn aui-btn-outlined">
               <a id="alert_update_delete" href="javascript:;" class="flipInX">
                 <span class="aui-iconfont aui-icon-menu"></span>
@@ -197,6 +197,9 @@
 <script type="text/javascript" src="../../script/chat_doc.js"></script>
 <script type="text/javascript">
 
+    apiready = function functionName() {
+      $('.aui-title').html(api.pageParam.name);
+    }
     //对话框
     var w, h, className;
 
@@ -248,9 +251,6 @@
         $('.container .history').addClass('aui-hide');
         $('.container .history').eq(ret.index - 1 ).removeClass('aui-hide');
     });
-
-
-
 
 </script>
 </html>

@@ -54,10 +54,10 @@ flex-direction: column;
     display: flex;
     flex-direction: column;
     position: fixed;
-    top: 114px;
-    bottom: 86px;
+    top: 92px;
+    bottom: 0px;
     overflow: auto;
-    width: 100%
+    width: 100%;
 }
 .send_message_real .send_btn{
   display: inline-block;
@@ -89,15 +89,16 @@ flex-direction: column;
 }
 .aui-chat_recommend{
   flex: 1;
-  display: flex;
   flex-direction: column;
-  /*position: fixed;*/
-top: 93px;
-bottom: 86px;
-overflow: auto;
+  display: flex;
+  top: 93px;
+  bottom: 86px;
+  overflow: auto;
 }
 #content_list_recommend{
   flex: 1;
+  margin-bottom: 10%;
+  padding: 0;
   /*background-color: #fff;*/
 }
 #editForm_recommend{

@@ -9,42 +9,41 @@
 <body>
 </body>
 <script src="../script/api.js"></script>
+<script src="../script/config.js"></script>
+<script src="../script/jquery-2.1.4.min.js"></script>
 <script type="text/javascript">
-  apiready = function(){
-    api.ajax({
-        url: 'http://114.215.156.99:8381/backend/infoController/insert',
-        method: 'post',
-        data: {
-            values: {
-                adminid: '1',
-                userid: '1',
-                patientname: '潘彦1号',
-                birthday: '1990-09-19',
-                phone: '17085469845',
-                familyname: '潘彦的老婆',
-                familyphone: '18635471298',
-                height: '160',
-                weight: '70',
-                address: '北京市海淀区西土城路10号北京邮电大学',
-                educationLevels: '0',
-                medicationHistory: '110',
-                pastillness: '111',
-                smoke: '0',
-                ets: '1',
-                drink: '3',
-                tea: '2',
-                coffee: '3',
-                sport: '0'
-            },
-        }
-    },function(ret, err){
-        if (ret) {
-            alert( JSON.stringify( ret ) );
-        } else {
-            alert( JSON.stringify( err ) );
-        }
-    });
 
-  }
+    apiready = function() {
+      var userId = 1;
+      getInfo(userId);
+    }
+
+    function getInfo(userId) {
+      $.ajax({
+        url: address + '/infoController/selectAllByPage',
+        type: 'POST',
+        async: true,
+        data:{
+          page: 1,
+          rows: 100,
+          order: 'id',
+          sort: 'asc',
+          adminid: 1,
+        },
+        success: function(data) {
+          for (var item of data.rows) {
+            console.log(item);
+            if (item.userid == userId) {
+              alert(item);
+            }
+          }
+        },
+        error:function(xhr) {
+          console.log("网络错误");
+          console.log(xhr);
+        },
+      });
+    }
+
 </script>
 </html>

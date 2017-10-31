@@ -16,7 +16,7 @@
     </style>
 </head>
 <body>
-<div id="wrap" class="flex-wrap flex-vertical" >
+<div id="wrap" class="flex-wrap flex-vertical">
     <!-- <header>
         <b tapmode="hover" onclick="api.closeWin();" class="iconfont icon-back">返回</b>
         <div class="title"></div>
@@ -38,14 +38,15 @@
             url: './chat_pat_new.html',
             rect: {
                 x: 0,
-                y: 15,
+                y: 18,
                 w: api.winWidth,
                 h: $api.dom('#main').offsetHeight
             },
             bounces : false,
-            // pageParam: {
-            //     name: api.pageParam.name
-            // }
+            pageParam: {
+                name: api.pageParam.name,
+                userId: api.pageParam.userId,
+            }
         });
     };
 

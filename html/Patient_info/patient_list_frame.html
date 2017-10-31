@@ -14,13 +14,15 @@
     header{ background-color: #03a9f4; line-height: 50px; height: 50px; position: relative;color: #fff; }
     header b{ font-size: 16px!important; color: #fff; width: 84px; height: 100%; display: inline-block; position: relative; z-index: 1; padding-left: 15px; font-weight: normal;}
     header .title{ position: absolute; left: 0; bottom: 0; right: 0;  text-align: center; font-size: 18px; color: #fff; }
+    #main{margin-bottom: 10%;}
+    body{background: #fff;}
     </style>
 </head>
 <body>
 <div id="wrap" class="flex-wrap flex-vertical" >
     <header>
         <b tapmode="hover" onclick="api.closeWin();" class="iconfont icon-fanhui">
-          返回
+          退出
         </b>
         <div class="title"></div>
         <!-- <b tapmode="hover" onclick="funActionSheet();"  class="ic-check"></b> -->
@@ -39,7 +41,7 @@
         // $api.fixStatusBar( $api.dom('header') );
         // console.log("wocao"+$api.dom('header').toString());
 
-        // $api.dom('.title').innerHTML = api.pageParam.name;
+        $api.dom('.title').innerHTML = api.pageParam.name;
         api.openFrame({
             name: 'patient_list',
             url: './patient_list.html',
@@ -50,9 +52,9 @@
                 h: $api.dom('#main').offsetHeight
             },
             bounces : false,
-            // pageParam: {
-            //     name: api.pageParam.name
-            // }
+            pageParam: {
+                name: api.pageParam.name
+            }
         });
     };
 

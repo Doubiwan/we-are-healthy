@@ -7,6 +7,8 @@
     <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
     <title>录入信息</title>
     <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/stylesDate.css" media="all">
+    <link rel="stylesheet" href="../../css/addinfo.css">
 </head>
 
 <body>
@@ -19,8 +21,9 @@
                             <div class="aui-list-item-label">
                                 录入时间
                             </div>
-                            <div class="aui-list-item-input">
-                                <input type="text" placeholder="2017.9.9 11:24">
+                            <div class="iDate date">
+	                              <input id="birthday" type="text">
+	                              <button type="button" class="addOn"></button>
                             </div>
                         </div>
                     </li>
@@ -30,7 +33,7 @@
                                 患者姓名
                             </div>
                             <div class="aui-list-item-input">
-                                <input type="text" placeholder="陈患者" name="patientname">
+                                <input id="patientname" type="text" placeholder="陈患者" disabled="disabled">
                             </div>
                         </div>
                     </li>
@@ -40,7 +43,7 @@
                                 责任医生
                             </div>
                             <div class="aui-list-item-input">
-                                <input type="text" placeholder="常医生" name="adminid">
+                                <input type="text" placeholder="常医生" name="adminid" disabled="disabled">
                             </div>
                         </div>
                     </li>
@@ -61,7 +64,8 @@
                                 空腹血糖
                             </div>
                             <div class="aui-list-item-input">
-                                <input type="text" placeholder="11.2mmol/l" name="glu">
+                                <input class="glu" type="text" placeholder="11.2" name="glu">
+                                <span>mmol/l</span>
                             </div>
                         </div>
                     </li>
@@ -71,7 +75,19 @@
                                 血氧
                             </div>
                             <div class="aui-list-item-input">
-                                <input type="text" placeholder="99%" name="bloodoxygen">
+                                <input class="bloodoxygen" type="text" placeholder="99" name="boodoxygen">
+                                <span>%</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-inner">
+                            <div class="aui-list-item-label">
+                                血氧
+                            </div>
+                            <div class="aui-list-item-input">
+                                <input class="hbalc" type="text" placeholder="13" name="hbalc">
+                                <span>%</span>
                             </div>
                         </div>
                     </li>
@@ -81,7 +97,8 @@
                                 胆固醇
                             </div>
                             <div class="aui-list-item-input">
-                                <input type="text" placeholder="4.5mmol/l" name="cholesterol">
+                                <input class="cholesterol" type="text" placeholder="4.5" name="cholesterol">
+                                <span>mmol/l</span>
                             </div>
                         </div>
                     </li>
@@ -102,8 +119,8 @@
                     </li>
                     <li class="aui-list-item">
                         <div class="aui-list-item-inner aui-list-item-center aui-list-item-btn">
-                            <div id="submit_patient_info" class="aui-btn aui-btn-info aui-margin-r-5">提交</div>
-                            <div class="aui-btn aui-btn-danger aui-margin-l-5">取消</div>
+                            <div id="submit_patient_info" class="aui-btn aui-btn-info aui-margin-r-5" onclick="api.closeWin();">提交</div>
+                            <div class="aui-btn aui-btn-danger aui-margin-l-5" onclick="api.closeWin();">取消</div>
                         </div>
                     </li>
                 </ul>
@@ -113,19 +130,102 @@
 </body>
 <script type="text/javascript" src="../../script/jquery-2.1.4.min.js"></script>
 <script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/config.js"></script>
+<script type="text/javascript" src="../../script/moment.js"></script>
+<script type="text/javascript" src="../../script/bootstrap-datetimepicker.js"></script>
 <script type="text/javascript">
     apiready = function() {
         api.parseTapmode();
     }
 </script>
 <script type="text/javascript">
-    $('#submit_patient_info').on('click', function() {
 
+    userId = 1;
+    var admin;
+    var info;
+    $(document).ready(function() {
+      getUsername();
+      getInfo();
+      // getAdminName();
+    });
+
+    function getUsername() {
+      $.ajax({
+        url: address + '/infoController/selectByUserId',
+        type: 'post',
+        async: true,
+        data: 'userid=' + userId,
+        success:function(data) {
+          $('#patientname').val(data.body.patientname);
+          getAdminName(data.body.adminid,data.body.id);
+          console.log(data);
+        },
+        error:function(xhr) {
+          console.log(xhr);
+        }
+      });
+    }
+
+    function getAdminName(adminid,infoid) {
+      admin = adminid;
+      info = infoid;
+      console.log("adminid="+adminid);
+      console.log("infoid="+info);
+      $.ajax({
+        url: address + '/adminController/selectAllByPage',
+        type: 'post',
+        async: true,
+        data:{
+          page: 1,
+          rows: 100,
+          order: 'id',
+          sort: 'asc',
+        },
+        success:function(data) {
+          for (var i of data.rows) {
+            if (i.id == adminid) {
+              $('input[name=adminid]').val(i.username);
+            }
+          }
+          console.log(data);
+        },
+        error:function(xhr) {
+          console.log(xhr);
+        },
+      });
+    }
+
+    function getInfo() {
+      $.ajax({
+        url: address + '/riskController/getInfoByUserId',
+        type: 'post',
+        async: true,
+        data: 'userid='+ userId,
+        success:function(data) {
+          $('#datetime').val();
+          console.log(data);
+        },
+        error:function(xhr) {
+          console.log(xhr);
+        },
+      });
+    }
+
+    if($(".iDate.date").length>0){
+        $(".iDate.date").datetimepicker({
+            locale:"zh-cn",
+            format:"YYYY-MM-DD",
+            dayViewHeaderFormat:"YYYY年 MMMM"
+        });
+    }
+
+    $('#submit_patient_info').on('click', function() {
+      console.log(info);
+        console.log($('#add_patient_info').serialize() + "&infoid=" + info + "&adminid=" + admin);
         $.ajax({
-            // cache: true,
+            url: address + "/healthController/insert",
             type: "POST",
-            url: "http://114.215.156.99:8381/backend/healthController/insert",
-            data: $('#add_patient_info').serialize() + "&adminid=1&infoid=1",
+            data: $('#add_patient_info').serialize() + "&infoid=" + info + "&adminid=" + admin,
             // async: false,
             error: function(request) {
                 alert("Connection error");

@@ -32,24 +32,41 @@
 </body>
 </html>
 <script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/jquery-2.1.4.min.js"></script>
 <script type="text/javascript">
     apiready = function(){
         $api.fixIos7Bar( $api.dom('header') );
-        // $api.dom('.title').innerHTML = api.pageParam.name;
-        api.openFrame({
-            name: 'history_info',
-            url: './history_info.html',
-            rect: {
-                x: 0,
-                y: $api.dom('header').offsetHeight,
-                w: api.winWidth,
-                h: $api.dom('#main').offsetHeight
-            },
-            bounces : false,
-            // pageParam: {
-            //     name: api.pageParam.name
-            // }
+        $api.dom('.title').innerHTML = api.pageParam.name;
+        $.ajax({
+          url: 'http://114.215.156.99:8381/backend/infoController/selectByUserId',
+          type: 'post',
+          datatype: 'json',
+          data: {
+            userid: api.pageParam.userId,
+          },
+          success:function (data) {
+            api.openFrame({
+                name: 'history_info',
+                url: './history_info.html',
+                rect: {
+                    x: 0,
+                    y: $api.dom('header').offsetHeight,
+                    w: api.winWidth,
+                    h: $api.dom('#main').offsetHeight
+                },
+                bounces : false,
+                pageParam: {
+                    name: api.pageParam.name,
+                    userId: api.pageParam.userId,
+                    infoid: data.body.id,
+                }
+            });
+          },
+          error:function (xhr) {
+            console.log(JSON.stringify(xhr));
+          }
         });
+
     };
 
 

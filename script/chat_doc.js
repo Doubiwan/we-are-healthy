@@ -1,9 +1,13 @@
-"use strict";
+    var userid;
+apiready = function () {
+    console.log(api.pageParam.name);
+    $('.aui-title').html(api.pageParam.name);
+    userid = api.pageParam.userId;
+}
 jQuery(document).ready(function() {
 
     var baseURL = 'http://114.215.156.99:8381/backend/';
     var i = 3;
-
     //将title固定在顶部
     var elm = $('.title');
     var startPos = elm.offset().top;
@@ -59,7 +63,7 @@ jQuery(document).ready(function() {
             async: true, //或false,是否异步
             data: {
                 adminid: '1',
-                userid: '1',
+                userid: userid,
                 history: content
             },
             timeout: 5000, //超时时间
@@ -96,14 +100,14 @@ jQuery(document).ready(function() {
               order: 'id',
               sort: 'desc',
               adminid: '1',
-              userid: '1'
+              userid: userid
           },
           timeout: 5000,
           dataType: 'json',
           success: function(data) {
               var history_html = "";
               var iterateIndex = 0;
-              for (let item of data.rows.reverse()) {
+              for (var item of data.rows.reverse()) {
                   history_html += unescapeHTML(item.history);
                   // console.log(history_html);
                   iterateIndex++;
@@ -155,14 +159,14 @@ jQuery(document).ready(function() {
                 order: 'id',
                 sort: 'desc',
                 adminid: '1',
-                userid: '1'
+                userid: userid
             },
             timeout: 5000,
             dataType: 'json',
             success: function(data) {
                 $("#content_list").html('');
                 var history_html = ""
-                for (let item of data.rows.reverse()) {
+                for (var item of data.rows.reverse()) {
                     history_html += unescapeHTML(item.history);
                 }
                 $("#content_list").html(history_html);
@@ -197,14 +201,14 @@ jQuery(document).ready(function() {
             rows: 10,
             order: 'id',
             sort: 'desc',
-            userid: 1
+            userid: userid
           },
           timeout: 5000,
           dataType: 'json',
           success: function(data) {
             $("#content_list_recommend").html('');
             // console.log(JSON.stringify(data));
-              for (let item of data.rows.reverse()) {
+              for (var item of data.rows.reverse()) {
                   show_recommend(item.recommend);
                   console.log(item.recommend);
               }
@@ -237,13 +241,13 @@ jQuery(document).ready(function() {
             rows: 10,
             order: 'id',
             sort: 'desc',
-            userid: 1
+            userid: userid
           },
           timeout: 5000,
           dataType: 'json',
           success: function(data) {
               var iterateIndex = 0;
-              for (let item of data.rows) {
+              for (var item of data.rows) {
                 var content =
                     `<li class="list-item">
                         <p class="time">
@@ -298,7 +302,7 @@ jQuery(document).ready(function() {
         dataType:'json',
         success: function(data) {
           console.log(data);
-          for (let item of data.body.reverse()) {
+          for (var item of data.body.reverse()) {
               show_recommend_in_dialog(item.recommend, item.id);
           }
         },
@@ -435,7 +439,7 @@ jQuery(document).ready(function() {
           async: true,
           data:{
             recommendid: recommendid,
-            userid: 1,
+            userid: userid,
             status: 0,
             recommend: value
           },
@@ -467,9 +471,9 @@ jQuery(document).ready(function() {
         timeout: 5000,
         dataType: 'json',
         success: function(data){
-          for(let item of data.body){
+          for(var item of data.body){
             if (item.recommend == text_content) {
-              delete_item(item.id);
+              devare_item(item.id);
             }
           }
         },
@@ -480,10 +484,10 @@ jQuery(document).ready(function() {
       })
 
       //删除医嘱
-      function delete_item(id){
+      function devare_item(id){
         console.log("189 "+id);
           $.ajax({
-            url: baseURL + "adminrecommendController/delete",
+            url: baseURL + "adminrecommendController/devare",
             type: 'POST',
             async: true,
             data:{
@@ -551,7 +555,7 @@ jQuery(document).ready(function() {
           $('#dialog_recommend').removeAttr('class').addClass('animated bounceOutUp');
 
       //修改医嘱
-      for (let item of edit) {
+      for (var item of edit) {
         update_id(item.id,item.value);
       }
 

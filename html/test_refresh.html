@@ -4,29 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" type="text/css" href="../css/aui.css" />
-  <link rel="stylesheet" type="text/css" href="../css/aui-calendar.css" />
   <title>Document</title>
 </head>
 <body>
-
+  <div class="RNG">RNG1</div>
+  <div class="RNG">RNG2</div>
+  <div class="RNG">RNG3</div>
 </body>
-<script type="text/javascript" src="../script/aui-tap.js"></script>
-<script type="text/javascript" src="../script/aui-calendar.js"></script>
+<script type="text/javascript" src="../script/jquery-2.1.4.min.js"></script>
 <script type="text/javascript">
-    var todayDate = new Date();
-    var startDate = todayDate.getFullYear()+'-'+(todayDate.getMonth()+1)+'-'+todayDate.getDate();
-    var endDate = (todayDate.getFullYear())+'-'+(todayDate.getMonth()+5);
-    var calendar = new auiCalendar({
-        container:document.getElementById("calendar"), //容器
-        startDate:startDate,//开始日期
-        endDate:endDate,//结束日期
-        lunarShow:true,//是否显示农历
-        dateActive:dateActive,//点击日期后回调
-        beforeStartDateClick:false//设置今天之前日期是否可点击
-    });
-    function dateActive(date){
-        document.getElementById("result").textContent = date;
-    }
+    alert($('.RNG').text());
 </script>
 </html>

@@ -1,0 +1,26 @@
+.aui-list-item-input .glu{
+  width: 15%;
+  display: inline-block;
+}
+.aui-list-item-input .bloodoxygen{
+  width: 15%;
+  display: inline-block;
+}
+.aui-list-item-input .cholesterol{
+  width: 15%;
+  display: inline-block;
+}
+.aui-list-item-input .hbalc{
+  width: 15%;
+  display: inline-block;
+}
+.iDate{
+  position: absolute;
+  left: 25%;
+  top: 15%;
+}
+#birthday{
+  height: 99%;
+  font-size: 12px;
+  padding-left: 7px;
+}
