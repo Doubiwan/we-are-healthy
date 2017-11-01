@@ -13,37 +13,27 @@
 <script src="../script/jquery-2.1.4.min.js"></script>
 <script type="text/javascript">
 
-    apiready = function() {
-      var userId = 1;
-      getInfo(userId);
-    }
 
-    function getInfo(userId) {
       $.ajax({
-        url: address + '/infoController/selectAllByPage',
+        url: 'http://114.215.156.99:8381/backend/healthController/insertNew',
         type: 'POST',
         async: true,
         data:{
-          page: 1,
-          rows: 100,
-          order: 'id',
-          sort: 'asc',
-          adminid: 1,
+          username: 1,
+          sbp: 100,
+          dbp: 120,
+          boodoxygen: 2.3,
+          ecg: 1,
         },
         success: function(data) {
-          for (var item of data.rows) {
-            console.log(item);
-            if (item.userid == userId) {
-              alert(item);
-            }
-          }
+          console.log(data);
         },
         error:function(xhr) {
           console.log("网络错误");
           console.log(xhr);
         },
       });
-    }
+
 
 </script>
 </html>

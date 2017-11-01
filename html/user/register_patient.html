@@ -58,6 +58,14 @@
                     </div>
                 </li>
                 <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                      <span class="xinyu">关联“心域”APP</span>
+                      <div class="aui-list-item-input">
+                        <input class="aui-switch" type="checkbox" name="xinyu" checked="true">
+                      </div>
+                    </div>
+                </li>
+                <li class="aui-list-item">
                     <div class="aui-list-item-inner aui-list-item-center aui-list-item-btn">
                         <div id="submit_register" class="aui-btn aui-btn-info aui-margin-r-5">提交</div>
                         <div class="aui-btn aui-btn-danger aui-margin-l-5">取消</div>
@@ -119,6 +127,23 @@
           }
         });
       });
+
+      if ($('input[name=xinyu]')[0].checked) {
+        $.ajax({
+          url: 'http://47.92.80.155:8080/detect3/NewRegServlet',
+          type: 'post',
+          data:{
+            username: $('input[name=username]').val(),
+            password: $('input[name=password]').val()
+          },
+          success:function (data) {
+            console.log(data);
+          },
+          error:function (xhr) {
+            console.log(xhr);
+          }
+        });
+      }
     }
 </script>
 </html>

@@ -9,6 +9,9 @@ body{
   width: 50%;
   display: inline-block;
 }
+.xinyu{
+  width: 62%;
+}
 #codeImage{
   display: inline-block;
   position: absolute;
