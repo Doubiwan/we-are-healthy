@@ -572,28 +572,35 @@
           hbalc = []; //7天糖化血红蛋白
           ecg = []; //7天心电
           for (var item of data.body) {
+            console.log("已调用24小时");
+            console.log(data.body);
             var datetime = item.datetime.split(" ")[0];
 
-            var gluItem = [datetime, item.glu];
-            glu.push(gluItem);
+            if (item.glu != 0) {
+              var gluItem = [datetime, item.glu];
+              glu.push(gluItem);
+            }
+            if (item.cholesterol != 0) {
+              var choleItem = [datetime, item.cholesterol];
+              chole.push(choleItem);
+            }
+            if (item.hbalc != 0) {
+              var hbalcItem = [datetime, item.hbalc];
+              hbalc.push(hbalcItem);
+            }
 
-            var sbpItem = [datetime, item.sbp];
-            sbp.push(sbpItem);
 
-            var dbpItem = [datetime, item.dbp];
-            dbp.push(dbpItem);
+              var sbpItem = [datetime, item.sbp];
+              sbp.push(sbpItem);
 
-            var oxygenItem = [datetime, item.boodoxygen];
-            oxygen.push(oxygenItem);
+              var dbpItem = [datetime, item.dbp];
+              dbp.push(dbpItem);
 
-            var choleItem = [datetime, item.cholesterol];
-            chole.push(choleItem);
+              var oxygenItem = [datetime, item.boodoxygen];
+              oxygen.push(oxygenItem);
 
-            var hbalcItem = [datetime, item.hbalc];
-            hbalc.push(hbalcItem);
-
-            var ecgItem = [datetime, item.ecg];
-            ecg.push(ecgItem);
+              var ecgItem = [datetime, item.ecg];
+              ecg.push(ecgItem);
 
           }
           var dateList = glu.map(function(item) {
@@ -932,28 +939,32 @@
           hbalc = []; //7天糖化血红蛋白
           ecg = []; //7天心电
           for (var item of data.body) {
-            var datetime = item.datetime.split(" ")[0];
 
-            var gluItem = [datetime, item.glu];
-            glu.push(gluItem);
+            if ((item.glu != 0) && (item.cholesterol != 0) && (item.hbalc != 0)) {
 
-            var sbpItem = [datetime, item.sbp];
-            sbp.push(sbpItem);
+              var datetime = item.datetime.split(" ")[0];
 
-            var dbpItem = [datetime, item.dbp];
-            dbp.push(dbpItem);
+              var gluItem = [datetime, item.glu];
+              glu.push(gluItem);
 
-            var oxygenItem = [datetime, item.boodoxygen];
-            oxygen.push(oxygenItem);
+              var sbpItem = [datetime, item.sbp];
+              sbp.push(sbpItem);
 
-            var choleItem = [datetime, item.cholesterol];
-            chole.push(choleItem);
+              var dbpItem = [datetime, item.dbp];
+              dbp.push(dbpItem);
 
-            var hbalcItem = [datetime, item.hbalc];
-            hbalc.push(hbalcItem);
+              var oxygenItem = [datetime, item.boodoxygen];
+              oxygen.push(oxygenItem);
 
-            var ecgItem = [datetime, item.ecg];
-            ecg.push(ecgItem);
+              var choleItem = [datetime, item.cholesterol];
+              chole.push(choleItem);
+
+              var hbalcItem = [datetime, item.hbalc];
+              hbalc.push(hbalcItem);
+
+              var ecgItem = [datetime, item.ecg];
+              ecg.push(ecgItem);
+            }
 
           }
           var dateList = glu.map(function(item) {
@@ -1292,28 +1303,32 @@
           hbalc = []; //7天糖化血红蛋白
           ecg = []; //7天心电
           for (var item of data.body) {
-            var datetime = item.datetime.split(" ")[0];
 
-            var gluItem = [datetime, item.glu];
-            glu.push(gluItem);
+            if ((item.glu != null) && (item.cholesterol != null) && (item.hbalc != null)) {
 
-            var sbpItem = [datetime, item.sbp];
-            sbp.push(sbpItem);
+              var datetime = item.datetime.split(" ")[0];
 
-            var dbpItem = [datetime, item.dbp];
-            dbp.push(dbpItem);
+              var gluItem = [datetime, item.glu];
+              glu.push(gluItem);
 
-            var oxygenItem = [datetime, item.boodoxygen];
-            oxygen.push(oxygenItem);
+              var sbpItem = [datetime, item.sbp];
+              sbp.push(sbpItem);
 
-            var choleItem = [datetime, item.cholesterol];
-            chole.push(choleItem);
+              var dbpItem = [datetime, item.dbp];
+              dbp.push(dbpItem);
 
-            var hbalcItem = [datetime, item.hbalc];
-            hbalc.push(hbalcItem);
+              var oxygenItem = [datetime, item.boodoxygen];
+              oxygen.push(oxygenItem);
 
-            var ecgItem = [datetime, item.ecg];
-            ecg.push(ecgItem);
+              var choleItem = [datetime, item.cholesterol];
+              chole.push(choleItem);
+
+              var hbalcItem = [datetime, item.hbalc];
+              hbalc.push(hbalcItem);
+
+              var ecgItem = [datetime, item.ecg];
+              ecg.push(ecgItem);
+            }
 
           }
           var dateList = glu.map(function(item) {

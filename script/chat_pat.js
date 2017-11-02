@@ -256,10 +256,10 @@
       //  console.log($('.doc button[data-id='+id+']'));
        if (status == 1) {
          $('.doc button[history-id='+historyid+']').addClass('done');
-        //  $('.doc button[data-id='+id+']').children().text("已完成");
+         $('.doc button[history-id='+historyid+']').html("已完成");
        }else if (status == 0) {
          $('.doc button[history-id='+historyid+']').removeClass('done');
-        //  $('.doc button[data-id='+id+']').children().text("未完成");
+         $('.doc button[history-id='+historyid+']').html("未完成");
        }
      }
 
@@ -284,16 +284,18 @@
                var iterateIndex = 0;
                for (var item of data.rows.reverse()) {
                  var content =
-                     `<li class="list-item">
-                         <p class="time">
-                             <span>2017-09-27 16:17:51</span>
-                         </p>
-                         <div class="doc">
-                             <img src="../../image/avatar_pat.jpg"  class="avatar" width="30" height="30">
-                             <div class="text">${item.recommend}</div>
-                             <button class="status" onclick="finish(event)">未完成</button>
-                         </div>
-                     </li>`;
+                 `<li class="list-item">
+                   <p class="time">
+                     <span>2017-09-27 16:17:51</span>
+                   </p>
+                   <div class="doc">
+                     <img src="../../image/avatar_pat.jpg"  class="avatar" width="30" height="30">
+                     <div class="text">${item.recommend}</div>
+                     <button history-id=${item.id} data-id=${item.recommendid} data-status=${item.status} class="status" onclick="finish(event)">
+                      未完成
+                     </button>
+                   </div>
+                 </li>`;
                  $("#content_list_recommend").prepend(content);
                  iterateIndex++;
                }
@@ -332,8 +334,10 @@
       //切换点击元素的status状态
        if ($(event.target).attr("data-status") === '0') {
          $(event.target).attr("data-status",1);
+         $(event.target).html("已完成");
        }else{
          $(event.target).attr("data-status",0);
+         $(event.target).html("未完成");
        }
 
        //更新医嘱完成状态

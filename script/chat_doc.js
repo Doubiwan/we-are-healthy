@@ -2,11 +2,10 @@
     var baseURL = 'http://114.215.156.99:8381/backend/';
     var i = 3;
     apiready = function () {
-      userid = api.pageParam.userId;
-      $('.aui-title').html(api.pageParam.name);
-      refresh();
+        userid = api.pageParam.userId;
+        $('.aui-title').html(api.pageParam.name);
+        refresh();
     }
-
     //将title固定在顶部
     var elm = $('.title');
     var startPos = elm.offset().top;
@@ -213,8 +212,8 @@
             $("#content_list_recommend_doc").html('');
             // console.log(JSON.stringify(data));
               for (var item of data.rows.reverse()) {
-                  show_recommend(item.recommend);
-                  console.log(item.recommend);
+                  show_recommend(item.recommend,item.recommendid,item.status,item.id);
+                  // console.log(item.recommend);
               }
               if (data.rows != "") {
                 var moreContentRecommend =
@@ -322,19 +321,34 @@
     }
 
     //将查询获取到的医嘱列表显示在医嘱历史界面
-    function show_recommend(value) {
+    function show_recommend(value,id,status,historyid) {
         var content =
-            `<li class="list-item">
-                <p class="time">
-                    <span>2017-09-27 16:17:51</span>
-                </p>
-                <div class="doc">
-                    <button class="status" onclick="finish(event)">未完成</button>
-                    <img src="../../image/avatar_doc.jpg"  class="avatar" width="30" height="30">
-                    <div class="text">${value}</div>
-                </div>
-            </li>`;
+        `<li class="list-item">
+          <p class="time">
+            <span>2017-09-27 16:17:51</span>
+          </p>
+          <div class="doc">
+            <img src="../../image/avatar_pat.jpg"  class="avatar" width="30" height="30">
+            <div class="text">${value}</div>
+            <button history-id=${historyid} data-id=${id} data-status=${status} class="status" onclick="finish(event)">
+             未完成
+            </button>
+          </div>
+        </li>`;
         $("#content_list_recommend_doc").append(content);
+        selectStatusStyle(historyid,status);
+    }
+
+    //根据status状态显示状态
+    function selectStatusStyle(historyid,status){
+     //  console.log($('.doc button[data-id='+id+']'));
+      if (status == 1) {
+        $('.doc button[history-id='+historyid+']').addClass('done');
+       //  $('.doc button[data-id='+id+']').children().text("已完成");
+      }else if (status == 0) {
+        $('.doc button[history-id='+historyid+']').removeClass('done');
+       //  $('.doc button[data-id='+id+']').children().text("未完成");
+      }
     }
 
     //将查询到的医嘱列表显示在对话框中
