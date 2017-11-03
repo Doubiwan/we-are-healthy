@@ -65,7 +65,7 @@
                 <span>${getNowFormatDate()}</span>
               </p>
               <div class="doc" >
-                <img src="../../image/avatar_doc.jpg"  class="avatar" width="30" height="30">
+                <img src="assets/images/avatar_doc.jpg"  class="avatar" width="30" height="30">
                 <div class="text">${$("#input_message").val()}</div>
               </div>
               </li>`;
@@ -130,7 +130,7 @@
                   iterateIndex++;
               }
               $("#content_list").prepend(history_html);
-              console.log($('.readMore'+indexHistory));
+              // console.log($('.readMore'+indexHistory));
               $('.readMore'+indexHistory).hide();
               indexHistory++;
               var moreContentHistory =
@@ -230,7 +230,7 @@
             $("#content_list_recommend_doc").html('');
             // console.log(JSON.stringify(data));
               for (var item of data.rows.reverse()) {
-                  show_recommend(item.recommend,item.recommendid,item.status,item.id);
+                  show_recommend(item.datetime,item.recommend,item.recommendid,item.status,item.id);
                   // console.log(item.recommend);
               }
               if (data.rows != "") {
@@ -276,11 +276,11 @@
                 var content =
                     `<li class="list-item">
                         <p class="time">
-                            <span>2017-09-27 16:17:51</span>
+                            <span>${item.datetime}</span>
                         </p>
                         <div class="doc">
                             <button class="status" onclick="finish(event)">未完成</button>
-                            <img src="../../image/avatar_doc.jpg"  class="avatar" width="30" height="30">
+                            <img src="assets/images/avatar_doc.jpg"  class="avatar" width="30" height="30">
                             <div class="text">${item.recommend}</div>
                         </div>
                     </li>`;
@@ -339,18 +339,18 @@
     }
 
     //将查询获取到的医嘱列表显示在医嘱历史界面
-    function show_recommend(value,id,status,historyid) {
+    function show_recommend(datetime,value,id,status,historyid) {
         var content =
         `<li class="list-item">
           <p class="time">
-            <span>2017-09-27 16:17:51</span>
+            <span>${datetime}</span>
           </p>
           <div class="doc">
-            <img src="../../image/avatar_pat.jpg"  class="avatar" width="30" height="30">
-            <div class="text">${value}</div>
             <button history-id=${historyid} data-id=${id} data-status=${status} class="status">
-             未完成
+            未完成
             </button>
+            <img src="assets/images/avatar_pat.jpg"  class="avatar" width="30" height="30">
+            <div class="text">${value}</div>
           </div>
         </li>`;
         $("#content_list_recommend_doc").append(content);
@@ -410,6 +410,7 @@
     </li>`;
         var newtxt = "";
         $('.editInfos').append(add_content);
+        $('.editInfos').scrollTop(1800);
         $('.edit_input' + i + '').blur(function() {
             newtxt = $(this).val();
             // console.log("赋值前"+$(this).parent().siblings().val());
@@ -460,11 +461,11 @@
         var content =
         `<li class="list-item">
             <p class="time">
-                <span>2017-09-27 16:17:51</span>
+                <span>${getNowFormatDate()}</span>
             </p>
             <div class="doc">
                 <button class="status" onclick="finish(event)">未完成</button>
-                <img src="../../image/avatar_doc.jpg"  class="avatar" width="30" height="30">
+                <img src="assets/images/avatar_doc.jpg"  class="avatar" width="30" height="30">
                 <div class="text">${value}</div>
             </div>
         </li>`;

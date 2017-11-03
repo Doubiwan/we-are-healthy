@@ -61,7 +61,7 @@
               <span>${getNowFormatDate()}</span>
             </p>
             <div class="pat">
-              <img src="../../image/avatar_pat.jpg"  class="avatar" width="30" height="30">
+              <img src="assets/images/avatar_pat.jpg"  class="avatar" width="30" height="30">
               <div class="text">${$("#input_message").val()}</div>
             </div>
           </li>
@@ -223,7 +223,7 @@
            $("#content_list_recommend").html('');
            // console.log(JSON.stringify(data));
              for (var item of data.rows.reverse()) {
-                 show_recommend(item.recommend,item.recommendid,item.status,item.id);
+                 show_recommend(item.datetime,item.recommend,item.recommendid,item.status,item.id);
              }
              if (data.rows != "") {
                var moreContentRecommend =
@@ -249,14 +249,14 @@
        })
      }
      //将获取到的医嘱列表发送到聊天列表中
-     function show_recommend(value,id,status,historyid) {
+     function show_recommend(datetime,value,id,status,historyid) {
        var content =
        `<li class="list-item">
          <p class="time">
-           <span>2017-09-27 16:17:51</span>
+           <span>${datetime}</span>
          </p>
          <div class="doc">
-           <img src="../../image/avatar_pat.jpg"  class="avatar" width="30" height="30">
+           <img src="assets/images/avatar_doc.jpg"  class="avatar" width="30" height="30">
            <div class="text">${value}</div>
            <button history-id=${historyid} data-id=${id} data-status=${status} class="status" onclick="finish(event)">
             未完成
@@ -303,10 +303,10 @@
                  var content =
                  `<li class="list-item">
                    <p class="time">
-                     <span>2017-09-27 16:17:51</span>
+                     <span>${item.datetime}</span>
                    </p>
                    <div class="doc">
-                     <img src="../../image/avatar_pat.jpg"  class="avatar" width="30" height="30">
+                     <img src="assets/images/avatar_pat.jpg"  class="avatar" width="30" height="30">
                      <div class="text">${item.recommend}</div>
                      <button history-id=${item.id} data-id=${item.recommendid} data-status=${item.status} class="status" onclick="finish(event)">
                       未完成

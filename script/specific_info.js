@@ -3,6 +3,12 @@
       userId = api.pageParam.userId;
       getDocList();
       getInfo(userId);
+      $('#submit_patient_info').on('click',function () {
+        api.closeWin();
+      });
+      $('#cancel_info').on('click',function () {
+        api.closeWin();
+      });
     };
     var baseUrl = 'http://114.215.156.99:8381/backend';
     var docName = {};
