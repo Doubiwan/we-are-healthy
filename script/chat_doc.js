@@ -210,6 +210,14 @@
      *  以下为医嘱历史界面
      **/
 
+    $('#send_list').click(function () {
+      refresh_recommend_dialog();
+    });
+
+    $('#alert_add_send').click(function () {
+      refresh_recommend_dialog();
+    });
+
     //获取医嘱历史
     function refresh_recommend() {
       //查询医嘱历史列表
@@ -406,11 +414,15 @@
               <input class="aui-radio" type="checkbox" name="advice${i}" value="医生说：1111">
               <span><input type='text' class='insert_input edit_input${i}' value='请添加医嘱'/></span>
             </label>
+            <div style="text-align:right">
+              <i class="aui-iconfont aui-icon-edit"></i>
+              <i class="aui-iconfont aui-icon-trash"></i>
+            </div>
         </div>
     </li>`;
         var newtxt = "";
         $('.editInfos').append(add_content);
-        $('.editInfos').scrollTop(1800);
+        $('.editInfos').scrollTop($('#add_recommend_list')[0].scrollHeight);
         $('.edit_input' + i + '').blur(function() {
             newtxt = $(this).val();
             // console.log("赋值前"+$(this).parent().siblings().val());
@@ -499,7 +511,7 @@
     //点击按钮删除
     $('.editInfos').on('click','li .aui-icon-trash',function(){
 
-      var text_content = $(this).parent().siblings().children("span").text();
+      var text_content = $(this).parent().siblings().children("span:first").text();
 
       //查询医嘱列表
       $.ajax({
@@ -512,8 +524,10 @@
         timeout: 5000,
         dataType: 'json',
         success: function(data){
+          console.log(text_content);
           for(var item of data.body){
             if (item.recommend == text_content) {
+              console.log(item.id);
               devare_item(item.id);
             }
           }
@@ -528,7 +542,7 @@
       function devare_item(id){
         console.log("189 "+id);
           $.ajax({
-            url: baseURL + "adminrecommendController/devare",
+            url: baseURL + "adminrecommendController/delete",
             type: 'POST',
             async: true,
             data:{
@@ -554,21 +568,21 @@
       this.value = value;
     }
     //点击按钮编辑
-    var edit = [];
-    var id = "",
-        value = "";
+    // var edit = [];
+    // var id = "",
+    //     value = "";
 
     //删除edit数组指定位置元素
-    function removeById(array,id) {
-      for (var i = 0; i < array.length; i++) {
-        if (array[i].id == id) {
-          array.splice(i,1);
-          break;
-        }else{
-          return;
-        }
-      }
-    }
+    // function removeById(array,id) {
+    //   for (var i = 0; i < array.length; i++) {
+    //     if (array[i].id == id) {
+    //       array.splice(i,1);
+    //       break;
+    //     }else{
+    //       return;
+    //     }
+    //   }
+    // }
 
     $('.editInfos').on('click', 'li .aui-icon-edit', function() {
         var that = $(this);
@@ -583,24 +597,14 @@
                 text.val(newtxt);
                 id = text.parent().parent().parent().attr('data-id');
                 value = newtxt;
-                removeById(edit,that.attr('edit-id'));
-                edit.push(new ObjStore(id,value));
+                update_id(id,value);
+                // removeById(edit,that.attr('edit-id'));
+                // edit.push(new ObjStore(id,value));
             }
         });
     });
 
-
-    $('#submit_btn_recommend').click(function edit_recommend() {
-
-      $('#dialogBg_recommend').fadeOut(1, function() {
-          $('#dialog_recommend').removeAttr('class').addClass('animated bounceOutUp');
-
-      //修改医嘱
-      for (var item of edit) {
-        update_id(item.id,item.value);
-      }
-
-      function update_id(id, value) {
+    function update_id(id, value) {
           $.ajax({
               url: baseURL + "adminrecommendController/update",
               type: 'POST',
@@ -621,5 +625,16 @@
               },
           })
       }
+
+    $('#submit_btn').click(function edit_recommend() {
+
+      $('#dialogBg_recommend').fadeOut(1, function() {
+          $('#dialog_recommend').removeAttr('class').addClass('animated bounceOutUp');
+
+      //修改医嘱
+      for (var item of edit) {
+        update_id(item.id,item.value);
+      }
+
     });
     });

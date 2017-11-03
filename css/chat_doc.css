@@ -135,6 +135,12 @@ flex-direction: column;
 #editForm{
   height: 40vh;
   overflow: auto;
+  display: flex;
+}
+#add_recommend_list{
+  flex: 1;
+  margin-bottom: 18%;
+  overflow: scroll;
 }
 .aui-chat .text,.aui-chat_recommend .text {
     display: inline-block;
