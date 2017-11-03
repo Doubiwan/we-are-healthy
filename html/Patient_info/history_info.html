@@ -576,15 +576,15 @@
             console.log(data.body);
             var datetime = item.datetime.split(" ")[0];
 
-            if (item.glu != 0) {
+            if (item.glu != null && item.glu != 0) {
               var gluItem = [datetime, item.glu];
               glu.push(gluItem);
             }
-            if (item.cholesterol != 0) {
+            if (item.chole != null && item.chole != 0) {
               var choleItem = [datetime, item.cholesterol];
               chole.push(choleItem);
             }
-            if (item.hbalc != 0) {
+            if (item.hbalc != null && item.hbalc != 0) {
               var hbalcItem = [datetime, item.hbalc];
               hbalc.push(hbalcItem);
             }

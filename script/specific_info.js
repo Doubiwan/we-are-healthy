@@ -1,6 +1,6 @@
-
+    var userId;
     apiready = function() {
-      var userId = api.pageParam.userId;
+      userId = api.pageParam.userId;
       getDocList();
       getInfo(userId);
     };
@@ -293,14 +293,14 @@
           }
 
         var medicationHistory = medicine.join().split(",").join("");
-      console.log($('form').serialize() + "&userid=1&adminid=" + adminid + "&patientname=" + patientname
+      console.log($('form').serialize() + "&userid=" + userId + "&adminid=" + adminid + "&patientname=" + patientname
             + "&birthday=" + birthday + "&medicationHistory=" + medicationHistory + "&smoke=" + smoke
             + "&pastillness=" + pastillness + "&address=" + address + "&familyname=" + familyname
             + "&coffee=" + coffee + "&tea=" + tea + "&sex=" + sex);
         $.ajax({
             type: "POST",
             url: "http://114.215.156.99:8381/backend/infoController/insert",
-            data: $('form').serialize() + "&userid=1&adminid=" + adminid + "&patientname=" + patientname
+            data: $('form').serialize() + "&userid=" + userId + "&adminid=" + adminid + "&patientname=" + patientname
                   + "&birthday=" + birthday + "&medicationhistory=" + medicationHistory + "&smoke=" + smoke
                   + "&pastillness=" + pastillness + "&address=" + address + "&familyname=" + familyname
                   + "&coffee=" + coffee + "&tea=" + tea + "&sex=" + sex,

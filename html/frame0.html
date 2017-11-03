@@ -91,6 +91,7 @@
 <script type="text/javascript" src="../script/jquery-2.1.4.min.js"></script>
 <script type="text/javascript">
     apiready = function(){
+      console.log(api.pageParam.userId);
         $.ajax({
           url: 'http://114.215.156.99:8381/backend/infoController/selectByUserId',
           type: 'post',
