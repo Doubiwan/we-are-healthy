@@ -242,7 +242,6 @@
                     </li>
                 </ul>
               </div>
-              <form>
                 <div class="aui-content aui-margin-b-15">
                     <ul class="aui-list aui-form-list">
                         <li class="aui-list-header">家族病史</li>
@@ -285,14 +284,14 @@
                                 <div class="content_tea">
                                     <div class="aui-list-item-input list_style">
                                         <font>是否饮茶</font>
-                                        <label class="teaTrue"><input id="teaTrue" class="aui-radio" type="radio" onchange="teaChangeTrue(this)">是</label>
-                                        <label><input id="teaFalse" class="aui-radio" type="radio" value="0" onchange="teaChangeFalse(this)">否</label>
+                                        <label class="teaTrue"><input id="teaTrue" class="aui-radio" type="radio" name="tea">是</label>
+                                        <label><input id="teaFalse" class="aui-radio" type="radio" value="0" name="tea">否</label>
                                     </div>
                                 </div>
                                 <div class="tea_fm_style">
                                     <div class="tea_fm">饮茶频率</div>
                                     <div class="aui-list-item-input">
-                                      <label class="everyday">平均每天<input id="tea_fm" onchange="teaChangeTrue(this)" class="count_tea" placeholder="1">杯</label>
+                                      <label class="everyday">平均每天<input id="tea_fm" class="count_tea" placeholder="1">杯</label>
                                       <span>（约150mol）</span>
                                     </div>
                                 </div>
@@ -306,13 +305,13 @@
                                 <div class="content_tea">
                                     <div class="aui-list-item-input coffee_style">
                                         <font>是否饮咖啡</font>
-                                        <label><input id="coffeeTrue" class="aui-radio" type="radio" onchange="coffeeChangeTrue(this)">是</label>
-                                        <label><input id="coffeeFalse" class="aui-radio" type="radio" value="0" onchange="coffeeChangeFalse(this)">否</label>
+                                        <label><input id="coffeeTrue" class="aui-radio" type="radio" name="coffee">是</label>
+                                        <label><input id="coffeeFalse" class="aui-radio" type="radio" value="0" name="coffee">否</label>
                                     </div>
                                     <div class="coffee_fm_style">
                                         <div class="coffee_fm">饮咖啡频率</div>
                                         <div class="aui-list-item-input">
-                                            <label class="everyday">平均每天<input id="coffee_fm" onchange="coffeeChangeTrue(this)" class="count_tea" placeholder="1">杯</label>
+                                            <label class="everyday">平均每天<input id="coffee_fm" class="count_tea" placeholder="1">杯</label>
                                             <span>（约150mol）</span>
                                         </div>
                                     </div>
@@ -327,15 +326,16 @@
                                 <div class="content_tea">
                                     <div class="aui-list-item-input list_style">
                                         <font>是否吸烟</font>
-                                        <label><input id="smokeTrue" class="aui-radio" type="radio" onchange="smokeChangeTrue(this)">是</label>
-                                        <label><input id="smokeFalse" class="aui-radio" type="radio" value="0" onchange="smokeChangeFalse(this)">否</label>
+                                        <label><input id="smokeTrue" class="aui-radio" type="radio" name="smoke">是</label>
+                                        <label><input id="smokeFalse" class="aui-radio" type="radio" value="0" name="smoke">否</label>
                                     </div>
                                     <div class="tea_fm_style">
                                         <div class="tea_fm">吸烟频率</div>
                                         <div class="aui-list-item-input">
-                                            <label class="everyweek">平均每天<input id="smoke_fm" onchange="smokeChangeTrue(this)" class="count_tea" placeholder="1">支</label>
+                                            <label class="everyweek">平均每天<input id="smoke_fm" class="count_tea" placeholder="1">支</label>
                                         </div>
                                     </div>
+                                  <form>
                                     <div class="aui-list-item-input list_style">
                                         <div class="smoke_title">被动吸烟</div>
                                         <div class="smoke_content">
@@ -363,7 +363,7 @@
                                                 <label><input class="aui-radio" type="radio" name="drink" value="3">经常喝</label>
                                             </div>
                                             <div>
-                                                <label><input class="aui-radio" type="radio" name="demo1" value="0">不喝</label>
+                                                <label><input class="aui-radio" type="radio" name="drink" value="0">不喝</label>
                                             </div>
                                         </div>
                                     </div>

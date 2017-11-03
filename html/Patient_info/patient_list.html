@@ -277,63 +277,69 @@
                       userid_guan.push(item.userid);
                       insert(item.patientname,item.phone,item.birthday,item.id);
                       //点击列表项跳转
-                      $('.patient_list').on('click','.aui-icon-comment',function() {
+                      $('.patient_list').on('click','.aui-icon-comment',function(e) {
                         api.openWin({
                             name: 'chat_doc_new_frame',
                             url: '../Communication/chat_doc_new_frame.html',
-                            // pageParam: {
-                            //     name: 'test'
-                            // }
+                            pageParam: {
+                              userId: $(e.target).parent().attr('data-id'),
+                              name: $(e.target).parent().attr('patName'),
+                            }
                         });
                       });
                       //点击基本信息跳转
-                      $('.patient_list').on('click','.base_info',function() {
+                      $('.patient_list').on('click','.base_info',function(e) {
                         api.openWin({
                             name: 'specific_info_frame',
                             url: './specific_info_frame.html',
-                            // pageParam: {
-                            //     name: 'test'
-                            // }
+                            pageParam: {
+                              userId: $(e.target).parent().attr('data-id'),
+                              name: $(e.target).parent().attr('patName'),
+                            }
                         });
                       });
                       //点击历史数据跳转
-                      $('.patient_list').on('click','.history_info',function() {
+                      $('.patient_list').on('click','.history_info',function(e) {
                         api.openWin({
                             name: 'history_info_frame',
                             url: './history_info_frame.html',
-                            // pageParam: {
-                            //     name: 'test'
-                            // }
+                            pageParam: {
+                              userId: $(e.target).parent().attr('data-id'),
+                              name: $(e.target).parent().attr('patName'),
+                            }
                         });
                       });
                       //点击录入跳转
-                      $('.patient_list').on('click','.write',function() {
+                      $('.patient_list').on('click','.write',function(e) {
                         api.openWin({
                             name: 'add_patient_info_frame',
                             url: './add_patient_info_frame.html',
-                            // pageParam: {
-                            //     name: 'test'
-                            // }
+                            pageParam: {
+                              userId: $(e.target).parent().attr('data-id'),
+                              name: $(e.target).parent().attr('patName'),
+                            }
                         });
                       });
                       //点击高血压风险跳转
-                      $('.patient_list').on('click','.dangerGao',function() {
+                      $('.patient_list').on('click','.dangerGao',function(e) {
                         api.openWin({
                             name: 'doc_risk_anal',
                             url: './doc_risk_anal.html',
-                            // pageParam: {
-                            //     name: 'test'
-                            // }
+                            pageParam: {
+                              userId: $(e.target).parent().attr('data-id'),
+                              name: $(e.target).parent().attr('patName'),
+                            }
                         });
                       });
                       //点击糖尿病风险跳转
-                      $('.patient_list').on('click','.dangerTang',function() {
+                      $('.patient_list').on('click','.dangerTang',function(e) {
                         api.openWin({
                             name: 'old_risk_anal',
                             url: './old_risk_anal.html',
-                            // pageParam: {
-                            //     name: 'test'
-                            // }
+                            pageParam: {
+                              userId: $(e.target).parent().attr('data-id'),
+                              name: $(e.target).parent().attr('patName'),
+                            }
                         });
                       });
                     }
@@ -374,63 +380,69 @@
                       userid_tang.push(item.userid);
                       insert(item.patientname,item.phone,item.birthday,item.id);
                       //点击列表项跳转
-                      $('.patient_list').on('click','.aui-icon-comment',function() {
+                      $('.patient_list').on('click','.aui-icon-comment',function(e) {
                         api.openWin({
                             name: 'chat_doc_new_frame',
                             url: '../Communication/chat_doc_new_frame.html',
-                            // pageParam: {
-                            //     name: 'test'
-                            // }
+                            pageParam: {
+                              userId: $(e.target).parent().attr('data-id'),
+                              name: $(e.target).parent().attr('patName'),
+                            }
                         });
                       });
                       //点击基本信息跳转
-                      $('.patient_list').on('click','.base_info',function() {
+                      $('.patient_list').on('click','.base_info',function(e) {
                         api.openWin({
                             name: 'specific_info_frame',
                             url: './specific_info_frame.html',
-                            // pageParam: {
-                            //     name: 'test'
-                            // }
+                            pageParam: {
+                              userId: $(e.target).parent().attr('data-id'),
+                              name: $(e.target).parent().attr('patName'),
+                            }
                         });
                       });
                       //点击历史数据跳转
-                      $('.patient_list').on('click','.history_info',function() {
+                      $('.patient_list').on('click','.history_info',function(e) {
                         api.openWin({
                             name: 'history_info_frame',
                             url: './history_info_frame.html',
-                            // pageParam: {
-                            //     name: 'test'
-                            // }
+                            pageParam: {
+                              userId: $(e.target).parent().attr('data-id'),
+                              name: $(e.target).parent().attr('patName'),
+                            }
                         });
                       });
                       //点击录入跳转
-                      $('.patient_list').on('click','.write',function() {
+                      $('.patient_list').on('click','.write',function(e) {
                         api.openWin({
                             name: 'add_patient_info_frame',
                             url: './add_patient_info_frame.html',
-                            // pageParam: {
-                            //     name: 'test'
-                            // }
+                            pageParam: {
+                              userId: $(e.target).parent().attr('data-id'),
+                              name: $(e.target).parent().attr('patName'),
+                            }
                         });
                       });
                       //点击高血压风险跳转
-                      $('.patient_list').on('click','.dangerGao',function() {
+                      $('.patient_list').on('click','.dangerGao',function(e) {
                         api.openWin({
                             name: 'doc_risk_anal',
                             url: './doc_risk_anal.html',
-                            // pageParam: {
-                            //     name: 'test'
-                            // }
+                            pageParam: {
+                              userId: $(e.target).parent().attr('data-id'),
+                              name: $(e.target).parent().attr('patName'),
+                            }
                         });
                       });
                       //点击糖尿病风险跳转
-                      $('.patient_list').on('click','.dangerTang',function() {
+                      $('.patient_list').on('click','.dangerTang',function(e) {
                         api.openWin({
                             name: 'old_risk_anal',
                             url: './old_risk_anal.html',
-                            // pageParam: {
-                            //     name: 'test'
-                            // }
+                            pageParam: {
+                              userId: $(e.target).parent().attr('data-id'),
+                              name: $(e.target).parent().attr('patName'),
+                            }
                         });
                       });
                     }

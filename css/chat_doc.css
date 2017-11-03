@@ -164,6 +164,9 @@ flex-direction: column;
 }
 .send_style{
   text-align: center;
+  position: fixed;
+  bottom: 0;
+  left: 34%;
 }
 .recommend_btn{
   width: 414px;

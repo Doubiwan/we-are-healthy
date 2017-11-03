@@ -6,6 +6,24 @@
         $('.aui-title').html(api.pageParam.name);
         refresh();
     }
+
+    function getNowFormatDate() {
+        var date = new Date();
+        var seperator1 = "-";
+        var seperator2 = ":";
+        var month = date.getMonth() + 1;
+        var strDate = date.getDate();
+        if (month >= 1 && month <= 9) {
+            month = "0" + month;
+        }
+        if (strDate >= 0 && strDate <= 9) {
+            strDate = "0" + strDate;
+        }
+        var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate
+                + " " + date.getHours() + seperator2 + date.getMinutes()
+                + seperator2 + date.getSeconds();
+        return currentdate;
+    }
     //将title固定在顶部
     var elm = $('.title');
     var startPos = elm.offset().top;
@@ -44,7 +62,7 @@
         var content =
             `<li class="list-item">
               <p class="time">
-                <span>2017-09-27 16:17:51</span>
+                <span>${getNowFormatDate()}</span>
               </p>
               <div class="doc" >
                 <img src="../../image/avatar_doc.jpg"  class="avatar" width="30" height="30">
@@ -330,7 +348,7 @@
           <div class="doc">
             <img src="../../image/avatar_pat.jpg"  class="avatar" width="30" height="30">
             <div class="text">${value}</div>
-            <button history-id=${historyid} data-id=${id} data-status=${status} class="status" onclick="finish(event)">
+            <button history-id=${historyid} data-id=${id} data-status=${status} class="status">
              未完成
             </button>
           </div>
