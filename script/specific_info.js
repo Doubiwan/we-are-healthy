@@ -52,7 +52,10 @@
               //直接写入
               $('#patientname').val(data.body.patientname);
 
-              $('#birthday').val(data.body.birthday.split(' ')[0]);
+              // $('#birthday').val(data.body.birthday);
+              if (data.body.birthday != null) {
+                $('#birthday').val(data.body.birthday.split(' ')[0]);
+              }
 
               $('input[name="phone"]').val(data.body.phone);
 
@@ -94,25 +97,29 @@
                   $('#gradute').attr('checked','true');
               }
 
-              for (var i = 0; i < data.body.medicationhistory.length; i++) {
-                if(data.body.medicationhistory[i] == 1){
-                  var j = 0;
-                  j = i + 1;
-                  $('#medicine'+j).attr('checked','true');
+              if (data.body.medicationhistory != null) {
+                for (var i = 0; i < data.body.medicationhistory.length; i++) {
+                  if(data.body.medicationhistory[i] == 1){
+                    var j = 0;
+                    j = i + 1;
+                    $('#medicine'+j).attr('checked','true');
+                  }
                 }
               }
 
-              for (var i = 0; i < data.body.pastillness.length; i++) {
-                if (data.body.pastillness[i] == 1){
-                  var l = 0;
-                  l = i + 1;
-                  // console.log($('input[value=1][name=illness'+l+']'));
-                  $('input[value=1][name=illness'+l+']').attr('checked','true');
-                }else if (data.body.pastillness[i] == 0) {
-                  var l = 0;
-                  l = i + 1;
-                  console.log($('input[value=1][name=illness'+l+']'));
-                  $('input[value=0][name=illness'+l+']').attr('checked','true');
+              if (data.body.pastillness != null) {
+                for (var i = 0; i < data.body.pastillness.length; i++) {
+                  if (data.body.pastillness[i] == 1){
+                    var l = 0;
+                    l = i + 1;
+                    // console.log($('input[value=1][name=illness'+l+']'));
+                    $('input[value=1][name=illness'+l+']').attr('checked','true');
+                  }else if (data.body.pastillness[i] == 0) {
+                    var l = 0;
+                    l = i + 1;
+                    console.log($('input[value=1][name=illness'+l+']'));
+                    $('input[value=0][name=illness'+l+']').attr('checked','true');
+                  }
                 }
               }
 
