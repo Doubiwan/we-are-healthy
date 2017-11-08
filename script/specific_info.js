@@ -3,10 +3,10 @@
       userId = api.pageParam.userId;
       getDocList();
       getInfo(userId);
-      $('#submit_patient_info').on('click',function () {
-        api.closeWin();
+      $('#submit_patient_info').click(function () {
+        api.closeWin({name: 'specific_info_frame'});
       });
-      $('#cancel_info').on('click',function () {
+      $('#cancel_info').click(function () {
         api.closeWin();
       });
     };
@@ -72,10 +72,11 @@
               $('input[name=drink][value='+data.body.drink+']').attr('checked','true');
 
               //判断后写入
+              console.log(data.body.sex);
               if (data.body.sex == 1) {
                 $('#man').attr('checked','true');
               }else{
-                $('#woman').attr('checked','true');
+                $('#women').attr('checked','true');
               }
 
               getAdminid(data.body.adminid);
@@ -218,13 +219,47 @@
       $('.family14').toggleClass('aui-btn-warning');
     });
 
+    var illness = new Array("0","0","0","0","0");
+    var medicine = new Array("0","0","0","0");
     $('#submit_patient_info').on('click', function() {
-
-      var adminid = $('.select_style option:selected').val();
+      var adminid = $('#docList option:selected').val();
       var patientname = $('#patientname').val();
       var birthday = $(".iDate.date input").val();
       var address = $('#txt_area4').val();
       var familyname = $('#familyname').val();
+      var phone = $('input[name=phone]').val();
+      var familyphone = $('input[name=familyphone]').val();
+      var height = $('input[name=height]').val();
+      var weight = $('input[name=weight]').val();
+      var education;
+      var educationLevels = $('input[name=educationlevels]');
+      for (var item in educationLevels) {
+        if (educationLevels[item].checked) {
+          education = educationLevels[item].value;
+        }
+      }
+      var sport;
+      var sportCheck = $('input[name=sport]');
+      for (var item in sportCheck) {
+        if (sportCheck[item].checked) {
+          sport = sportCheck[item].value;
+        }
+      }
+      var ets;
+      var etsCheck = $('input[name=ets]');
+      for (var item in etsCheck) {
+        if (etsCheck[item].checked) {
+          ets = etsCheck[item].value;
+        }
+      }
+      var drink;
+      var drinkCheck = $('input[name=drink]');
+      for (var item in drinkCheck) {
+        if (drinkCheck[item].checked) {
+          drink = drinkCheck[item].value;
+        }
+      }
+
       //sex
       var sex = 0;
       if ($('#man')[0].checked) {
@@ -245,84 +280,96 @@
       if ($('#smokeTrue')[0].checked) {
         smoke = $('#smoke_fm').val();
       }
+
       //疾病史获取值
-      var illness = new Array("0","0","0","0","0");
+      if ($('#illness1')[0].checked) {
+        illness[0] = 1;
+      }else if ($('#illness1')[0].unchecked){
+        illness[0] = 0;
+      }
 
-        if ($('#illness1')[0].checked) {
-          illness[0] = 1;
-        }else if ($('#illness1')[0].unchecked){
-          illness[0] = 0;
-        }
+      if ($('#illness2')[0].checked) {
+        illness[1] = 1;
+      }else if ($('#illness2')[0].unchecked){
+        illness[1] = 0;
+      }
 
-        if ($('#illness2')[0].checked) {
-          illness[1] = 1;
-        }else if ($('#illness2')[0].unchecked){
-          illness[1] = 0;
-        }
+      if ($('#illness3')[0].checked) {
+        illness[2] = 1;
+      }else if ($('#illness3')[0].unchecked){
+        illness[2] = 0;
+      }
 
-        if ($('#illness3')[0].checked) {
-          illness[2] = 1;
-        }else if ($('#illness3')[0].unchecked){
-          illness[2] = 0;
-        }
+      if ($('#illness4')[0].checked) {
+        illness[3] = 1;
+      }else if ($('#illness4')[0].unchecked){
+        illness[3] = 0;
+      }
 
-        if ($('#illness4')[0].checked) {
-          illness[3] = 1;
-        }else if ($('#illness4')[0].unchecked){
-          illness[3] = 0;
-        }
+      if ($('#illness5')[0].checked) {
+        illness[4] = 1;
+      }else if ($('#illness5')[0].unchecked){
+        illness[4] = 0;
+      }
+      var pastillness = illness.join().split(",").join("");
+      //特殊药物获取checkbox值
 
-        if ($('#illness5')[0].checked) {
-          illness[4] = 1;
-        }else if ($('#illness5')[0].unchecked){
-          illness[4] = 0;
-        }
-        var pastillness = illness.join().split(",").join("");
-        //特殊药物获取checkbox值
-        var medicine = new Array("0","0","0","0");
+      if ($('#medicine1')[0].checked) {
+        medicine[0] = 1;
+      }else if($('#medicine1')[0].unchecked) {
+        medicine[0] = 0;
+      }
 
-          if ($('#medicine1')[0].checked) {
-            medicine[0] = 1;
-          }else if($('#medicine1')[0].unchecked) {
-            medicine[0] = 0;
-          }
+      if ($('#medicine2')[0].checked) {
+        medicine[1] = 1;
+      }else if($('#medicine2')[0].unchecked) {
+        medicine[1] = 0;
+      }
 
-          if ($('#medicine2')[0].checked) {
-            medicine[1] = 1;
-          }else if($('#medicine2')[0].unchecked) {
-            medicine[1] = 0;
-          }
+      if ($('#medicine3')[0].checked) {
+        medicine[2] = 1;
+      }else if($('#medicine3')[0].unchecked) {
+        medicine[2] = 0;
+      }
 
-          if ($('#medicine3')[0].checked) {
-            medicine[2] = 1;
-          }else if($('#medicine3')[0].unchecked) {
-            medicine[2] = 0;
-          }
+      if ($('#medicine4')[0].checked) {
+        medicine[3] = 1;
+      }else if($('#medicine4')[0].unchecked){
+        medicine[3] = 0;
+      }
 
-          if ($('#medicine4')[0].checked) {
-            medicine[3] = 1;
-          }else if($('#medicine4')[0].unchecked){
-            medicine[3] = 0;
-          }
+      var medicationHistory = medicine.join().split(",").join("");
 
-        var medicationHistory = medicine.join().split(",").join("");
-      console.log($('form').serialize() + "&userid=" + userId + "&adminid=" + adminid + "&patientname=" + patientname
-            + "&birthday=" + birthday + "&medicationHistory=" + medicationHistory + "&smoke=" + smoke
-            + "&pastillness=" + pastillness + "&address=" + address + "&familyname=" + familyname
-            + "&coffee=" + coffee + "&tea=" + tea + "&sex=" + sex);
         $.ajax({
-            type: "POST",
             url: "http://114.215.156.99:8381/backend/infoController/insert",
-            data: $('form').serialize() + "&userid=" + userId + "&adminid=" + adminid + "&patientname=" + patientname
-                  + "&birthday=" + birthday + "&medicationhistory=" + medicationHistory + "&smoke=" + smoke
-                  + "&pastillness=" + pastillness + "&address=" + address + "&familyname=" + familyname
-                  + "&coffee=" + coffee + "&tea=" + tea + "&sex=" + sex,
-            async: true,
+            type: "POST",
+            data: {
+              adminid: adminid,
+              userid: userId,
+              patientname: patientname,
+              birthday: birthday,
+              phone: phone,
+              familyname: familyname,
+              familyphone: familyphone,
+              height: height,
+              weight: weight,
+              address: address,
+              educationlevels: education,
+              medicationhistory: medicationHistory,
+              pastillness: pastillness,
+              smoke: smoke,
+              ets: ets,
+              drink: drink,
+              tea: tea,
+              coffee: coffee,
+              sport: sport,
+              sex: sex
+            },
+            success: function(data) {
+              alert("Connection Success->" + JSON.stringify(data));
+            },
             error: function(request) {
                 alert("Connection error");
             },
-            success: function(data) {
-                alert("Connection Success->" + JSON.stringify(data));
-            }
         });
     });
