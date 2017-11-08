@@ -1,3 +1,6 @@
+.aui-list .aui-list-item-input{
+  padding-right: 0;
+}
 header {
     margin-top: 0.75rem;
 }
@@ -128,8 +131,17 @@ label{
 .content_tea .aui-list-item-input .wine_type,.content_tea .aui-list-item-input .wine_content{
     display: inline-block;
 }
-.content_tea .aui-list-item-input .wine_type{
+.content_wine .aui-list-item-input .wine_type{
     vertical-align: top;
+    margin-right: 9%;
+    display: inline-block;
+}
+.content_wine .aui-list-item-input .wine_content{
+    display: inline-block;
+}
+.content_wine{
+  margin: 5% 0;
+  width: 100%;
 }
 .drinkTea{
     margin: 5% 0;

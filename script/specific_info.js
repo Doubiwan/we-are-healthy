@@ -4,7 +4,7 @@
       getDocList();
       getInfo(userId);
       $('#submit_patient_info').click(function () {
-        api.closeWin({name: 'specific_info_frame'});
+        api.closeWin();
       });
       $('#cancel_info').click(function () {
         api.closeWin();
@@ -68,7 +68,7 @@
               $('input[name="weight"]').val(data.body.weight);
 
               $('#txt_area4').val(data.body.address);
-
+              console.log(data.body.drink);
               $('input[name=drink][value='+data.body.drink+']').attr('checked','true');
 
               //判断后写入
@@ -150,7 +150,7 @@
               }else if (data.body.ets == 0) {
                 $('#etsFalse').attr('checked','true');
               }
-
+              console.log(data.body.sport);
               switch (data.body.sport) {
                 case 0:
                   $('#sport0').attr('checked','true');
@@ -339,7 +339,7 @@
       }
 
       var medicationHistory = medicine.join().split(",").join("");
-
+      console.log(drink);
         $.ajax({
             url: "http://114.215.156.99:8381/backend/infoController/insert",
             type: "POST",
@@ -366,7 +366,8 @@
               sex: sex
             },
             success: function(data) {
-              alert("Connection Success->" + JSON.stringify(data));
+              console.log(JSON.stringify(data));
+              // alert("Connection Success->" + JSON.stringify(data));
             },
             error: function(request) {
                 alert("Connection error");
