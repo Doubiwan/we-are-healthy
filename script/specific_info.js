@@ -47,7 +47,8 @@
           userid: userId
         },
         success: function(data) {
-
+            console.log("userId="+userId);
+            console.log("data.body.userid="+data.body.userid);
             if (data.body.userid == userId) {
               //直接写入
               $('#patientname').val(data.body.patientname);

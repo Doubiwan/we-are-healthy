@@ -92,9 +92,10 @@
     var userid_gao = new Array();
     var userid_guan = new Array();
     var userid_tang = new Array();
-
+    var adminid;
     apiready = function(){
 
+      adminid = api.pageParam.adminid;
       gaoxueyaClick();
 
       //插入DOM
@@ -148,7 +149,7 @@
                     rows: '100',
                     order: 'id',
                     sort: 'asc',
-                    adminid: '1'
+                    adminid: adminid
                 }
             }
         }, function(ret, err) {
@@ -259,7 +260,7 @@
                     rows: '100',
                     order: 'id',
                     sort: 'desc',
-                    adminid: '1'
+                    adminid: adminid
                 }
             }
         }, function(ret, err) {
@@ -275,9 +276,11 @@
                     // alert(JSON.stringify(item.pastillness.charAt(0)));
                     if (item.pastillness.charAt(1) == 1 ) {
                       userid_guan.push(item.userid);
-                      insert(item.patientname,item.phone,item.birthday,item.id);
+                      insert(item.patientname,item.phone,item.birthday,item.userid);
                       //点击列表项跳转
                       $('.patient_list').on('click','.aui-icon-comment',function(e) {
+                        console.log($(e.target).parent().attr('data-id'));
+                        console.log($(e.target).parent().attr('patName'));
                         api.openWin({
                             name: 'chat_doc_new_frame',
                             url: '../Communication/chat_doc_new_frame.html',
@@ -362,7 +365,7 @@
                     rows: '100',
                     order: 'id',
                     sort: 'desc',
-                    adminid: '1'
+                    adminid: adminid
                 }
             }
         }, function(ret, err) {

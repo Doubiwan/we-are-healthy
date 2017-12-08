@@ -214,16 +214,30 @@
             success: function(data) {
               console.info(data);
               if (data.code === 0) {
-                console.log($('#username').val());
-                alert("connection success -> " + JSON.stringify(data));
-                api.openWin({
-                  name: 'patient_list' ,
-                  url: '../Patient_info/patient_list_frame.html',
-                  pageParam: {
-                      name: $('#username').val(),
+                $.ajax({
+                  url: baseURL + 'adminController/getAdmin',
+                  type: 'POST',
+                  data:{
+                    sessionId: sessionStorage.getItem('sessionId')
                   },
-                  slidBackEnabled:false
+                  dataType: 'json',
+                  success: function (data) {
+                    // console.log($('#username').val());
+                    api.openWin({
+                      name: 'patient_list' ,
+                      url: '../Patient_info/patient_list_frame.html',
+                      pageParam: {
+                        adminid: data.body.id,
+                        name: data.body.username,
+                      },
+                      slidBackEnabled:false
+                    });
+                  },
+                  error: function (xhr) {
+                    console.log(xhr);
+                  }
                 });
+                alert("connection success -> " + JSON.stringify(data));
               } else {
                 alert("connection failed  -> " + JSON.stringify(data));
               }
